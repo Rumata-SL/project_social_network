@@ -1,25 +1,12 @@
-.header{
+.container{
     min-width: 300px;
     backdrop-filter: blur(4px);
     background-color: rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    grid-area: h;
+    grid-area: f;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
     color: white;
-}
-.header_logo{
-    flex-grow: 0;
-    box-sizing: border-box;
-}
-.header_title{
-
-    flex-grow: 2;
-}
-.logo{
-    width: 55px;
-    margin: 10px;
-    display: inline-block;
 }

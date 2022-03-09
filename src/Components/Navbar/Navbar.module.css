@@ -1,0 +1,27 @@
+.nav {
+    /*background-color: aliceblue;*/
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.1);
+    grid-area: n;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.links {
+    list-style-type: none;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.item:hover {
+    color: red;
+}
+
+.active {
+    color: chocolate;
+}

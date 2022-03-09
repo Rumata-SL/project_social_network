@@ -1,4 +1,28 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
+.app-wrapper {
+    /*max-width: 1080px;*/
+    margin: 0 auto;
+    padding: 5px;
+    /*background-color: lightblue;*/
+    background-image: url("./App_image/scrin.jpeg");
+    background-repeat: repeat;
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 5px;
+    grid-template-areas:
+    "h h"
+    "n c"
+    "f f";
+}
+
+.app-wrapper-content {
+    padding: 2px;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.1);
+    grid-area: c;
+}
