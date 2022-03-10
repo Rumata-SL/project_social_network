@@ -6,7 +6,7 @@ type UsersProps = {
     id: number;
     name: string;
 }
-const DUsers = [
+const DUsers: Array<UsersProps> = [
     {id:1, name: "Satoshi"},
     {id:2, name: "Djun"},
     {id:3, name: "Acira"},
@@ -14,7 +14,7 @@ const DUsers = [
     {id:5, name: "Ymy"},
 ]
 
-const DialogUser: FC= () => {
+const DialogUser: FC<UsersProps> = (props) => {
     let DUser = DUsers.map(item => {
         return (
             <div key={item.id}>

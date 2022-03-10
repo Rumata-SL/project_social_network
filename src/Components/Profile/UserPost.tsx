@@ -1,16 +1,20 @@
-import React from "react";
+import React, {FC} from "react";
 import img from "./UserPostImage/social_logo.png"
 import up from "./UserPost.module.css"
 import Post from "./Post";
 
-
+export type TypePropsUserPost = {
+    id: number,
+    message: string,
+    likes:number
+}
 const users = [
     {id: 1, message: "I am samurai", likes: 5},
     {id: 2, message: "I am ninja", likes: 10},
     {id: 3, message: "I am Satoshi Nakamoto", likes: 15},
 ]
 
-const UserPost = () => {
+const UserPost: FC<TypePropsUserPost> = () => {
 
     let user = users.map(item => {
         return (

@@ -3,7 +3,7 @@ import logo from "./Profile_image/content_logo.jpg"
 import p from "./Profile.module.css"
 import UserPost from "./UserPost";
 
-function Profile(){
+const Profile = () => {
     return (
         <div className={p.content}>
             <div>

@@ -7,7 +7,7 @@ type postProps = {
     likes: number
 }
 
-const Post:FC<postProps>=({message,likes})=> {
+const Post: FC<postProps> = ({message, likes}) => {
     return (
         <div className={post.container_post}>
             <span>{likes}</span>

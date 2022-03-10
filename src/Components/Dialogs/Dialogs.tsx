@@ -4,13 +4,11 @@ import DialogUser from "./DialogUser";
 import UserMessage from "./UserMessage";
 
 
-
-function Dialogs(){
+const Dialogs = () => {
     return (
         <div className={d.dialogs}>
             <div className={d.dialog}>
-                <DialogUser />
-                hello
+                <DialogUser/>
             </div>
             <div className={d.message}>
                 <UserMessage/>

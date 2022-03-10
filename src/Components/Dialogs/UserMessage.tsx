@@ -5,7 +5,7 @@ type TypePropsUserMessage = {
     id: number;
     message: string;
 }
-const UsMessages = [
+const UsMessages: Array<TypePropsUserMessage> = [
     {id: 1, message: "Hello, i am Satoshi"},
     {id: 2, message: "Hello, i am Djun"},
     {id: 3, message: "Hello, i am Acira"},
@@ -13,7 +13,7 @@ const UsMessages = [
     {id: 5, message: "Hello, i am Ymy"},
 ]
 
-const UserMessage: FC = () => {
+const UserMessage: FC<TypePropsUserMessage> = () => {
     const UMessage = UsMessages.map(item => {
         return (
             <div>
