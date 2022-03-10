@@ -9,11 +9,11 @@ function Navbar() {
     return (
         <nav className={n.nav}>
             <div className={n.links}>
-                <div><NavLink className={setActive} to="/Profile">Profile</NavLink></div>
-                <div><NavLink className={setActive} to="/dialogs">Messages</NavLink></div>
-                <div><NavLink className={setActive} to="/news">News</NavLink></div>
-                <div><NavLink className={setActive} to="/music">Music</NavLink></div>
-                <div><NavLink className={setActive} to="/settings">Settings</NavLink></div>
+                <div><NavLink className={setActive} to="/">Profile</NavLink></div>
+                <div><NavLink className={setActive} to="/Dialogs">Messages</NavLink></div>
+                <div><NavLink className={setActive} to="/News">News</NavLink></div>
+                <div><NavLink className={setActive} to="/Music">Music</NavLink></div>
+                <div><NavLink className={setActive} to="/Settings">Settings</NavLink></div>
             </div>
         </nav>
     )

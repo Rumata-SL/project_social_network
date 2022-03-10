@@ -1,9 +1,9 @@
 import React, {FC} from "react";
 import dm from "./Dialogs.module.css";
-import {TypePropsMessage} from "./Dialogs";
+import {MessageTypeProps} from "./Dialogs";
 
 type TypePropsUserMessage = {
-    messages: Array<TypePropsMessage>
+    messages: Array<MessageTypeProps>
 }
 
 

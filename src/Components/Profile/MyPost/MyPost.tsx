@@ -32,8 +32,8 @@ const MyPost: FC<TypePropsUserPost> = (props: TypePropsUserPost) => {
                 </div>
 
             </div>
-            <div>
-                <h6>My post</h6>
+            <div className={up.box3}>
+                <h3>My post</h3>
                 <div><textarea>post</textarea></div>
                 <div>
                     <button>Add post</button>

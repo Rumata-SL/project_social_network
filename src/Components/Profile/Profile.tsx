@@ -16,7 +16,7 @@ const user: Array<TypePropsMyPost> = [
     {id: 3, message: "I am Satoshi Nakamoto", likes: 15},
 ]
 
-const Profile = (props: TypePropsMyPost) => {
+const Profile = () => {
     return (
         <div className={p.content}>
             <div>
