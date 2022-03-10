@@ -19,7 +19,7 @@ function App() {
         <BrowserRouter>
 
             <div className="app-wrapper">
-                <Header/>
+                <Header title={"SOCIAL NETWORK"}/>
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path={"/Profile"} component={Profile}/>
