@@ -1,22 +1,17 @@
 import React, {FC} from "react";
-import img from "./UserPostImage/social_logo.png"
-import up from "./UserPost.module.css"
-import Post from "./Post";
+import img from "./MyPostImage/social_logo.png"
+import up from "./MyPost.module.css"
+import Post from "./Post/Post";
+import {TypePropsMyPost} from "../Profile";
 
-export type TypePropsUserPost = {
-    id: number,
-    message: string,
-    likes:number
+type TypePropsUserPost = {
+    user: Array<TypePropsMyPost>
 }
-const users = [
-    {id: 1, message: "I am samurai", likes: 5},
-    {id: 2, message: "I am ninja", likes: 10},
-    {id: 3, message: "I am Satoshi Nakamoto", likes: 15},
-]
 
-const UserPost: FC<TypePropsUserPost> = () => {
 
-    let user = users.map(item => {
+const MyPost: FC<TypePropsUserPost> = (props: TypePropsUserPost) => {
+
+    let user = props.user.map(item => {
         return (
             <div key={item.id}>
                 <Post message={item.message} likes={item.likes}/>
@@ -51,4 +46,4 @@ const UserPost: FC<TypePropsUserPost> = () => {
         </div>
     )
 }
-export default UserPost
+export default MyPost

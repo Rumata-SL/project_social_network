@@ -1,21 +1,14 @@
 import React, {FC} from "react";
 import du from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom";
+import {UsersTypeProps} from "./Dialogs";
 
 type UsersProps = {
-    id: number;
-    name: string;
+    users: Array<UsersTypeProps>
 }
-const DUsers: Array<UsersProps> = [
-    {id:1, name: "Satoshi"},
-    {id:2, name: "Djun"},
-    {id:3, name: "Acira"},
-    {id:4, name: "Kero"},
-    {id:5, name: "Ymy"},
-]
 
-const DialogUser: FC<UsersProps> = (props) => {
-    let DUser = DUsers.map(item => {
+const DialogUser: FC<UsersProps> = (props: UsersProps) => {
+    let user = props.users.map(item => {
         return (
             <div key={item.id}>
                 <NavLink to={`${item.id}`}>{item.name}</NavLink>
@@ -25,7 +18,7 @@ const DialogUser: FC<UsersProps> = (props) => {
 
     return (
         <div className={du.item}>
-            {DUser}
+            {user}
         </div>
     )
 }
