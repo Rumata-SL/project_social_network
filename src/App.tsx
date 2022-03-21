@@ -3,7 +3,7 @@ import "./App.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 // components
-import Header from "./Components/Header/Header";
+import {Header} from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
 import Dialogs from "./Components/Dialogs/Dialogs";

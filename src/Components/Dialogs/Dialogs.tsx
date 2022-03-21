@@ -1,7 +1,7 @@
 import React from "react";
 import d from "./Dialogs.module.css"
-import DialogUser from "./DialogUser";
-import UserMessage from "./UserMessage";
+import {DialogItem} from "./DialogItem";
+import {Message} from "./Message";
 
 
 export type MessageTypeProps = {
@@ -34,10 +34,10 @@ const Dialogs = () => {
     return (
         <div className={d.dialogs}>
             <div className={d.dialog}>
-                <DialogUser users={users}/>
+                <DialogItem users={users}/>
             </div>
             <div className={d.message}>
-                <UserMessage messages={messages}/>
+                <Message messages={messages}/>
             </div>
         </div>
     )

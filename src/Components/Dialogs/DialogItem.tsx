@@ -7,8 +7,8 @@ type UsersProps = {
     users: Array<UsersTypeProps>
 }
 
-const DialogUser: FC<UsersProps> = (props: UsersProps) => {
-    let user = props.users.map(item => {
+ export const DialogItem: FC<UsersProps> = ({users}) => {
+    let user = users.map(item => {
         return (
             <div key={item.id}>
                 <NavLink to={`${item.id}`}>{item.name}</NavLink>
@@ -22,5 +22,3 @@ const DialogUser: FC<UsersProps> = (props: UsersProps) => {
         </div>
     )
 }
-
-export default DialogUser

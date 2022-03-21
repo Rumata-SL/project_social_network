@@ -15,11 +15,13 @@
     box-sizing: border-box;
 }
 .header_title{
-
     flex-grow: 2;
 }
 .logo{
     width: 55px;
     margin: 10px;
     display: inline-block;
+}
+.hed{
+    color: rgba(255, 255, 255, 0.5);
 }

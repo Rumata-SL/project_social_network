@@ -6,12 +6,13 @@ type TypePropsUserMessage = {
     messages: Array<MessageTypeProps>
 }
 
-
-const UserMessage: FC<TypePropsUserMessage> = (props: TypePropsUserMessage) => {
-    const message = props.messages.map(item => {
+export const Message: FC<TypePropsUserMessage> = ({messages}) => {
+    const message = messages.map(item => {
         return (
-            <div>
-                <a key={item.id}> {item.message} </a>
+            <div key={item.id}>
+                 <div>
+                {item.message}
+                 </div>
             </div>
         )
     });
@@ -21,4 +22,3 @@ const UserMessage: FC<TypePropsUserMessage> = (props: TypePropsUserMessage) => {
         </div>
     )
 }
-export default UserMessage
