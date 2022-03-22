@@ -11,20 +11,21 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import Footer from "./Components/Footer/Footer";
+import {AppTypeProps} from "./index";
 
 
 
-function App() {
+
+function App(props:AppTypeProps) {
     return (
         <BrowserRouter>
-
             <div className="app-wrapper">
                 <Header title={"SOCIAL NETWORK"}/>
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Switch>
-                        <Route exact path={"/"} render={() => <Profile/>}/>
-                        <Route path="/Dialogs" render={() => <Dialogs/>}/>
+                        <Route exact path={"/"} render={() => <Profile posts={props.posts}/>}/>
+                        <Route path="/Dialogs" render={() => <Dialogs users={props.users} messages={props.messages}/>}/>
                         <Route path="/News" render={() => <News/>}/>
                         <Route path="/Music" render={() => <Music/>}/>
                         <Route path="/Settings" render={() => <Settings/>}/>

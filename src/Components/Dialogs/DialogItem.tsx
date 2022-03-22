@@ -1,7 +1,8 @@
 import React, {FC} from "react";
 import du from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom";
-import {UsersTypeProps} from "./Dialogs";
+import {UsersTypeProps} from "../../index";
+
 
 type UsersProps = {
     users: Array<UsersTypeProps>

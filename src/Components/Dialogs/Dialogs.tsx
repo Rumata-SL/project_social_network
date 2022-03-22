@@ -2,10 +2,10 @@ import React from "react";
 import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
 import {Message} from "./Message";
-import {v1} from "uuid";
+import {MessageTypeProps, UsersTypeProps} from "../../index";
 
 
-export type MessageTypeProps = {
+/*export type MessageTypeProps = {
     id: string,
     message: string,
 }
@@ -28,17 +28,21 @@ const users: Array<UsersTypeProps> = [
     {id: v1(), name: "Acira"},
     {id: v1(), name: "Kero"},
     {id: v1(), name: "Ymy"},
-]
+]*/
 
+type DialogsTypeProps = {
+    messages:Array<MessageTypeProps>
+    users:Array<UsersTypeProps>
+}
 
-const Dialogs = () => {
+const Dialogs = (props: DialogsTypeProps) => {
     return (
         <div className={d.dialogs}>
             <div className={d.dialog}>
-                <DialogItem users={users}/>
+                <DialogItem users={props.users}/>
             </div>
             <div className={d.message}>
-                <Message messages={messages}/>
+                <Message messages={props.messages}/>
             </div>
         </div>
     )
