@@ -10,9 +10,16 @@ type postProps = {
 const Post: FC<postProps> = ({message, likes}) => {
     return (
         <div className={post.container_post}>
-            <span>{likes}</span>
+
+            <div>
             <img className={post.ava} src={avatar} alt={avatar}/>
+            </div>
+            <div className={post.containerLikes}>
+                <span className={post.likes}>{likes}</span>
+            </div>
+            <div className={post.message}>
             {message}
+            </div>
         </div>
     )
 }
