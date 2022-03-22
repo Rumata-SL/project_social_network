@@ -2,31 +2,32 @@ import React from "react";
 import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
 import {Message} from "./Message";
+import {v1} from "uuid";
 
 
 export type MessageTypeProps = {
-    id: number,
+    id: string,
     message: string,
 }
 export  type UsersTypeProps = {
-    id: number,
+    id: string,
     name: string,
 }
 
 const messages: Array<MessageTypeProps> = [
-    {id: 1, message: "Hello, i am Satoshi"},
-    {id: 2, message: "Hello, i am Djun"},
-    {id: 3, message: "Hello, i am Acira"},
-    {id: 4, message: "Hello, i am Kero"},
-    {id: 5, message: "Hello, i am Ymy"},
+    {id: v1(), message: "Hello, i am Satoshi"},
+    {id: v1(), message: "Hello, i am Djun"},
+    {id: v1(), message: "Hello, i am Acira"},
+    {id: v1(), message: "Hello, i am Kero"},
+    {id: v1(), message: "Hello, i am Ymy"},
 ]
 
 const users: Array<UsersTypeProps> = [
-    {id: 1, name: "Satoshi"},
-    {id: 2, name: "Djun"},
-    {id: 3, name: "Acira"},
-    {id: 4, name: "Kero"},
-    {id: 5, name: "Ymy"},
+    {id: v1(), name: "Satoshi"},
+    {id: v1(), name: "Djun"},
+    {id: v1(), name: "Acira"},
+    {id: v1(), name: "Kero"},
+    {id: v1(), name: "Ymy"},
 ]
 
 

@@ -1,4 +1,36 @@
 .ava{
-    width: 50px;
+    width: 45px;
     border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: block;
+}
+.containerLikes{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    line-height: 20px;
+    align-items: center;
+    background-color: red;
+    border-radius: 50%;
+
+}
+.containerLikes span{
+    font-size: 8px;
+    margin: 0 auto;
+}
+.container_post{
+    display: flex;
+    align-items: flex-end;
+    padding: 3px;
+}
+.container_post > div:last-child{
+    margin-left: 15px;
+}
+.message{
+    min-width: 350px;
+    min-height: 40px;
+    padding: 5px;
+    border-radius: 10px 10px 10px 0;
+    border: solid 1px white;
+    background-color: rgba(0, 0, 0, 0.3);
 }
