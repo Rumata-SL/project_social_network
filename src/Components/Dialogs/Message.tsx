@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import dm from "./Dialogs.module.css";
-import {MessagesType, state, StateType} from "../../Redux/State";
+import {MessagesType, state,} from "../../Redux/State";
 
 
 type TypePropsUserMessage = {

@@ -10,7 +10,7 @@ type DialogsTypeProps = {
     users: Array<UsersType>
 }
 
-const Dialogs:FC<DialogsTypeProps> = ({messages, users}) => {
+export const Dialogs:FC<DialogsTypeProps> = ({messages, users}) => {
     return (
         <div className={d.dialogs}>
             <div className={d.dialog}>
@@ -22,4 +22,3 @@ const Dialogs:FC<DialogsTypeProps> = ({messages, users}) => {
         </div>
     )
 }
-export default Dialogs

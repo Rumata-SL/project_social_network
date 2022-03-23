@@ -7,7 +7,7 @@ type postPropsType = {
     likes: number
 }
 
-const Post: FC<postPropsType> = ({message, likes}) => {
+export const Post: FC<postPropsType> = ({message, likes}) => {
     return (
         <div className={post.container_post}>
 
@@ -23,4 +23,3 @@ const Post: FC<postPropsType> = ({message, likes}) => {
         </div>
     )
 }
-export default Post

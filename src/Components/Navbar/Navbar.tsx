@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 
 const setActive = (navData: any) => navData.isActive ? n.active : n.item
 
-function Navbar() {
+export const Navbar = () => {
     return (
         <nav className={n.nav}>
             <div className={n.links}>
@@ -18,5 +18,3 @@ function Navbar() {
         </nav>
     )
 }
-
-export default Navbar

@@ -1,16 +1,15 @@
 import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
-import Post from "./Post/Post";
-import {PostsType, state, StateType} from "../../../Redux/State";
+import {Post} from "./Post/Post";
+import {PostsType, state} from "../../../Redux/State";
 
 type TypePropsUserPost = {
     posts: Array<PostsType>
     addPost: (postMessage: string) => void
 }
 
-const MyPost: FC<TypePropsUserPost> = ({posts, addPost}) => {
-    debugger;
+export const MyPost: FC<TypePropsUserPost> = ({ addPost}) => {
     let user = state.profilePage.posts.map(item => {
         return (
             <div key={item.id}>
@@ -48,4 +47,3 @@ const MyPost: FC<TypePropsUserPost> = ({posts, addPost}) => {
         </div>
     )
 }
-export default MyPost

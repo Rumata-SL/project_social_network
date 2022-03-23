@@ -4,14 +4,14 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 // components
 import {Header} from "./Components/Header/Header";
-import Navbar from "./Components/Navbar/Navbar";
-import Profile from "./Components/Profile/Profile";
-import Dialogs from "./Components/Dialogs/Dialogs";
-import News from "./Components/News/News";
-import Music from "./Components/Music/Music";
-import Settings from "./Components/Settings/Settings";
-import Footer from "./Components/Footer/Footer";
-import {StateType, addPost} from "./Redux/State";
+import {Navbar} from "./Components/Navbar/Navbar";
+import {Profile} from "./Components/Profile/Profile";
+import {Dialogs} from "./Components/Dialogs/Dialogs";
+import {News} from "./Components/News/News";
+import {Music} from "./Components/Music/Music";
+import {Settings} from "./Components/Settings/Settings";
+import {Footer} from "./Components/Footer/Footer";
+import {StateType,} from "./Redux/State";
 
 type AppTypeProps = {
     state: StateType

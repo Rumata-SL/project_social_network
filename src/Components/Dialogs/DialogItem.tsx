@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import du from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom";
-import {state, StateType, UsersType} from "../../Redux/State";
+import {state, UsersType} from "../../Redux/State";
 
 
 type UsersProps = {
