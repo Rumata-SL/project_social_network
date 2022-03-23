@@ -5,8 +5,8 @@ import MyPost from "./MyPost/MyPost";
 import {PostsType, StateType, addPost} from "../../Redux/State";
 
 
-type ProfileTypePost ={
-    posts:Array<PostsType>
+type ProfileTypePost = {
+    posts: Array<PostsType>
     addPost: (postMessage: string) => void
 }
 

@@ -18,14 +18,13 @@ const MyPost: FC<TypePropsUserPost> = ({posts, addPost}) => {
             </div>
         )
     })
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    // let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let newPostElement = React.createRef<HTMLInputElement>();
     const addMessage = () => {
         if (newPostElement.current) {
             addPost(newPostElement.current.value);
             newPostElement.current.value = "";
         }
-        // let text = newPostElement.current.value
-        // alert("Post added");
     }
     return (
         <div className={up.content}>
@@ -38,9 +37,9 @@ const MyPost: FC<TypePropsUserPost> = ({posts, addPost}) => {
             <div className={up.box3}>
                 My post
                 <div>
-                    {/*<input/>*/}
-                    <textarea ref={newPostElement}>text</textarea>
-                    <button onClick={addMessage}>Add post</button>
+                    <input ref={newPostElement} placeholder={"Your text"}/>
+                    {/*<textarea ref={newPostElement} placeholder={"Your text"}></textarea>*/}
+                    <button onClick={addMessage}>+</button>
                 </div>
             </div>
             <div className={up.user}>

@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-
+import {rerender} from "../render";
 
 export type PostsType = {
     id: string,
@@ -51,11 +51,12 @@ export const state: StateType = {
         ],
     },
 }
-export const addPost = (postMessage: string) =>{
+export const addPost = (postMessage: string) => {
     let newPost = {
         id: v1(),
         message: postMessage,
-        likes: 7
+        likes: 0,
     }
     state.profilePage.posts.push(newPost);
+    rerender(state);
 }

@@ -1,24 +1,31 @@
 
-.container_content_social_logo{
+.container_content_social_logo {
+    margin-left: 15px;
     display: flex;
     flex-direction: row;
     color: white;
 }
-.box1{
+
+.box1 {
     flex-grow: 0;
 }
-.box2{
+
+.box2 {
     flex-grow: 2;
 }
-.content_social_logo{
+
+.content_social_logo {
     width: 40px;
     border: solid 2px coral;
 }
-.user{
+
+.user {
     margin-top: 15px;
     padding: 10px;
     color: white;
 }
-.box3{
+
+.box3 {
     color: white;
+    margin-left: 15px;
 }

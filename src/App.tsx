@@ -14,8 +14,8 @@ import Footer from "./Components/Footer/Footer";
 import {StateType, addPost} from "./Redux/State";
 
 type AppTypeProps = {
-    state:StateType
-    addPost:(postMessag: string)=>void
+    state: StateType
+    addPost: (postMessag: string) => void
 }
 const App: FC<AppTypeProps> = ({state, addPost}) => {
     return (
@@ -41,7 +41,6 @@ const App: FC<AppTypeProps> = ({state, addPost}) => {
         </BrowserRouter>
     );
 }
-
 
 
 export default App;
