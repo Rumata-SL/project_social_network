@@ -4,15 +4,13 @@ import up from "./MyPost.module.css"
 import Post from "./Post/Post";
 import {PostsType, state, StateType} from "../../../Redux/State";
 
-
-
 type TypePropsUserPost = {
-    posts:Array<PostsType>
+    posts: Array<PostsType>
+    addPost: (postMessage: string) => void
 }
 
-
-const MyPost: FC<TypePropsUserPost> = ({posts}) => {
-
+const MyPost: FC<TypePropsUserPost> = ({posts, addPost}) => {
+    debugger;
     let user = state.profilePage.posts.map(item => {
         return (
             <div key={item.id}>
@@ -20,7 +18,15 @@ const MyPost: FC<TypePropsUserPost> = ({posts}) => {
             </div>
         )
     })
-
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    const addMessage = () => {
+        if (newPostElement.current) {
+            addPost(newPostElement.current.value);
+            newPostElement.current.value = "";
+        }
+        // let text = newPostElement.current.value
+        // alert("Post added");
+    }
     return (
         <div className={up.content}>
             <div className={up.container_content_social_logo}>
@@ -28,24 +34,18 @@ const MyPost: FC<TypePropsUserPost> = ({posts}) => {
                     <img className={up.content_social_logo} src={img} alt="ninja"/>
                     AVA Description
                 </div>
-                {/*<div className={up.box2}>
-                    AVA Description
-                </div>*/}
             </div>
-
             <div className={up.box3}>
-                {/*<h3>My post</h3>*/}
                 My post
-                <div><input/>
-                    <button>Add post</button>
+                <div>
+                    {/*<input/>*/}
+                    <textarea ref={newPostElement}>text</textarea>
+                    <button onClick={addMessage}>Add post</button>
                 </div>
-
-
             </div>
             <div className={up.user}>
                 {user}
             </div>
-
         </div>
     )
 }

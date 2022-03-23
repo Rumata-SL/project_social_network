@@ -32,7 +32,6 @@ export const state: StateType = {
             {id: v1(), message: "I am samurai", likes: 5},
             {id: v1(), message: "I am ninja", likes: 10},
             {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
-            {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
         ],
     },
     messagesPage: {
@@ -51,4 +50,12 @@ export const state: StateType = {
             {id: v1(), name: "Ymy"},
         ],
     },
+}
+export const addPost = (postMessage: string) =>{
+    let newPost = {
+        id: v1(),
+        message: postMessage,
+        likes: 7
+    }
+    state.profilePage.posts.push(newPost);
 }

@@ -11,12 +11,13 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import Footer from "./Components/Footer/Footer";
-import {StateType} from "./Redux/State";
+import {StateType, addPost} from "./Redux/State";
 
 type AppTypeProps = {
     state:StateType
+    addPost:(postMessag: string)=>void
 }
-const App: FC<AppTypeProps> = ({state}) => {
+const App: FC<AppTypeProps> = ({state, addPost}) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -24,8 +25,12 @@ const App: FC<AppTypeProps> = ({state}) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Switch>
-                        <Route exact path={"/"} render={() => <Profile posts={state.profilePage.posts}/>}/>
-                        <Route path="/Dialogs" render={() => <Dialogs messages={state.messagesPage.messages} users={state.messagesPage.users}/>}/>
+                        <Route exact path={"/"}
+                               render={() => <Profile posts={state.profilePage.posts}
+                                                      addPost={addPost}/>}/>
+                        <Route path="/Dialogs"
+                               render={() => <Dialogs messages={state.messagesPage.messages}
+                                                      users={state.messagesPage.users}/>}/>
                         <Route path="/News" render={() => <News/>}/>
                         <Route path="/Music" render={() => <Music/>}/>
                         <Route path="/Settings" render={() => <Settings/>}/>
