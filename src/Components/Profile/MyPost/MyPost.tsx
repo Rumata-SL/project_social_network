@@ -2,17 +2,18 @@ import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
 import Post from "./Post/Post";
-import {TypePropsMyPost} from "../../../index";
+import {PostsType, state, StateType} from "../../../Redux/State";
+
 
 
 type TypePropsUserPost = {
-    posts: Array<TypePropsMyPost>
+    posts:Array<PostsType>
 }
 
 
 const MyPost: FC<TypePropsUserPost> = ({posts}) => {
 
-    let user = posts.map(item => {
+    let user = state.profilePage.posts.map(item => {
         return (
             <div key={item.id}>
                 <Post message={item.message} likes={item.likes}/>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import "./App.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
@@ -11,12 +11,12 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import Footer from "./Components/Footer/Footer";
-import {AppTypeProps} from "./index";
+import {StateType} from "./Redux/State";
 
-
-
-
-function App(props:AppTypeProps) {
+type AppTypeProps = {
+    state:StateType
+}
+const App: FC<AppTypeProps> = ({state}) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -24,8 +24,8 @@ function App(props:AppTypeProps) {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Switch>
-                        <Route exact path={"/"} render={() => <Profile posts={props.posts}/>}/>
-                        <Route path="/Dialogs" render={() => <Dialogs users={props.users} messages={props.messages}/>}/>
+                        <Route exact path={"/"} render={() => <Profile posts={state.profilePage.posts}/>}/>
+                        <Route path="/Dialogs" render={() => <Dialogs messages={state.messagesPage.messages} users={state.messagesPage.users}/>}/>
                         <Route path="/News" render={() => <News/>}/>
                         <Route path="/Music" render={() => <Music/>}/>
                         <Route path="/Settings" render={() => <Settings/>}/>

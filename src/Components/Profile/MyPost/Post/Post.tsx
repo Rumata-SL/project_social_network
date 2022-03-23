@@ -2,12 +2,12 @@ import React, {FC} from "react";
 import post from "./Post.module.css"
 import avatar from "./Post_image/avatar.png"
 
-type postProps = {
+type postPropsType = {
     message: string,
     likes: number
 }
 
-const Post: FC<postProps> = ({message, likes}) => {
+const Post: FC<postPropsType> = ({message, likes}) => {
     return (
         <div className={post.container_post}>
 
