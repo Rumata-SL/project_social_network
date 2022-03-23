@@ -52,7 +52,7 @@ export const state: StateType = {
     },
 }
 export const addPost = (postMessage: string) => {
-    let newPost = {
+    const newPost:PostsType  = {
         id: v1(),
         message: postMessage,
         likes: 0,
