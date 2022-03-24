@@ -9,7 +9,7 @@ type TypePropsUserPost = {
     addPost: (postMessage: string) => void
 }
 
-export const MyPost: FC<TypePropsUserPost> = ({ addPost}) => {
+export const MyPost: FC<TypePropsUserPost> = ({addPost}) => {
     let user = state.profilePage.posts.map(item => {
         return (
             <div key={item.id}>

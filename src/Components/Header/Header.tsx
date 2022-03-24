@@ -3,7 +3,7 @@ import logo from "./Header_image/logo.png";
 import h from "./Header.module.css";
 
 type TypePropsHeader = {
-    title:string
+    title: string
 }
 
 export const Header: FC<TypePropsHeader> = ({title}) => {

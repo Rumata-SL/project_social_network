@@ -1,4 +1,4 @@
-.header{
+.header {
     min-width: 300px;
     backdrop-filter: blur(4px);
     background-color: rgba(0, 0, 0, 0.1);
@@ -10,18 +10,22 @@
     text-align: center;
     color: white;
 }
-.header_logo{
+
+.header_logo {
     flex-grow: 0;
     box-sizing: border-box;
 }
-.header_title{
+
+.header_title {
     flex-grow: 2;
 }
-.logo{
+
+.logo {
     width: 55px;
     margin: 10px;
     display: inline-block;
 }
-.hed{
+
+.hed {
     color: rgba(255, 255, 255, 0.5);
 }

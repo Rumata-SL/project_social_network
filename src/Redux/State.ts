@@ -52,7 +52,7 @@ export const state: StateType = {
     },
 }
 export const addPost = (postMessage: string) => {
-    const newPost:PostsType  = {
+    const newPost: PostsType = {
         id: v1(),
         message: postMessage,
         likes: 0,
@@ -60,3 +60,5 @@ export const addPost = (postMessage: string) => {
     state.profilePage.posts.push(newPost);
     rerender(state);
 }
+
+
