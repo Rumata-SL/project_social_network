@@ -2,14 +2,17 @@ import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
 import {Post} from "./Post/Post";
-import {PostsType, state} from "../../../Redux/State";
+import {PostsType, state, updateNewPostText} from "../../../Redux/State";
 
 type TypePropsUserPost = {
     posts: Array<PostsType>
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
-export const MyPost: FC<TypePropsUserPost> = ({addPost}) => {
+export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPostText}) => {
+
     let user = state.profilePage.posts.map(item => {
         return (
             <div key={item.id}>
@@ -17,12 +20,22 @@ export const MyPost: FC<TypePropsUserPost> = ({addPost}) => {
             </div>
         )
     })
-    // let newPostElement = React.createRef<HTMLTextAreaElement>();
-    let newPostElement = React.createRef<HTMLInputElement>();
+
+    // let newPostElement = React.createRef<HTMLInputElement>();
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+
     const addMessage = () => {
-        if (newPostElement.current) {
+        addPost();
+        /*if (newPostElement.current) {
             addPost(newPostElement.current.value);
-            newPostElement.current.value = "";
+            updateNewPostText("")
+        }*/
+        // newPostElement.current.value = "";
+    }
+    const onPostChange = () => {
+        if (newPostElement.current) {
+            updateNewPostText(newPostElement.current.value);
+            // newPostElement.current.value = "";
         }
     }
     return (
@@ -36,9 +49,13 @@ export const MyPost: FC<TypePropsUserPost> = ({addPost}) => {
             <div className={up.box3}>
                 My post
                 <div>
-                    <input ref={newPostElement} placeholder={"Your text"}/>
-                    {/*<textarea ref={newPostElement} placeholder={"Your text"}></textarea>*/}
-                    <button onClick={addMessage}>+</button>
+                    <div>
+                        {/*<input ref={newPostElement} placeholder={"Your text"}/>*/}
+                        <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}></textarea>
+                    </div>
+                    <div>
+                        <button onClick={addMessage}>Add post</button>
+                    </div>
                 </div>
             </div>
             <div className={up.user}>

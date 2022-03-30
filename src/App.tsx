@@ -11,11 +11,12 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {Footer} from "./Components/Footer/Footer";
-import {StateType,} from "./Redux/State";
+import {StateType, updateNewPostText,} from "./Redux/State";
 
 type AppTypeProps = {
     state: StateType
-    addPost: (postMessag: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 const App: FC<AppTypeProps> = ({state, addPost}) => {
     return (
@@ -27,7 +28,9 @@ const App: FC<AppTypeProps> = ({state, addPost}) => {
                     <Switch>
                         <Route exact path={"/"}
                                render={() => <Profile posts={state.profilePage.posts}
-                                                      addPost={addPost}/>}/>
+                                                      addPost={addPost}
+                                                      newPostText={state.profilePage.newPostText}
+                                                      updateNewPostText={updateNewPostText}/>}/>
                         <Route path="/Dialogs"
                                render={() => <Dialogs messages={state.messagesPage.messages}
                                                       users={state.messagesPage.users}/>}/>

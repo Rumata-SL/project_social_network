@@ -14,8 +14,10 @@ export type UsersType = {
     id: string,
     name: string,
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
+
 }
 export type MessagesPageType = {
     messages: Array<MessagesType>
@@ -33,6 +35,7 @@ export const state: StateType = {
             {id: v1(), message: "I am ninja", likes: 10},
             {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
         ],
+        newPostText: "Your text Your text",
     },
     messagesPage: {
         messages: [
@@ -51,13 +54,18 @@ export const state: StateType = {
         ],
     },
 }
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     const newPost: PostsType = {
         id: v1(),
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likes: 0,
     }
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = "";
+    rerender(state);
+}
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     rerender(state);
 }
 
