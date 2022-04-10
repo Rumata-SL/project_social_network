@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import "./App.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {StoreType} from "./Redux/State";
 
 // components
 import {Header} from "./Components/Header/Header";
@@ -11,14 +12,17 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {Footer} from "./Components/Footer/Footer";
-import {StateType, updateNewPostText,} from "./Redux/State";
+
 
 type AppTypeProps = {
-    state: StateType
+    store: StoreType
+    /*state: StateType
     addPost: () => void
-    updateNewPostText: (newText: string) => void
+    updateNewPostText: (newText: string) => void*/
 }
-const App: FC<AppTypeProps> = ({state, addPost}) => {
+// const App: FC<AppTypeProps> = ({state, addPost, store}) => {
+const App: FC<AppTypeProps> = ({store}) => {
+    const state = store.getState()
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -28,9 +32,9 @@ const App: FC<AppTypeProps> = ({state, addPost}) => {
                     <Switch>
                         <Route exact path={"/"}
                                render={() => <Profile posts={state.profilePage.posts}
-                                                      addPost={addPost}
+                                                      addPost={store.addPost.bind(store)}
                                                       newPostText={state.profilePage.newPostText}
-                                                      updateNewPostText={updateNewPostText}/>}/>
+                                                      updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
                         <Route path="/Dialogs"
                                render={() => <Dialogs messages={state.messagesPage.messages}
                                                       users={state.messagesPage.users}/>}/>

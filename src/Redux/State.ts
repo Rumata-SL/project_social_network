@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import {rerender} from "../render";
 
 export type PostsType = {
     id: string,
@@ -27,8 +26,72 @@ export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
 }
+export type StoreType = {
+    _state: StateType
+    rerenderEntireTree: () => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    subscribe: (observer: () => void) => void
+    getState: () => StateType
 
-export const state: StateType = {
+}
+
+export const store: StoreType = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: v1(), message: "I am samurai", likes: 5},
+                {id: v1(), message: "I am ninja", likes: 10},
+                {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
+            ],
+            newPostText: "Your text Your text",
+        },
+        messagesPage: {
+            messages: [
+                {id: v1(), message: "Hello, i am Satoshi"},
+                {id: v1(), message: "Hello, i am Djun"},
+                {id: v1(), message: "Hello, i am Acira"},
+                {id: v1(), message: "Hello, i am Kero"},
+                {id: v1(), message: "Hello, i am Ymy"},
+            ],
+            users: [
+                {id: v1(), name: "Satoshi"},
+                {id: v1(), name: "Djun"},
+                {id: v1(), name: "Acira"},
+                {id: v1(), name: "Kero"},
+                {id: v1(), name: "Ymy"},
+            ],
+        },
+    },
+    rerenderEntireTree() {
+    },
+    addPost() {
+        const newPost: PostsType = {
+
+            id: v1(),
+            message: this._state.profilePage.newPostText,
+            likes: 0,
+        }
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = "";
+        this.rerenderEntireTree();
+    },
+    updateNewPostText(newText) {
+        this._state.profilePage.newPostText = newText
+        this.rerenderEntireTree();
+    },
+    subscribe(observer) {
+        this.rerenderEntireTree = observer
+    },
+    getState() {
+        return this._state;
+    }
+}
+// window.store = store
+
+/*let rerenderEntireTree = () => {
+}*/
+/*export const state: StateType = {
     profilePage: {
         posts: [
             {id: v1(), message: "I am samurai", likes: 5},
@@ -53,8 +116,9 @@ export const state: StateType = {
             {id: v1(), name: "Ymy"},
         ],
     },
-}
-export const addPost = () => {
+}*/
+
+/*export const addPost = () => {
     const newPost: PostsType = {
         id: v1(),
         message: state.profilePage.newPostText,
@@ -62,11 +126,15 @@ export const addPost = () => {
     }
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = "";
-    rerender(state);
-}
-export const updateNewPostText = (newText: string) => {
+    rerenderEntireTree();
+}*/
+
+/*export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerender(state);
-}
+    rerenderEntireTree();
+}*/
+/*export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer
+}*/
 
 

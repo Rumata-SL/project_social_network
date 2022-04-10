@@ -1,15 +1,15 @@
 import React, {FC} from "react";
 import du from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom";
-import {state, UsersType} from "../../Redux/State";
+import {UsersType} from "../../Redux/State";
 
 
 type UsersProps = {
     users: Array<UsersType>
 }
 
- export const DialogItem: FC<UsersProps> = ({users}) => {
-    let user = state.messagesPage.users.map(item => {
+export const DialogItem: FC<UsersProps> = ({users}) => {
+    let user = users.map(item => {
         return (
             <div key={item.id}>
                 <NavLink to={`${item.id}`}>{item.name}</NavLink>

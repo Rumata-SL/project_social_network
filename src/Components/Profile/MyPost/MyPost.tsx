@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
 import {Post} from "./Post/Post";
-import {PostsType, state, updateNewPostText} from "../../../Redux/State";
+import {PostsType} from "../../../Redux/State";
 
 type TypePropsUserPost = {
     posts: Array<PostsType>
@@ -11,9 +11,9 @@ type TypePropsUserPost = {
     updateNewPostText: (newText: string) => void
 }
 
-export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPostText}) => {
+export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPostText, posts}) => {
 
-    let user = state.profilePage.posts.map(item => {
+    let user = posts.map(item => {
         return (
             <div key={item.id}>
                 <Post message={item.message} likes={item.likes}/>
@@ -51,7 +51,7 @@ export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPo
                 <div>
                     <div>
                         {/*<input ref={newPostElement} placeholder={"Your text"}/>*/}
-                        <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}></textarea>
+                        <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
                     </div>
                     <div>
                         <button onClick={addMessage}>Add post</button>

@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import dm from "./Dialogs.module.css";
-import {MessagesType, state,} from "../../Redux/State";
+import {MessagesType} from "../../Redux/State";
 
 
 type TypePropsUserMessage = {
@@ -8,12 +8,12 @@ type TypePropsUserMessage = {
 }
 
 export const Message: FC<TypePropsUserMessage> = ({messages}) => {
-    const message = state.messagesPage.messages.map(item => {
+    const message = messages.map(item => {
         return (
             <div key={item.id}>
-                 <div>
-                {item.message}
-                 </div>
+                <div>
+                    {item.message}
+                </div>
             </div>
         )
     });
