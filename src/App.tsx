@@ -16,11 +16,7 @@ import {Footer} from "./Components/Footer/Footer";
 
 type AppTypeProps = {
     store: StoreType
-    /*state: StateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void*/
 }
-// const App: FC<AppTypeProps> = ({state, addPost, store}) => {
 const App: FC<AppTypeProps> = ({store}) => {
     const state = store.getState()
     return (
@@ -32,9 +28,11 @@ const App: FC<AppTypeProps> = ({store}) => {
                     <Switch>
                         <Route exact path={"/"}
                                render={() => <Profile posts={state.profilePage.posts}
-                                                      addPost={store.addPost.bind(store)}
                                                       newPostText={state.profilePage.newPostText}
-                                                      updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                                                      dispatch={store.dispatch.bind(store)}
+                                   // addPost={store.addPost.bind(store)}
+                                   // updateNewPostText={store.updateNewPostText.bind(store)}
+                               />}/>
                         <Route path="/Dialogs"
                                render={() => <Dialogs messages={state.messagesPage.messages}
                                                       users={state.messagesPage.users}/>}/>

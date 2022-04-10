@@ -2,16 +2,27 @@ import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
 import {Post} from "./Post/Post";
-import {PostsType} from "../../../Redux/State";
+import {actionType, PostsType} from "../../../Redux/State";
+import actions from "redux-form/lib/actions";
 
 type TypePropsUserPost = {
     posts: Array<PostsType>
-    addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: actionType) => void
+
+    // addPost: () => void
+    // updateNewPostText: (newText: string) => void
 }
 
-export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPostText, posts}) => {
+export const MyPost: FC<TypePropsUserPost> = (
+    {
+        posts,
+        newPostText,
+        dispatch,
+        // addPost,
+        // updateNewPostText,
+    }
+) => {
 
     let user = posts.map(item => {
         return (
@@ -21,21 +32,16 @@ export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPo
         )
     })
 
-    // let newPostElement = React.createRef<HTMLInputElement>();
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    // let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let newPostElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        addPost();
-        /*if (newPostElement.current) {
-            addPost(newPostElement.current.value);
-            updateNewPostText("")
-        }*/
-        // newPostElement.current.value = "";
+        dispatch({type: "ADD-POST", newPostText});
     }
     const onPostChange = () => {
+
         if (newPostElement.current) {
-            updateNewPostText(newPostElement.current.value);
-            // newPostElement.current.value = "";
+            dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostElement.current.value});
         }
     }
     return (
@@ -50,8 +56,8 @@ export const MyPost: FC<TypePropsUserPost> = ({addPost, newPostText, updateNewPo
                 My post
                 <div>
                     <div>
-                        {/*<input ref={newPostElement} placeholder={"Your text"}/>*/}
-                        <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
+                        {/*<textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>*/}
+                        <input onChange={onPostChange} ref={newPostElement} value={newPostText} placeholder={"text"}/>
                     </div>
                     <div>
                         <button onClick={addMessage}>Add post</button>
