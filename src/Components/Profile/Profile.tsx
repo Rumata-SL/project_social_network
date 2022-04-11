@@ -2,13 +2,13 @@ import React, {FC} from "react";
 import logo from "./Profile_image/content_logo.jpg"
 import p from "./Profile.module.css"
 import {MyPost} from "./MyPost/MyPost";
-import {actionType, PostsType,} from "../../Redux/State";
+import {ActionType, PostsType,} from "../../Redux/State";
 
 
 type ProfileTypePost = {
     posts: Array<PostsType>
     newPostText: string
-    dispatch: (action: actionType) => void
+    dispatch: (action: ActionType) => void
     // addPost: () => void
     // updateNewPostText: (newText: string) => void
 }

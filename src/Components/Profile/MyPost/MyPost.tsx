@@ -2,13 +2,13 @@ import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
 import {Post} from "./Post/Post";
-import {actionType, PostsType} from "../../../Redux/State";
-import actions from "redux-form/lib/actions";
+import {ActionType, AddPostAC, PostsType, UpdateNewPostTextAC} from "../../../Redux/State";
+
 
 type TypePropsUserPost = {
     posts: Array<PostsType>
     newPostText: string
-    dispatch: (action: actionType) => void
+    dispatch: (action: ActionType) => void
 
     // addPost: () => void
     // updateNewPostText: (newText: string) => void
@@ -36,12 +36,14 @@ export const MyPost: FC<TypePropsUserPost> = (
     let newPostElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        dispatch({type: "ADD-POST", newPostText});
+        dispatch(AddPostAC(newPostText));
+        // dispatch({type: "ADD-POST", newPostText});
     }
     const onPostChange = () => {
 
         if (newPostElement.current) {
-            dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostElement.current.value});
+            dispatch(UpdateNewPostTextAC(newPostElement.current.value));
+            // dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostElement.current.value});
         }
     }
     return (
