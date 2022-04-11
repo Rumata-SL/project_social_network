@@ -2,7 +2,8 @@ import React, {FC} from "react";
 import img from "./MyPostImage/social_logo.png"
 import up from "./MyPost.module.css"
 import {Post} from "./Post/Post";
-import {ActionType, AddPostAC, PostsType, UpdateNewPostTextAC} from "../../../Redux/State";
+import {ActionType, PostsType} from "../../../Redux/State";
+import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 
 
 type TypePropsUserPost = {

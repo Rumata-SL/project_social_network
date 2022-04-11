@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {AddPostAC, profileReducer, UpdateNewPostTextAC} from "./ProfileReducer";
+import {messageReducer, NewMessageTextAC, SendMessageAC} from "./MessageReducer";
+import {sideBarReducer} from "./SideBarReducer";
 
 export type ActionType =
     ReturnType<typeof AddPostAC>
@@ -19,6 +22,13 @@ export type UsersType = {
     id: string,
     name: string,
 }
+export type NewsType = {
+    id: string
+    title: string
+}
+export type SideBarType = {
+    news: Array<NewsType>
+}
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
@@ -32,6 +42,7 @@ export type MessagesPageType = {
 export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
+    sideBar: SideBarType
 }
 export type StoreType = {
     _state: StateType
@@ -39,13 +50,7 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     getState: () => StateType
     dispatch: (action: ActionType) => void
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-
 }
-
-/*const ADD_POST = "ADD-POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"*/
 
 export const store: StoreType = {
     _state: {
@@ -74,6 +79,13 @@ export const store: StoreType = {
             ],
             newMessageText: "",
         },
+        sideBar: {
+            news: [
+                {id: v1(), title: "1"},
+                {id: v1(), title: "2"},
+                {id: v1(), title: "3"},
+            ],
+        },
     },
     getState() {
         return this._state;
@@ -85,7 +97,12 @@ export const store: StoreType = {
     },
     dispatch(action) {
 
-        switch (action.type) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = messageReducer(this._state.messagesPage, action)
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action)
+        this.rerenderEntireTree();
+
+        /*switch (action.type) {
             case "ADD-POST":
                 const newPost: PostsType = {
                     id: v1(),
@@ -110,7 +127,7 @@ export const store: StoreType = {
                 this._state.messagesPage.messages.push({id: v1(), message: body})
                 this.rerenderEntireTree();
                 break
-        }
+        }*/
 
         /*if (action.type === "ADD-POST") {
             const newPost: PostsType = {
@@ -145,15 +162,15 @@ export const store: StoreType = {
 
 }
 
-export const AddPostAC = (postText: string) => ({type: "ADD-POST", newPostText: postText} as const)
+/*export const AddPostAC = (postText: string) => ({type: "ADD-POST", newPostText: postText} as const)*/
 
-export const UpdateNewPostTextAC = (text: string) => ({
+/*export const UpdateNewPostTextAC = (text: string) => ({
     type: "UPDATE-NEW-POST-TEXT",
     newText: text
-} as const)
+} as const)*/
 
-export const NewMessageTextAC = (message: string) => ({type: "NEW_MESSAGE_TEXT", body: message} as const)
-export const SendMessageAC = () => ({type: "SEND-MESSAGE"} as const)
+/*export const NewMessageTextAC = (message: string) => ({type: "NEW_MESSAGE_TEXT", body: message} as const)*/
+/*export const SendMessageAC = () => ({type: "SEND-MESSAGE"} as const)*/
 
 /*export type AddPostType = {
     type: "ADD-POST"

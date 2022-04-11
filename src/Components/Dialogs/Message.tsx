@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FC} from "react";
 import dm from "./Dialogs.module.css";
-import {ActionType, MessagesType, NewMessageTextAC, SendMessageAC} from "../../Redux/State";
+import {ActionType, MessagesType} from "../../Redux/State";
+import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
 
 
 type TypePropsUserMessage = {
