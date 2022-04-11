@@ -9,9 +9,6 @@ type TypePropsUserPost = {
     posts: Array<PostsType>
     newPostText: string
     dispatch: (action: ActionType) => void
-
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
 }
 
 export const MyPost: FC<TypePropsUserPost> = (
@@ -19,8 +16,6 @@ export const MyPost: FC<TypePropsUserPost> = (
         posts,
         newPostText,
         dispatch,
-        // addPost,
-        // updateNewPostText,
     }
 ) => {
 
@@ -37,13 +32,11 @@ export const MyPost: FC<TypePropsUserPost> = (
 
     const addMessage = () => {
         dispatch(AddPostAC(newPostText));
-        // dispatch({type: "ADD-POST", newPostText});
     }
-    const onPostChange = () => {
 
+    const onPostChange = () => {
         if (newPostElement.current) {
             dispatch(UpdateNewPostTextAC(newPostElement.current.value));
-            // dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostElement.current.value});
         }
     }
     return (

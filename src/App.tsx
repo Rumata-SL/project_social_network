@@ -30,8 +30,6 @@ const App: FC<AppTypeProps> = ({store}) => {
                                render={() => <Profile posts={state.profilePage.posts}
                                                       newPostText={state.profilePage.newPostText}
                                                       dispatch={store.dispatch.bind(store)}
-                                   // addPost={store.addPost.bind(store)}
-                                   // updateNewPostText={store.updateNewPostText.bind(store)}
                                />}/>
                         <Route path="/Dialogs"
                                render={() => <Dialogs messages={state.messagesPage.messages}

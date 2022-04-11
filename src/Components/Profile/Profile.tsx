@@ -9,8 +9,6 @@ type ProfileTypePost = {
     posts: Array<PostsType>
     newPostText: string
     dispatch: (action: ActionType) => void
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
 }
 
 export const Profile: FC<ProfileTypePost> = (
@@ -18,8 +16,6 @@ export const Profile: FC<ProfileTypePost> = (
         posts,
         newPostText,
         dispatch
-        // addPost,
-        // updateNewPostText
     }
 ) => {
 
@@ -32,8 +28,6 @@ export const Profile: FC<ProfileTypePost> = (
                 posts={posts}
                 newPostText={newPostText}
                 dispatch={dispatch}
-                // addPost={addPost}
-                // updateNewPostText={updateNewPostText}
             />
         </div>
     )
