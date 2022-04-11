@@ -1,6 +1,11 @@
 import {v1} from "uuid";
 
-export type ActionType = ReturnType<typeof AddPostAC> | ReturnType<typeof UpdateNewPostTextAC>
+export type ActionType =
+    ReturnType<typeof AddPostAC>
+    | ReturnType<typeof UpdateNewPostTextAC>
+    | ReturnType<typeof NewMessageTextAC>
+    | ReturnType<typeof SendMessageAC>
+
 export type PostsType = {
     id: string,
     message: string,
@@ -22,6 +27,7 @@ export type ProfilePageType = {
 export type MessagesPageType = {
     messages: Array<MessagesType>
     users: Array<UsersType>
+    newMessageText: string
 }
 export type StateType = {
     profilePage: ProfilePageType
@@ -66,6 +72,7 @@ export const store: StoreType = {
                 {id: v1(), name: "Kero"},
                 {id: v1(), name: "Ymy"},
             ],
+            newMessageText: "",
         },
     },
     getState() {
@@ -91,6 +98,16 @@ export const store: StoreType = {
                 break;
             case "UPDATE-NEW-POST-TEXT":
                 this._state.profilePage.newPostText = action.newText
+                this.rerenderEntireTree();
+                break;
+            case "NEW_MESSAGE_TEXT":
+                this._state.messagesPage.newMessageText = action.body
+                this.rerenderEntireTree();
+                break;
+            case "SEND-MESSAGE":
+                let body = this._state.messagesPage.newMessageText
+                this._state.messagesPage.newMessageText = ""
+                this._state.messagesPage.messages.push({id: v1(), message: body})
                 this.rerenderEntireTree();
                 break
         }
@@ -134,6 +151,9 @@ export const UpdateNewPostTextAC = (text: string) => ({
     type: "UPDATE-NEW-POST-TEXT",
     newText: text
 } as const)
+
+export const NewMessageTextAC = (message: string) => ({type: "NEW_MESSAGE_TEXT", body: message} as const)
+export const SendMessageAC = () => ({type: "SEND-MESSAGE"} as const)
 
 /*export type AddPostType = {
     type: "ADD-POST"

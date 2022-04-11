@@ -32,8 +32,11 @@ const App: FC<AppTypeProps> = ({store}) => {
                                                       dispatch={store.dispatch.bind(store)}
                                />}/>
                         <Route path="/Dialogs"
-                               render={() => <Dialogs messages={state.messagesPage.messages}
-                                                      users={state.messagesPage.users}/>}/>
+                               render={() => <Dialogs
+                                   dispatch={store.dispatch.bind(store)}
+                                   messages={state.messagesPage.messages}
+                                   newMessageText={state.messagesPage.newMessageText}
+                                   users={state.messagesPage.users}/>}/>
                         <Route path="/News" render={() => <News/>}/>
                         <Route path="/Music" render={() => <Music/>}/>
                         <Route path="/Settings" render={() => <Settings/>}/>
