@@ -1,7 +1,26 @@
 import {ActionType, MessagesPageType} from "./State";
 import {v1} from "uuid";
 
-export const messageReducer = (state: MessagesPageType, action: ActionType) => {
+let initialState = {
+    messages: [
+        {id: v1(), message: "Hello, i am Satoshi"},
+        {id: v1(), message: "Hello, i am Djun"},
+        {id: v1(), message: "Hello, i am Acira"},
+        {id: v1(), message: "Hello, i am Kero"},
+        {id: v1(), message: "Hello, i am Ymy"},
+    ],
+    users: [
+        {id: v1(), name: "Satoshi"},
+        {id: v1(), name: "Djun"},
+        {id: v1(), name: "Acira"},
+        {id: v1(), name: "Kero"},
+        {id: v1(), name: "Ymy"},
+    ],
+    newMessageText: "",
+}
+
+
+export const messageReducer = (state: MessagesPageType = initialState, action: ActionType): MessagesPageType => {
     switch (action.type) {
         case "NEW_MESSAGE_TEXT":
             state.newMessageText = action.body
