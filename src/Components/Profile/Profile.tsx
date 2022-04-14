@@ -2,21 +2,23 @@ import React, {FC} from "react";
 import logo from "./Profile_image/content_logo.jpg"
 import p from "./Profile.module.css"
 import {MyPost} from "./MyPost/MyPost";
-import {ActionType, PostsType,} from "../../Redux/State";
+import {ActionType, PostsType, StoreType,} from "../../Redux/State";
 import {MyPostContainer} from "./MyPost/MyPostContainer";
 
 
 type ProfileTypePost = {
-    posts: Array<PostsType>
-    newPostText: string
-    dispatch: (action: ActionType) => void
+    store: StoreType
+    // posts: Array<PostsType>
+    // newPostText: string
+    // dispatch: (action: ActionType) => void
 }
 
 export const Profile: FC<ProfileTypePost> = (
     {
-        posts,
-        newPostText,
-        dispatch
+        store,
+        // posts,
+        // newPostText,
+        // dispatch
     }
 ) => {
 
@@ -26,9 +28,10 @@ export const Profile: FC<ProfileTypePost> = (
                 <img className={p.logo} src={logo} alt="fudzi"/>
             </div>
             <MyPostContainer
-                posts={posts}
+                store={store}
+                /*posts={posts}
                 newPostText={newPostText}
-                dispatch={dispatch}
+                dispatch={dispatch}*/
             />
         </div>
     )

@@ -27,9 +27,11 @@ const App: FC<AppTypeProps> = ({store}) => {
                 <div className="app-wrapper-content">
                     <Switch>
                         <Route exact path={"/"}
-                               render={() => <Profile posts={state.profilePage.posts}
-                                                      newPostText={state.profilePage.newPostText}
-                                                      dispatch={store.dispatch.bind(store)}
+                               render={() => <Profile
+                                   // posts={state.profilePage.posts}
+                                   //                    newPostText={state.profilePage.newPostText}
+                                   //                    dispatch={store.dispatch.bind(store)}
+                                   store={store}
                                />}/>
                         <Route path="/Dialogs"
                                render={() => <Dialogs

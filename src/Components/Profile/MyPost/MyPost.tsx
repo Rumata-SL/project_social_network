@@ -18,8 +18,8 @@ export const MyPost: FC<TypePropsUserPost> = (
     {
         posts,
         newPostText,
+        upDateaddMessage,
         upDateNewWPostText,
-        upDateaddMessage
         // dispatch,
     }
 ) => {

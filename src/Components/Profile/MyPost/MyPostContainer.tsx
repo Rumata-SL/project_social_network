@@ -1,46 +1,41 @@
 import React, {FC} from "react";
-import {ActionType, PostsType} from "../../../Redux/State";
-import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 import {MyPost} from "./MyPost";
+import {ActionType, PostsType, StoreType} from "../../../Redux/State";
+import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 
 
 type TypePropsUserPost = {
-    posts: Array<PostsType>
-    newPostText: string
-    dispatch: (action: ActionType) => void
+    store: StoreType
+    // newPostText: string
+    // posts: Array<PostsType>
+    // dispatch: (action: ActionType) => void
 }
 
 export const MyPostContainer: FC<TypePropsUserPost> = (
     {
-        posts,
-        newPostText,
+        store,
+        /*posts,
         dispatch,
+        newPostText,*/
     }
 ) => {
-
-    /*let user = posts.map(item => {
-        return (
-            <div key={item.id}>
-                <Post message={item.message} likes={item.likes}/>
-            </div>
-        )
-    })*/
-
-    // let newPostElement = React.createRef<HTMLTextAreaElement>();
-    // let newPostElement = React.createRef<HTMLInputElement>();
+    let state = store.getState()
 
     const addMessage = () => {
-        dispatch(AddPostAC(newPostText));
+        store.dispatch(AddPostAC(state.profilePage.newPostText));
     }
 
     const onPostChange = (text: string) => {
         if (text) {
-            dispatch(UpdateNewPostTextAC(text));
+            store.dispatch(UpdateNewPostTextAC(text));
         }
     }
     return (
-        <MyPost upDateNewWPostText={onPostChange} upDateaddMessage={addMessage} posts={posts}
-                newPostText={newPostText}/>
-        // <MyPost posts={} newPostText={} dispatch={}/>
+        <MyPost
+            posts={state.profilePage.posts}
+            newPostText={state.profilePage.newPostText}
+            upDateaddMessage={addMessage}
+            upDateNewWPostText={onPostChange}
+        />
     )
 }
