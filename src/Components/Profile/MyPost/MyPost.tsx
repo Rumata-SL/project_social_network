@@ -9,14 +9,18 @@ import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 type TypePropsUserPost = {
     posts: Array<PostsType>
     newPostText: string
-    dispatch: (action: ActionType) => void
+    upDateNewWPostText: (text: string) => void
+    upDateaddMessage: () => void
+    // dispatch: (action: ActionType) => void
 }
 
 export const MyPost: FC<TypePropsUserPost> = (
     {
         posts,
         newPostText,
-        dispatch,
+        upDateNewWPostText,
+        upDateaddMessage
+        // dispatch,
     }
 ) => {
 
@@ -32,12 +36,14 @@ export const MyPost: FC<TypePropsUserPost> = (
     let newPostElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        dispatch(AddPostAC(newPostText));
+        upDateaddMessage()
+        // dispatch(AddPostAC(newPostText));
     }
 
     const onPostChange = () => {
         if (newPostElement.current) {
-            dispatch(UpdateNewPostTextAC(newPostElement.current.value));
+            upDateNewWPostText(newPostElement.current.value)
+            // dispatch(UpdateNewPostTextAC(newPostElement.current.value));
         }
     }
     return (

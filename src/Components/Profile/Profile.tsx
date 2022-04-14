@@ -3,6 +3,7 @@ import logo from "./Profile_image/content_logo.jpg"
 import p from "./Profile.module.css"
 import {MyPost} from "./MyPost/MyPost";
 import {ActionType, PostsType,} from "../../Redux/State";
+import {MyPostContainer} from "./MyPost/MyPostContainer";
 
 
 type ProfileTypePost = {
@@ -24,7 +25,7 @@ export const Profile: FC<ProfileTypePost> = (
             <div>
                 <img className={p.logo} src={logo} alt="fudzi"/>
             </div>
-            <MyPost
+            <MyPostContainer
                 posts={posts}
                 newPostText={newPostText}
                 dispatch={dispatch}
