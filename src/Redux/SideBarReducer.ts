@@ -1,4 +1,4 @@
-import {ActionType, SideBarType} from "./State";
+import {ActionType, SideBarType} from "./Store";
 import {v1} from "uuid";
 
 let initialState = {

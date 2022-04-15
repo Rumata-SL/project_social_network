@@ -60,7 +60,7 @@ export const store: StoreType = {
                 {id: v1(), message: "I am ninja", likes: 10},
                 {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
             ],
-            newPostText: "Your text",
+            newPostText: "",
         },
         messagesPage: {
             messages: [

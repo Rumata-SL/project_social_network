@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import "./App.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {StoreType} from "./Redux/State";
+import {StoreType} from "./Redux/Store";
 
 // components
 import {Header} from "./Components/Header/Header";
@@ -12,6 +12,7 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {Footer} from "./Components/Footer/Footer";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
 type AppTypeProps = {
@@ -28,17 +29,11 @@ const App: FC<AppTypeProps> = ({store}) => {
                     <Switch>
                         <Route exact path={"/"}
                                render={() => <Profile
-                                   // posts={state.profilePage.posts}
-                                   //                    newPostText={state.profilePage.newPostText}
-                                   //                    dispatch={store.dispatch.bind(store)}
                                    store={store}
                                />}/>
                         <Route path="/Dialogs"
-                               render={() => <Dialogs
-                                   dispatch={store.dispatch.bind(store)}
-                                   messages={state.messagesPage.messages}
-                                   newMessageText={state.messagesPage.newMessageText}
-                                   users={state.messagesPage.users}/>}/>
+                               render={() => <DialogsContainer store={store}/>}
+                        />
                         <Route path="/News" render={() => <News/>}/>
                         <Route path="/Music" render={() => <Music/>}/>
                         <Route path="/Settings" render={() => <Settings/>}/>

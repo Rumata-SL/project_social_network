@@ -1,4 +1,4 @@
-import {ActionType, MessagesPageType} from "./State";
+import {ActionType, MessagesPageType} from "./Store";
 import {v1} from "uuid";
 
 let initialState = {

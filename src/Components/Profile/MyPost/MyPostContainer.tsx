@@ -1,24 +1,15 @@
 import React, {FC} from "react";
 import {MyPost} from "./MyPost";
-import {ActionType, PostsType, StoreType} from "../../../Redux/State";
+import {StoreType} from "../../../Redux/Store";
 import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 
 
 type TypePropsUserPost = {
     store: StoreType
-    // newPostText: string
-    // posts: Array<PostsType>
-    // dispatch: (action: ActionType) => void
+
 }
 
-export const MyPostContainer: FC<TypePropsUserPost> = (
-    {
-        store,
-        /*posts,
-        dispatch,
-        newPostText,*/
-    }
-) => {
+export const MyPostContainer: FC<TypePropsUserPost> = ({store,}) => {
     let state = store.getState()
 
     const addMessage = () => {
@@ -32,10 +23,10 @@ export const MyPostContainer: FC<TypePropsUserPost> = (
     }
     return (
         <MyPost
-            posts={state.profilePage.posts}
-            newPostText={state.profilePage.newPostText}
             upDateaddMessage={addMessage}
+            posts={state.profilePage.posts}
             upDateNewWPostText={onPostChange}
+            newPostText={state.profilePage.newPostText}
         />
     )
 }
