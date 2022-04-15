@@ -1,17 +1,15 @@
 import React, {FC} from "react";
-import img from "./MyPostImage/social_logo.png"
-import up from "./MyPost.module.css"
 import {Post} from "./Post/Post";
-import {ActionType, PostsType} from "../../../Redux/Store";
-import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
+import up from "./MyPost.module.css"
+import img from "./MyPostImage/social_logo.png"
+import {PostsType} from "../../../Redux/Store";
 
 
 type TypePropsUserPost = {
-    posts: Array<PostsType>
     newPostText: string
-    upDateNewWPostText: (text: string) => void
+    posts: Array<PostsType>
     upDateaddMessage: () => void
-    // dispatch: (action: ActionType) => void
+    upDateNewWPostText: (text: string) => void
 }
 
 export const MyPost: FC<TypePropsUserPost> = (
@@ -20,7 +18,6 @@ export const MyPost: FC<TypePropsUserPost> = (
         newPostText,
         upDateaddMessage,
         upDateNewWPostText,
-        // dispatch,
     }
 ) => {
 
@@ -37,13 +34,11 @@ export const MyPost: FC<TypePropsUserPost> = (
 
     const addMessage = () => {
         upDateaddMessage()
-        // dispatch(AddPostAC(newPostText));
     }
 
     const onPostChange = () => {
         if (newPostElement.current) {
             upDateNewWPostText(newPostElement.current.value)
-            // dispatch(UpdateNewPostTextAC(newPostElement.current.value));
         }
     }
     return (

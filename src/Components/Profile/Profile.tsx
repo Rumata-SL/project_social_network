@@ -1,12 +1,12 @@
+import {Store} from "redux";
 import React, {FC} from "react";
-import logo from "./Profile_image/content_logo.jpg"
 import p from "./Profile.module.css"
-import {StoreType,} from "../../Redux/Store";
+import logo from "./Profile_image/content_logo.jpg"
 import {MyPostContainer} from "./MyPost/MyPostContainer";
 
 
 type ProfileTypePost = {
-    store: StoreType
+    store: Store
 }
 
 export const Profile: FC<ProfileTypePost> = ({store,}) => {

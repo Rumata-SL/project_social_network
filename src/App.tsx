@@ -1,25 +1,23 @@
-import React, {FC} from "react";
 import "./App.css";
+import React, {FC} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {StoreType} from "./Redux/Store";
 
 // components
+import {Store} from "redux";
+import {News} from "./Components/News/News";
+import {Music} from "./Components/Music/Music";
+import {Footer} from "./Components/Footer/Footer";
 import {Header} from "./Components/Header/Header";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
-import {Dialogs} from "./Components/Dialogs/Dialogs";
-import {News} from "./Components/News/News";
-import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {Footer} from "./Components/Footer/Footer";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
 type AppTypeProps = {
-    store: StoreType
+    store: Store
 }
 const App: FC<AppTypeProps> = ({store}) => {
-    const state = store.getState()
     return (
         <BrowserRouter>
             <div className="app-wrapper">

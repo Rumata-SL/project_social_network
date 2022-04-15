@@ -25,7 +25,7 @@ export const Dialogs: FC<DialogsTypeProps> = (
 
     let dialogsElement = users.map(d => <DialogItem name={d.name} id={d.id}/>)
     let messagesElement = messages.map(m => <Message key={m.id} newMessageText={m.message}/>)
-    let newMessageBody = newMessageText
+    let newMessageBodyText = newMessageText
 
     const onNewMessageChangeUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
@@ -44,7 +44,7 @@ export const Dialogs: FC<DialogsTypeProps> = (
                 <div>
                     <textarea
                         onChange={onNewMessageChangeUpdate}
-                        value={newMessageText}
+                        value={newMessageBodyText}
                         placeholder={"Enter your message"}>
                     </textarea>
                     <div>

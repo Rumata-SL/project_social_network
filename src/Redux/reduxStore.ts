@@ -4,13 +4,13 @@ import {messageReducer} from "./MessageReducer";
 import {sideBarReducer} from "./SideBarReducer";
 
 const reducers = combineReducers({
-    profilePage: profileReducer,
     messagesPage: messageReducer,
+    profilePage: profileReducer,
     sideBar: sideBarReducer
 })
 
-export type ReducersType = ReturnType<typeof reducers>
+// export type ReducersType = ReturnType<typeof reducers>
 
-let store = createStore(reducers);
+export let store = createStore(reducers);
 
-export default store;
+// export default store;

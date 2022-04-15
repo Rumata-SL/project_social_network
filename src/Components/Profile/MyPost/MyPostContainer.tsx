@@ -1,11 +1,11 @@
+import {Store} from "redux";
 import React, {FC} from "react";
 import {MyPost} from "./MyPost";
-import {StoreType} from "../../../Redux/Store";
 import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 
 
 type TypePropsUserPost = {
-    store: StoreType
+    store: Store
 
 }
 

@@ -1,10 +1,11 @@
 import React, {FC} from "react";
 import {Dialogs} from "./Dialogs";
-import {StoreType,} from "../../Redux/Store";
 import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
+import {Store} from "redux";
+
 
 type DialogsTypeProps = {
-    store: StoreType
+    store: Store
 }
 export const DialogsContainer: FC<DialogsTypeProps> = ({store}) => {
 
