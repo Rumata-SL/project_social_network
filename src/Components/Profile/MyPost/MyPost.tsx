@@ -9,7 +9,7 @@ type TypePropsUserPost = {
     newPostText: string
     posts: Array<PostsType>
     upDateaddMessage: () => void
-    upDateNewWPostText: (text: string) => void
+    upDateNewPostText: (text: string) => void
 }
 
 export const MyPost: FC<TypePropsUserPost> = (
@@ -17,7 +17,7 @@ export const MyPost: FC<TypePropsUserPost> = (
         posts,
         newPostText,
         upDateaddMessage,
-        upDateNewWPostText,
+        upDateNewPostText,
     }
 ) => {
 
@@ -38,7 +38,7 @@ export const MyPost: FC<TypePropsUserPost> = (
 
     const onPostChange = () => {
         if (newPostElement.current) {
-            upDateNewWPostText(newPostElement.current.value)
+            upDateNewPostText(newPostElement.current.value)
         }
     }
     return (

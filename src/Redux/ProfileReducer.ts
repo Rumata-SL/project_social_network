@@ -15,7 +15,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         case "ADD-POST":
             const newPost: PostsType = {
                 id: v1(),
-                message: action.newPostText,
+                message: state.newPostText,
                 likes: 0,
             }
             state.posts.push(newPost);
@@ -25,11 +25,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             state.newPostText = action.newText
             return state
         default:
-            return state
+            return {...state}
     }
 }
 
-export const AddPostAC = (postText: string) => ({type: "ADD-POST", newPostText: postText} as const)
+export const AddPostAC = () => ({type: "ADD-POST"} as const)
 
 export const UpdateNewPostTextAC = (text: string) => ({
     type: "UPDATE-NEW-POST-TEXT",

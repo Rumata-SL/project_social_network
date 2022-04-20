@@ -6,11 +6,13 @@ import {MessagesType, UsersType} from "../../Redux/Store";
 
 
 type DialogsTypeProps = {
+
     newMessageText: string
     users: Array<UsersType>
     messages: Array<MessagesType>
     onSendMessageClick: () => void
     onNewMessageChange: (body: string) => void
+
 }
 
 export const Dialogs: FC<DialogsTypeProps> = (

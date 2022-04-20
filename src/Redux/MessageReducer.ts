@@ -31,7 +31,7 @@ export const messageReducer = (state: MessagesPageType = initialState, action: A
             state.messages.push({id: v1(), message: body})
             return state;
         default:
-            return state;
+            return {...state};
     }
 }
 

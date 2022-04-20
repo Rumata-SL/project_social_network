@@ -2,12 +2,15 @@ import React, {FC} from "react";
 import {Dialogs} from "./Dialogs";
 import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
 import {Store} from "redux";
+import {connect} from "react-redux";
+import {AppStoreType} from "../../Redux/reduxStore";
+import {MessagesPageType, StateType} from "../../Redux/Store";
 
 
-type DialogsTypeProps = {
-    store: Store
-}
-export const DialogsContainer: FC<DialogsTypeProps> = ({store}) => {
+/*type DialogsTypeProps = {
+    store: AppStoreType
+}*/
+/*export const DialogsContainer: FC<DialogsTypeProps> = ({store}) => {
 
     let state = store.getState()
 
@@ -29,4 +32,24 @@ export const DialogsContainer: FC<DialogsTypeProps> = ({store}) => {
             />
         </div>
     )
+}*/
+
+
+const mapStateToProps = (state: StateType) => {
+    return {
+        users: state.messagesPage.users,
+        messages: state.messagesPage.messages,
+        newMessageText: state.messagesPage.newMessageText
+    }
 }
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        onNewMessageChange: (body: string) => {
+            dispatch(NewMessageTextAC(body))
+        },
+        onSendMessageClick: () => {
+            dispatch(SendMessageAC())
+        }
+    }
+}
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
