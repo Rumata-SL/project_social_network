@@ -7,7 +7,7 @@ let initialState = {
         {id: v1(), message: "I am ninja", likes: 10},
         {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
     ],
-    newPostText: "Your text",
+    newPostText: "",
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {

@@ -54,7 +54,8 @@ export const MyPost: FC<TypePropsUserPost> = (
                 <div>
                     <div>
                         {/*<textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>*/}
-                        <input onChange={onPostChange} ref={newPostElement} value={newPostText} placeholder={"text"}/>
+                        <input onChange={onPostChange} ref={newPostElement} value={newPostText}
+                               placeholder={"Your text"}/>
                     </div>
                     <div>
                         <button onClick={addMessage}>Add post</button>
