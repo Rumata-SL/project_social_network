@@ -1,10 +1,31 @@
 import React from "react";
 import {Dialogs} from "./Dialogs";
-import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
-import {Store} from "redux";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../Redux/reduxStore";
-import {MessagesPageType, StateType} from "../../Redux/Store";
+import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
+
+
+const mapStateToProps = (state: AppStoreType) => {
+    return {
+        users: state.messagesPage.users,
+        messages: state.messagesPage.messages,
+        newMessageText: state.messagesPage.newMessageText
+    }
+}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        onNewMessageChange: (body: string) => {
+            dispatch(NewMessageTextAC(body))
+        },
+        onSendMessageClick: () => {
+            dispatch(SendMessageAC())
+        }
+    }
+}
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+// import {Store} from "redux";
+// import {MessagesPageType, StateType} from "../../Redux/Store";
 
 
 /*type DialogsTypeProps = {
@@ -33,23 +54,3 @@ import {MessagesPageType, StateType} from "../../Redux/Store";
         </div>
     )
 }*/
-
-
-const mapStateToProps = (state: StateType) => {
-    return {
-        users: state.messagesPage.users,
-        messages: state.messagesPage.messages,
-        newMessageText: state.messagesPage.newMessageText
-    }
-}
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        onNewMessageChange: (body: string) => {
-            dispatch(NewMessageTextAC(body))
-        },
-        onSendMessageClick: () => {
-            dispatch(SendMessageAC())
-        }
-    }
-}
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

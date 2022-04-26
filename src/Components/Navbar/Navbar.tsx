@@ -11,6 +11,7 @@ export const Navbar = () => {
             <div className={n.links}>
                 <div><NavLink className={setActive} to="/">Profile</NavLink></div>
                 <div><NavLink className={setActive} to="/Dialogs">Messages</NavLink></div>
+                <div><NavLink className={setActive} to="/Users">Users</NavLink></div>
                 <div><NavLink className={setActive} to="/News">News</NavLink></div>
                 <div><NavLink className={setActive} to="/Music">Music</NavLink></div>
                 <div><NavLink className={setActive} to="/Settings">Settings</NavLink></div>

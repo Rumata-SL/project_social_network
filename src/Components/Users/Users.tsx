@@ -1,10 +1,9 @@
 import React from "react";
 
-
-export const Settings = () => {
+export const Users = () => {
     return (
         <div style={{color: "white"}}>
-            Settings
+            Users
         </div>
-    )
-}
+    );
+};

@@ -1,6 +1,6 @@
 import "./App.css";
-import {Store} from "redux";
-import React, {FC} from "react";
+// import {Store} from "redux";
+import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 // components
@@ -12,7 +12,9 @@ import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
 import {Settings} from "./Components/Settings/Settings";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
-import {AppStoreType} from "./Redux/reduxStore";
+import {Users} from "./Components/Users/Users";
+import {UsersContainer} from "./Components/Users/ContainerUsers";
+// import {AppStoreType} from "./Redux/reduxStore";
 
 
 /*type AppTypeProps = {
@@ -35,9 +37,13 @@ const App = () => {
                                render={() => <DialogsContainer
                                />}
                         />
+                        <Route path="/Users"
+                               render={() => <UsersContainer/>}
+                        />
                         <Route path="/News" render={() => <News/>}/>
                         <Route path="/Music" render={() => <Music/>}/>
                         <Route path="/Settings" render={() => <Settings/>}/>
+
                     </Switch>
                 </div>
                 <Footer/>

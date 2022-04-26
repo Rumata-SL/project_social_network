@@ -1,10 +1,34 @@
-import {Store} from "redux";
-import React, {FC} from "react";
+import React from "react";
 import {MyPost} from "./MyPost";
-import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../../Redux/reduxStore";
-import {ProfilePageType, StateType} from "../../../Redux/Store";
+import {AddPostAC, UpdateNewPostTextAC} from "../../../Redux/ProfileReducer";
+
+
+const mapStateToProps = (state: AppStoreType) => {
+    return {
+        newPostText: state.profilePage.newPostText,
+        posts: state.profilePage.posts
+    }
+}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        upDateaddMessage: () => {
+            dispatch(AddPostAC());
+        },
+        upDateNewPostText: (text: string) => {
+            if (text) {
+                dispatch(UpdateNewPostTextAC(text));
+            }
+        }
+    }
+}
+
+export const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPost)
+
+
+// import {Store} from "redux";
+// import {ProfilePageType, StateType} from "../../../Redux/Store";
 
 
 /*type TypePropsUserPost = {
@@ -33,25 +57,3 @@ import {ProfilePageType, StateType} from "../../../Redux/Store";
         />
     )
 }*/
-
-
-const mapStateToProps = (state: StateType) => {
-    return {
-        newPostText: state.profilePage.newPostText,
-        posts: state.profilePage.posts
-    }
-}
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        upDateaddMessage: () => {
-            dispatch(AddPostAC());
-        },
-        upDateNewPostText: (text: string) => {
-            if (text) {
-                dispatch(UpdateNewPostTextAC(text));
-            }
-        }
-    }
-}
-
-export const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPost)

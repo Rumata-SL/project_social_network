@@ -13,7 +13,7 @@ let initialState = {
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
-            let randomlikes = Math.floor(Math.random() * 25)
+            // let randomlikes = Math.floor(Math.random() * 25)
             /*const newPost: PostsType = {
                 id: v1(),
                 message: state.newPostText,
@@ -25,7 +25,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 ...state, posts: [...state.posts, {
                     id: v1(),
                     message: state.newPostText,
-                    likes: randomlikes,
+                    likes: ~~(Math.random() * 45),
                 }], newPostText: ""
             }
         case "UPDATE-NEW-POST-TEXT":
