@@ -56,7 +56,7 @@ let initialState: InitialStateType = {
 type ActionType =
     ReturnType<typeof FollowAC>
     | ReturnType<typeof UnFollowAC>
-    | ReturnType<typeof SetYsersAC>
+    | ReturnType<typeof SetUsersAC>
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
@@ -67,11 +67,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case "SET_USERS":
             return {...state, users: [...state.users, ...action.user]}
         default:
-            return {...state}
+            return state
     }
 }
 
 export const FollowAC = (id: string) => ({type: "FOLLOW", userId: id} as const)
 export const UnFollowAC = (id: string) => ({type: "UNFOLLOW", userId: id} as const)
-export const SetYsersAC = (user: Array<UserType>) => ({type: "SET_USERS", user: user} as const)
+export const SetUsersAC = (user: Array<UserType>) => ({type: "SET_USERS", user: user} as const)
 

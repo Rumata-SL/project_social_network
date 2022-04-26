@@ -5,12 +5,13 @@ import us from "./Users.module.css"
 
 type UserPropsType = {
     users: Array<UserType>
-    /*follow: () => void
-    unfollow: () => void
-    setusers: () => void*/
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+    // setusers: () => void
 }
 
-export const Users: FC<UserPropsType> = ({users}) => {
+export const Users: FC<UserPropsType> = ({users, follow, unfollow}) => {
+
     return (
         <div className={us.wrapper}>
             {users.map(u => {
@@ -20,9 +21,18 @@ export const Users: FC<UserPropsType> = ({users}) => {
                             <img src={u.fotoUrl} alt="foto" className={us.logo}/>
                         </div>
                         <div>
-                            {u.followed ? <button onClick={() => {
-                            }}>follow</button> : <button onClick={() => {
-                            }}>unfollow</button>}
+                            {
+                                u.followed
+                                    ? <button onClick={() => {
+                                        // follow(u.id)
+                                        unfollow(u.id)
+
+                                    }}>follow</button>
+                                    : <button onClick={() => {
+                                        // unfollow(u.id)
+                                        follow(u.id)
+                                    }}>unfollow</button>
+                            }
                         </div>
                     </div>
                     <span>
