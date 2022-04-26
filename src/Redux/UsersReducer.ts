@@ -18,7 +18,7 @@ type InitialStateType = {
     users: Array<UserType>
 }
 let initialState: InitialStateType = {
-    users: [
+    users: [/*
         {
             id: v1(),
             fotoUrl: foto,
@@ -50,7 +50,7 @@ let initialState: InitialStateType = {
             fullName: "Efim",
             status: "I am web developer",
             location: {city: "Tumen", country: "Russia"}
-        },
+        },*/
     ]
 }
 type ActionType =

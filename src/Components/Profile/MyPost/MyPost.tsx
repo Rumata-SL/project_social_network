@@ -2,13 +2,13 @@ import React, {FC} from "react";
 import {Post} from "./Post/Post";
 import up from "./MyPost.module.css"
 import img from "./MyPostImage/social_logo.png"
-import {PostsType} from "../../../Redux/Store";
+import {PostsType} from "../../../Redux/ProfileReducer";
 
 
 type TypePropsUserPost = {
     newPostText: string
     posts: Array<PostsType>
-    upDateaddMessage: () => void
+    upDateAddMessage: () => void
     upDateNewPostText: (text: string) => void
 }
 
@@ -16,7 +16,7 @@ export const MyPost: FC<TypePropsUserPost> = (
     {
         posts,
         newPostText,
-        upDateaddMessage,
+        upDateAddMessage,
         upDateNewPostText,
     }
 ) => {
@@ -33,7 +33,7 @@ export const MyPost: FC<TypePropsUserPost> = (
     let newPostElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
-        upDateaddMessage()
+        upDateAddMessage()
     }
 
     const onPostChange = () => {

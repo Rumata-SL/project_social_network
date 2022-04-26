@@ -1,5 +1,21 @@
-import {ActionType, MessagesPageType} from "./Store";
 import {v1} from "uuid";
+
+export type UsersType = {
+    id: string,
+    name: string,
+}
+export type MessagesType = {
+    id: string,
+    message: string,
+}
+export type MessagesPageType = {
+    messages: Array<MessagesType>
+    users: Array<UsersType>
+    newMessageText: string
+}
+type ActionType =
+    ReturnType<typeof NewMessageTextAC>
+    | ReturnType<typeof SendMessageAC>
 
 let initialState = {
     messages: [
@@ -23,12 +39,8 @@ let initialState = {
 export const messageReducer = (state: MessagesPageType = initialState, action: ActionType): MessagesPageType => {
     switch (action.type) {
         case "NEW_MESSAGE_TEXT":
-            // state.newMessageText = action.body
             return {...state, newMessageText: action.body};
         case "SEND-MESSAGE":
-            // let body = state.newMessageText
-            // state.newMessageText = ""
-            // state.messages.push({id: v1(), message: body})
             return {
                 ...state,
                 messages: [...state.messages, {id: v1(), message: state.newMessageText}],

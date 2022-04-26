@@ -1,4 +1,5 @@
 import React from "react";
+import {Dispatch} from "redux";
 import {MyPost} from "./MyPost";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../../Redux/reduxStore";
@@ -11,9 +12,9 @@ const mapStateToProps = (state: AppStoreType) => {
         posts: state.profilePage.posts
     }
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        upDateaddMessage: () => {
+        upDateAddMessage: () => {
             dispatch(AddPostAC());
         },
         upDateNewPostText: (text: string) => {
@@ -25,35 +26,3 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 export const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPost)
-
-
-// import {Store} from "redux";
-// import {ProfilePageType, StateType} from "../../../Redux/Store";
-
-
-/*type TypePropsUserPost = {
-    store: AppStoreType
-
-}*/
-
-/*export const MyPostContainer: FC<TypePropsUserPost> = ({store}) => {
-    let state = store.getState()
-
-    const addMessage = () => {
-        store.dispatch(AddPostAC(state.profilePage.newPostText));
-    }
-
-    const onPostChange = (text: string) => {
-        if (text) {
-            store.dispatch(UpdateNewPostTextAC(text));
-        }
-    }
-    return (
-        <MyPost
-            upDateaddMessage={addMessage}
-            posts={state.profilePage.posts}
-            upDateNewWPostText={onPostChange}
-            newPostText={state.profilePage.newPostText}
-        />
-    )
-}*/

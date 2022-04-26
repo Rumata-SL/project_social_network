@@ -1,16 +1,55 @@
+import {v1} from "uuid";
 import React, {FC} from "react";
-import {UserType} from "../../Redux/UsersReducer";
 import us from "./Users.module.css"
+import foto from "../../Redux/foto.jpg";
+import {UserType} from "../../Redux/UsersReducer";
 
 
 type UserPropsType = {
     users: Array<UserType>
     follow: (userId: string) => void
     unfollow: (userId: string) => void
-    // setusers: () => void
+    setUsers: (user: Array<UserType>) => void
 }
 
-export const Users: FC<UserPropsType> = ({users, follow, unfollow}) => {
+export const Users: FC<UserPropsType> = ({users, follow, unfollow, setUsers}) => {
+
+    if (!users.length) {
+        setUsers([
+            {
+                id: v1(),
+                fotoUrl: foto,
+                followed: true,
+                fullName: "Sergey",
+                status: "I am boss",
+                location: {city: "Kurgan", country: "Russia"}
+            },
+            {
+                id: v1(),
+                fotoUrl: foto,
+                followed: false,
+                fullName: "Kirill",
+                status: "I am jun",
+                location: {city: "Ekb", country: "Russia"}
+            },
+            {
+                id: v1(),
+                fotoUrl: foto,
+                followed: true,
+                fullName: "Egor",
+                status: "I am middle",
+                location: {city: "Ekb", country: "Russia"}
+            },
+            {
+                id: v1(),
+                fotoUrl: foto,
+                followed: false,
+                fullName: "Efim",
+                status: "I am web developer",
+                location: {city: "Tumen", country: "Russia"}
+            },
+        ])
+    }
 
     return (
         <div className={us.wrapper}>
@@ -24,12 +63,9 @@ export const Users: FC<UserPropsType> = ({users, follow, unfollow}) => {
                             {
                                 u.followed
                                     ? <button onClick={() => {
-                                        // follow(u.id)
                                         unfollow(u.id)
-
                                     }}>follow</button>
                                     : <button onClick={() => {
-                                        // unfollow(u.id)
                                         follow(u.id)
                                     }}>unfollow</button>
                             }

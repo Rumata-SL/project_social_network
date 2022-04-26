@@ -1,58 +1,59 @@
-import {v1} from "uuid";
-import {AddPostAC, profileReducer, UpdateNewPostTextAC} from "./ProfileReducer";
-import {messageReducer, NewMessageTextAC, SendMessageAC} from "./MessageReducer";
-import {sideBarReducer} from "./SideBarReducer";
+import {sideBarReducer} from "./SideBarReducer"
+//import {AddPostAC, profileReducer, UpdateNewPostTextAC} from "./ProfileReducer";
+//import {messageReducer, NewMessageTextAC, SendMessageAC} from "./MessageReducer";
 
-export type ActionType =
+/*
+type ActionType =
     ReturnType<typeof AddPostAC>
     | ReturnType<typeof UpdateNewPostTextAC>
     | ReturnType<typeof NewMessageTextAC>
     | ReturnType<typeof SendMessageAC>
+*/
 
-export type PostsType = {
+/*type PostsType = {
     id: string,
     message: string,
     likes: number
-}
-export type MessagesType = {
+}*/
+/*type MessagesType = {
     id: string,
     message: string,
-}
-export type UsersType = {
+}*/
+/*type UsersType = {
     id: string,
     name: string,
-}
-export type NewsType = {
+}*/
+/*type NewsType = {
     id: string
     title: string
-}
-export type SideBarType = {
+}*/
+/*type SideBarType = {
     news: Array<NewsType>
-}
-export type ProfilePageType = {
+}*/
+/*type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 
-}
-export type MessagesPageType = {
+}*/
+/*type MessagesPageType = {
     messages: Array<MessagesType>
     users: Array<UsersType>
     newMessageText: string
-}
-export type StateType = {
+}*/
+/*type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
     sideBar: SideBarType
-}
-export type StoreType = {
+}*/
+/*type StoreType = {
     _state: StateType
     rerenderEntireTree: () => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
     dispatch: (action: ActionType) => void
-}
-
-export const store: StoreType = {
+}*/
+/*
+const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -103,5 +104,5 @@ export const store: StoreType = {
         this.rerenderEntireTree();
 
     }
-}
+}*/
 

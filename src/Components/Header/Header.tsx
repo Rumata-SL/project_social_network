@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import logo from "./Header_image/logo.png";
 import h from "./Header.module.css";
+import logo from "./Header_image/logo.png";
 
 type TypePropsHeader = {
     title: string

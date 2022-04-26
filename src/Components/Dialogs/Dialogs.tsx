@@ -1,18 +1,16 @@
-import React, {ChangeEvent, FC} from "react";
+import {Message} from "./Message";
 import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
-import {Message} from "./Message";
-import {MessagesType, UsersType} from "../../Redux/Store";
+import React, {ChangeEvent, FC} from "react";
+import {MessagesType, UsersType} from "../../Redux/MessageReducer";
 
 
 type DialogsTypeProps = {
-
     newMessageText: string
     users: Array<UsersType>
     messages: Array<MessagesType>
     onSendMessageClick: () => void
     onNewMessageChange: (body: string) => void
-
 }
 
 export const Dialogs: FC<DialogsTypeProps> = (

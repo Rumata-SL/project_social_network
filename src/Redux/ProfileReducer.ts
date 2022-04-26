@@ -1,5 +1,14 @@
-import {ActionType, PostsType, ProfilePageType} from "./Store";
 import {v1} from "uuid";
+
+export type PostsType = {
+    id: string,
+    message: string,
+    likes: number
+}
+export type ProfilePageType = {
+    posts: Array<PostsType>
+    newPostText: string
+}
 
 let initialState = {
     posts: [
@@ -9,18 +18,11 @@ let initialState = {
     ],
     newPostText: "",
 }
+type ActionType = ReturnType<typeof AddPostAC> | ReturnType<typeof UpdateNewPostTextAC>
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
-            // let randomlikes = Math.floor(Math.random() * 25)
-            /*const newPost: PostsType = {
-                id: v1(),
-                message: state.newPostText,
-                likes: randomlikes,
-            }*/
-            // state.posts.push(newPost);
-            // state.newPostText = "";
             return {
                 ...state, posts: [...state.posts, {
                     id: v1(),
@@ -29,7 +31,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 }], newPostText: ""
             }
         case "UPDATE-NEW-POST-TEXT":
-            // state.newPostText = action.newText
             return {...state, newPostText: action.newText}
         default:
             return {...state}
