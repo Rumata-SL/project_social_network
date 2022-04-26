@@ -1,0 +1,16 @@
+.wrapper {
+    /*border: 1px solid red;*/
+}
+
+.container {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

@@ -18,7 +18,6 @@ export const Profile = () => {
                 <img className={p.logo} src={logo} alt="fudzi"/>
             </div>
             <MyPostContainer
-                // store={store}
             />
         </div>
     )
