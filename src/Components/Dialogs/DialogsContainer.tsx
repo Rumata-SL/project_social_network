@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React from "react";
 import {Dialogs} from "./Dialogs";
 import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
 import {Store} from "redux";
