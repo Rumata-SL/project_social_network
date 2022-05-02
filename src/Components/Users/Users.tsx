@@ -2,19 +2,28 @@ import {v1} from "uuid";
 import React, {FC} from "react";
 import us from "./Users.module.css"
 import foto from "../../Redux/foto.jpg";
-import {UserType} from "../../Redux/UsersReducer";
+import {UsersType} from "../../Redux/UsersReducer";
+import axios from "axios";
 
 
 type UserPropsType = {
-    users: Array<UserType>
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    setUsers: (user: Array<UserType>) => void
+    items: Array<UsersType>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (user: Array<UsersType>) => void
 }
 
-export const Users: FC<UserPropsType> = ({users, follow, unfollow, setUsers}) => {
+export const Users: FC<UserPropsType> = ({items, follow, unfollow, setUsers}) => {
+    let getUsers = () => {
+        // if (items.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users")
+                .then(response => {
+                    setUsers(response.data.items)
+                })
+        // }
+    }
 
-    if (!users.length) {
+    /*if (!users.length) {
         setUsers([
             {
                 id: v1(),
@@ -49,15 +58,16 @@ export const Users: FC<UserPropsType> = ({users, follow, unfollow, setUsers}) =>
                 location: {city: "Tumen", country: "Russia"}
             },
         ])
-    }
+    }*/
 
     return (
         <div className={us.wrapper}>
-            {users.map(u => {
+            <button onClick={getUsers}>getUsers</button>
+            {items.map(u => {
                 return <div key={u.id} className={us.container}>
                     <div>
                         <div>
-                            <img src={u.fotoUrl} alt="foto" className={us.logo}/>
+                            <img src={u.photos?.small != null ? u.photos.small : foto} alt="foto" className={us.logo}/>
                         </div>
                         <div>
                             {
@@ -72,12 +82,12 @@ export const Users: FC<UserPropsType> = ({users, follow, unfollow, setUsers}) =>
                         </div>
                     </div>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.city}</div>
-                        <div>{u.location.country}</div>
+                        {/*<div>{u.location.city}</div>*/}
+                        {/*<div>{u.location.country}</div>*/}
                     </span>
 
                 </div>

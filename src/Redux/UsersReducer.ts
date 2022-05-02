@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import foto from "./foto.jpg"
 
 
-type LocationType = {
+/*type LocationType = {
     city: string
     country: string
 }
@@ -13,12 +13,32 @@ export type UserType = {
     fullName: string
     status: string
     location: LocationType
+}*/
+
+export type UsersType = {
+    id: number
+    photos: {
+        small: string
+        large: string
+    } | null
+    followed: boolean
+    name: string
+    status: null | string
+    uniqueUrlName: null | string
 }
-type InitialStateType = {
+
+export type StateUsersType = {
+    items: Array<UsersType>
+}
+
+const initialStateUsers: StateUsersType = {
+    items: []
+}
+/*type InitialStateType = {
     users: Array<UserType>
-}
-let initialState: InitialStateType = {
-    users: [/*
+}*/
+/*let initialState: InitialStateType = {
+    users: [/!*
         {
             id: v1(),
             fotoUrl: foto,
@@ -50,28 +70,30 @@ let initialState: InitialStateType = {
             fullName: "Efim",
             status: "I am web developer",
             location: {city: "Tumen", country: "Russia"}
-        },*/
+        },*!/
     ]
-}
+}*/
+
+
 type ActionType =
     ReturnType<typeof FollowAC>
     | ReturnType<typeof UnFollowAC>
     | ReturnType<typeof SetUsersAC>
 
-export const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+export const usersReducer = (state: StateUsersType = initialStateUsers, action: ActionType): StateUsersType => {
     switch (action.type) {
         case "FOLLOW":
-            return {...state, users: state.users.map(el => el.id === action.userId ? {...el, followed: true} : el)}
+            return {...state, items: state.items.map(el => el.id === action.userId ? {...el, followed: true} : el)}
         case "UNFOLLOW":
-            return {...state, users: state.users.map(el => el.id === action.userId ? {...el, followed: false} : el)}
+            return {...state, items: state.items.map(el => el.id === action.userId ? {...el, followed: false} : el)}
         case "SET_USERS":
-            return {...state, users: [...state.users, ...action.user]}
+            return {...state, items: [...state.items, ...action.items]}
         default:
             return state
     }
 }
 
-export const FollowAC = (id: string) => ({type: "FOLLOW", userId: id} as const)
-export const UnFollowAC = (id: string) => ({type: "UNFOLLOW", userId: id} as const)
-export const SetUsersAC = (user: Array<UserType>) => ({type: "SET_USERS", user: user} as const)
+export const FollowAC = (id: number) => ({type: "FOLLOW", userId: id} as const)
+export const UnFollowAC = (id: number) => ({type: "UNFOLLOW", userId: id} as const)
+export const SetUsersAC = (items: Array<UsersType>) => ({type: "SET_USERS", items: items} as const)
 

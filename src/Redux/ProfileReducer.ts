@@ -10,7 +10,7 @@ export type ProfilePageType = {
     newPostText: string
 }
 
-let initialState = {
+let initialState:ProfilePageType = {
     posts: [
         {id: v1(), message: "I am samurai", likes: 5},
         {id: v1(), message: "I am ninja", likes: 10},
