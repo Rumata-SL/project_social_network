@@ -17,7 +17,8 @@ type UserPropsType = {
 
 
 export class UsersC extends React.Component<UserPropsType>{
-    componentDidMount() {
+    constructor(props:UserPropsType) {
+        super(props);
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
             .then(response => {
                 this.props.setUsers(response.data.items)
@@ -27,7 +28,7 @@ export class UsersC extends React.Component<UserPropsType>{
 
     render(){
         return <div className={us.wrapper}>
-            {/*<button onClick={getUsers}>getUsers</button>*/}
+            {/*<button onClick={this.getUsers}>getUsers</button>*/}
             {this.props.items.map(u => {
                 return <div key={u.id} className={us.container}>
                     <div>
