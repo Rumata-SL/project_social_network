@@ -4,8 +4,8 @@ import us from "./Users.module.css"
 import foto from "../../Redux/foto.jpg";
 import {UsersType} from "../../Redux/UsersReducer";
 import axios from "axios";
-import like from "./like.png"
-import diz from "./diz.png"
+import like from "./Icons/like.png"
+import diz from "./Icons/dizlike.png"
 import {Pagination} from "@mantine/core";
 
 
@@ -82,14 +82,14 @@ export class UsersC extends React.Component<UserPropsType> {
                         <div>
                             {
                                 u.followed
-                                    ? <button onClick={() => {
+                                    ? <button className={us.buttonImg} onClick={() => {
                                         this.props.unfollow(u.id)
                                         // }}>follow</button>
-                                    }}><img src={like} alt="like" width={"20px"}/>
+                                    }}><img src={like} alt="like" width={"20px"} className={us.imgButton}/>
                                     </button>
-                                    : <button onClick={() => {
+                                    : <button className={us.buttonImg} onClick={() => {
                                         this.props.follow(u.id)
-                                    }}><img src={diz} alt="diz" width={"20px"}/>
+                                    }}><img src={diz} alt="diz" width={"20px"} className={us.imgButton}/>
                                     </button>
                                 // }}>unfollow</button>
                             }
