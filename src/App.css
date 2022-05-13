@@ -8,9 +8,7 @@
     height: 100vh;
     margin: 0 auto;
     padding: 5px;
-    /*background-color: lightblue;*/
     background-image: url("./App_image/scrin.jpeg");
-    /*background-image: url("./App_image/grunge-wall.png");*/
     background-repeat:repeat;
     background-size: cover;
     display: grid;

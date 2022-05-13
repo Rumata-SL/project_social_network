@@ -3,7 +3,7 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../Redux/reduxStore";
 import {
-    FollowAC,
+    FollowAC, SetCurrentPageAC, SetTotalUsersCountAC,
     SetUsersAC,
     UnFollowAC,
     UsersType,
@@ -14,7 +14,10 @@ import {UsersC} from "./UsersC";
 
 const mapStateToProps = (state: AppStoreType) => {
     return {
-        items: state.usersPage["items"]
+        items: state.usersPage["items"],
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount:state.usersPage.totalUsersCount,
+        currentPage:state.usersPage.currentPage
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -27,6 +30,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setUsers: (items: Array<UsersType>) => {
             dispatch(SetUsersAC(items))
+        },
+        setCurrentPage:(currentPage:number)=>{
+            dispatch(SetCurrentPageAC(currentPage))
+        },
+        setTotalUsersCount:(totalUsersCount:number)=>{
+            dispatch(SetTotalUsersCountAC(totalUsersCount))
         }
     }
 
