@@ -6,6 +6,7 @@ import {UsersType} from "../../Redux/UsersReducer";
 import axios from "axios";
 import like from "./like.png"
 import diz from "./diz.png"
+import {Pagination} from "@mantine/core";
 
 
 type UserPropsType = {
@@ -106,7 +107,7 @@ export class UsersC extends React.Component<UserPropsType> {
 
                 </div>
             })}
-            <div >
+            {/*<div >
                 <div className={us.pagination}>
                     {pages.map(p => {
                         return <span
@@ -118,7 +119,17 @@ export class UsersC extends React.Component<UserPropsType> {
                 </span>
                     })}
                 </div>
-            </div>
+            </div>*/}
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "15px"
+            }}><Pagination
+                total={pagesCount}
+                size="sm"
+                onChange={(e) => {
+                    this.onPageChanged(e)
+                }}/></div>
         </div>
     }
 
