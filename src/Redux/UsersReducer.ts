@@ -38,7 +38,7 @@ export type StateUsersType = {
 
 const initialStateUsers: StateUsersType = {
     items: [],
-    pageSize: 5,
+    pageSize: 6,
     totalUsersCount:0,
     currentPage:1,
 }
