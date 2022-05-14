@@ -16,32 +16,32 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header title={"SOCIAL NETWORK"}/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Switch>
-                        <Route exact path={"/"}
-                               render={() => <Profile
-                               />}/>
+        // <BrowserRouter>
+        <div className="app-wrapper">
+            <Header title={"SOCIAL NETWORK"}/>
+            <Navbar/>
+            <div className="app-wrapper-content">
+                {/*<Switch>exact*/}
+                <Route path={"/Profile"}
+                       render={() => <Profile
+                       />}/>
 
-                        <Route path="/Dialogs"
-                               render={() => <DialogsContainer
-                               />}
-                        />
-                        <Route path="/Users"
-                               render={() => <UsersContainer/>}
-                        />
-                        <Route path="/News" render={() => <News/>}/>
-                        <Route path="/Music" render={() => <Music/>}/>
-                        <Route path="/Settings" render={() => <Settings/>}/>
+                <Route path="/Dialogs"
+                       render={() => <DialogsContainer
+                       />}
+                />
+                <Route path="/Users"
+                       render={() => <UsersContainer/>}
+                />
+                <Route path="/News" render={() => <News/>}/>
+                <Route path="/Music" render={() => <Music/>}/>
+                <Route path="/Settings" render={() => <Settings/>}/>
 
-                    </Switch>
-                </div>
-                <Footer/>
+                {/*</Switch>*/}
             </div>
-        </BrowserRouter>
+            <Footer/>
+        </div>
+        // </BrowserRouter>
     );
 }
 

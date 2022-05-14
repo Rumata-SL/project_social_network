@@ -5,6 +5,7 @@ import like from "./Icons/like.png";
 import diz from "./Icons/dizlike.png";
 import {Pagination} from "@mantine/core";
 import {UsersType} from "../../Redux/UsersReducer";
+import {NavLink} from "react-router-dom";
 
 type UsersPresentationPropsType = {
     pageSize: number
@@ -40,9 +41,9 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
             return <div key={u.id} className={us.container}>
                 <div>
                     <div>
-                        <img
+                        <NavLink to={"/profile/" + u.id}><img
                             src={u.photos?.small != null ? u.photos.small : photo}
-                            alt="photo" className={us.logo}/>
+                            alt="photo" className={us.logo}/></NavLink>
                     </div>
                     <div>
                         {
