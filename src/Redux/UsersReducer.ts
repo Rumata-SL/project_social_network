@@ -1,7 +1,3 @@
-import {v1} from "uuid";
-import foto from "./foto.jpg"
-
-
 /*type LocationType = {
     city: string
     country: string
@@ -25,8 +21,6 @@ export type UsersType = {
     name: string
     status: null | string
     uniqueUrlName: null | string
-
-
 }
 
 export type StateUsersType = {
@@ -83,7 +77,6 @@ const initialStateUsers: StateUsersType = {
         },*!/
     ]
 }*/
-
 
 type ActionType =
     ReturnType<typeof follow>

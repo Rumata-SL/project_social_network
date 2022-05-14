@@ -78,17 +78,18 @@ const mapStateToProps = (state: AppStoreType) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, {follow,
+export const UsersContainer = connect(mapStateToProps, {
+    follow,
     unFollow,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching})(UsersApiContainer)
-
+    toggleIsFetching,
+})(UsersApiContainer)
 
 
 /*const mapDispatchToProps = (dispatch: Dispatch) => {
