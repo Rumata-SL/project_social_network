@@ -1,10 +1,9 @@
 .wrapper {
-    /*border: 1px solid red;*/
     color: #ffffff;
 }
 
 .container {
-    border: 1px solid red;
+    border: 1px solid #fff;
     display: flex;
     flex-direction: row;
     color: white;
@@ -16,30 +15,7 @@
     border-radius: 50%;
 }
 
-/*.pagination{
-    display: inline-block;
-    margin-top: 15px;
-}*/
-/*.pagination span{
-    color: white;
-    !*float: left;*!
-    margin: 0 4px;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}*/
-.buttonImg{
+.buttonImg {
     background-color: rgba(0, 0, 0, 0);
-    border:none;
+    border: none;
 }
-.imgButton{
-
-}
-/*
-.selected {
-    color: #fff;
-    background-color: cyan;
-    border: 1px solid #4CAF50;
-}*/
