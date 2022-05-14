@@ -1,9 +1,14 @@
-import React from "react";
+import React, {FC} from "react";
 import p from "./Profile.module.css"
 import logo from "./Profile_image/content_logo.jpg"
 import {MyPostContainer} from "./MyPost/MyPostContainer";
+import {ProfileType} from "../../Redux/ProfileReducer";
 
-export const Profile = () => {
+type ProfilePropsType = {
+    profile: ProfileType
+}
+
+export const Profile: FC<ProfilePropsType> = ({profile}) => {
 
     return (
         <div className={p.content}>

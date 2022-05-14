@@ -9,10 +9,10 @@ import {Music} from "./Components/Music/Music";
 import {Footer} from "./Components/Footer/Footer";
 import {Header} from "./Components/Header/Header";
 import {Navbar} from "./Components/Navbar/Navbar";
-import {Profile} from "./Components/Profile/Profile";
 import {Settings} from "./Components/Settings/Settings";
 import {UsersContainer} from "./Components/Users/UsersContainer";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 
 const App = () => {
     return (
@@ -21,23 +21,24 @@ const App = () => {
             <Header title={"SOCIAL NETWORK"}/>
             <Navbar/>
             <div className="app-wrapper-content">
-                {/*<Switch>exact*/}
-                <Route path={"/Profile"}
-                       render={() => <Profile
-                       />}/>
+                <Switch>
+                    {/*exact*/}
+                    <Route exact path={"/profile"}
+                           render={() => <ProfileContainer
+                           />}/>
 
-                <Route path="/Dialogs"
-                       render={() => <DialogsContainer
-                       />}
-                />
-                <Route path="/Users"
-                       render={() => <UsersContainer/>}
-                />
-                <Route path="/News" render={() => <News/>}/>
-                <Route path="/Music" render={() => <Music/>}/>
-                <Route path="/Settings" render={() => <Settings/>}/>
+                    <Route path="/dialogs"
+                           render={() => <DialogsContainer
+                           />}
+                    />
+                    <Route path="/users"
+                           render={() => <UsersContainer/>}
+                    />
+                    <Route path="/news" render={() => <News/>}/>
+                    <Route path="/music" render={() => <Music/>}/>
+                    <Route path="/settings" render={() => <Settings/>}/>
 
-                {/*</Switch>*/}
+                </Switch>
             </div>
             <Footer/>
         </div>

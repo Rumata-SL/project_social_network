@@ -15,16 +15,3 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-/*
-let rerenderEntireTree = () => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </BrowserRouter>,
-        document.getElementById("root")
-    );
-}
-rerenderEntireTree();
-store.subscribe(rerenderEntireTree);*/
