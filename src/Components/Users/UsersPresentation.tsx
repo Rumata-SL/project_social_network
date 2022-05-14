@@ -12,7 +12,7 @@ type UsersPresentationPropsType = {
     totalUsersCount: number
     items: Array<UsersType>
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    unFollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
 }
 
@@ -23,7 +23,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
         pageSize,
         items,
         follow,
-        unfollow,
+        unFollow,
         onPageChanged,
         currentPage
     }
@@ -49,7 +49,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                             u.followed
                                 ? <button className={us.buttonImg}
                                           onClick={() => {
-                                              unfollow(u.id)
+                                              unFollow(u.id)
                                           }}
                                 >
                                     <img

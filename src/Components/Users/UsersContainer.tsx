@@ -3,12 +3,12 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../Redux/reduxStore";
 import {
-    FollowAC,
-    SetCurrentPageAC,
-    ToggleIsFetchingAC,
-    SetTotalUsersCountAC,
-    SetUsersAC,
-    UnFollowAC,
+    follow,
+    setCurrentPage,
+    toggleIsFetching,
+    setTotalUsersCount,
+    setUsers,
+    unFollow,
     UsersType
 } from "../../Redux/UsersReducer";
 import axios from "axios";
@@ -19,7 +19,7 @@ import {Preloader} from "./Preloaded";
 type UsersApiContainerPropsType = {
     items: Array<UsersType>
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    unFollow: (userId: number) => void
     setUsers: (user: Array<UsersType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
@@ -62,7 +62,7 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
                 pageSize={this.props.pageSize}
                 items={this.props.items}
                 follow={this.props.follow}
-                unfollow={this.props.unfollow}
+                unFollow={this.props.unFollow}
                 onPageChanged={this.onPageChanged}
                 currentPage={this.props.currentPage}
             />
@@ -82,12 +82,12 @@ const mapStateToProps = (state: AppStoreType) => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, {follow:FollowAC,
-    unfollow:UnFollowAC,
-    setUsers:SetUsersAC,
-    setCurrentPage:SetCurrentPageAC,
-    setTotalUsersCount:SetTotalUsersCountAC,
-    toggleIsFetching:ToggleIsFetchingAC})(UsersApiContainer)
+export const UsersContainer = connect(mapStateToProps, {follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching})(UsersApiContainer)
 
 
 
