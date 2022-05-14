@@ -43,18 +43,19 @@ export const MyPost: FC<TypePropsUserPost> = (
     }
     return (
         <div className={up.content}>
-            <div className={up.container_content_social_logo}>
+            {/*<div className={up.container_content_social_logo}>
                 <div className={up.box1}>
                     <img className={up.content_social_logo} src={img} alt="ninja"/>
                     AVA Description
                 </div>
-            </div>
+            </div>*/}
             <div className={up.box3}>
                 My post
                 <div>
                     <div>
                         {/*<textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>*/}
-                        <input onChange={onPostChange} ref={newPostElement} value={newPostText}
+                        <input onChange={onPostChange} ref={newPostElement}
+                               value={newPostText}
                                placeholder={"Your text"}/>
                     </div>
                     <div>
