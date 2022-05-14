@@ -23,11 +23,11 @@ type UsersApiContainerPropsType = {
     setUsers: (user: Array<UsersType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
-    toggleIsFetching:(isFetching:boolean)=>void
+    toggleIsFetching: (isFetching: boolean) => void
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    isFetching:boolean
+    isFetching: boolean
 }
 
 
@@ -56,33 +56,42 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
     render() {
 
         return <>
-            {this.props.isFetching ? <Preloader/>:null}
+            {this.props.isFetching ? <Preloader/> : null}
             <UsersPresentation
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            items={this.props.items}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            onPageChanged={this.onPageChanged}
-            currentPage={this.props.currentPage}
-        />
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                items={this.props.items}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                onPageChanged={this.onPageChanged}
+                currentPage={this.props.currentPage}
+            />
         </>
 
     }
 }
 
 
-
 const mapStateToProps = (state: AppStoreType) => {
     return {
         items: state.usersPage["items"],
         pageSize: state.usersPage.pageSize,
-        totalUsersCount:state.usersPage.totalUsersCount,
-        currentPage:state.usersPage.currentPage,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch) => {
+
+export const UsersContainer = connect(mapStateToProps, {follow:FollowAC,
+    unfollow:UnFollowAC,
+    setUsers:SetUsersAC,
+    setCurrentPage:SetCurrentPageAC,
+    setTotalUsersCount:SetTotalUsersCountAC,
+    toggleIsFetching:ToggleIsFetchingAC})(UsersApiContainer)
+
+
+
+/*const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         follow: (userId: number) => {
             dispatch(FollowAC(userId))
@@ -93,17 +102,18 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setUsers: (items: Array<UsersType>) => {
             dispatch(SetUsersAC(items))
         },
-        setCurrentPage:(currentPage:number)=>{
+        setCurrentPage: (currentPage: number) => {
             dispatch(SetCurrentPageAC(currentPage))
         },
-        setTotalUsersCount:(totalUsersCount:number)=>{
+        setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(SetTotalUsersCountAC(totalUsersCount))
         },
-        toggleIsFetching:(isFetching:boolean)=>{
+        toggleIsFetching: (isFetching: boolean) => {
             dispatch(ToggleIsFetchingAC(isFetching))
+        }
     }
-    }
+}*/
 
-}
+// export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+

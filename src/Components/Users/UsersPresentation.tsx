@@ -7,15 +7,13 @@ import {Pagination} from "@mantine/core";
 import {UsersType} from "../../Redux/UsersReducer";
 
 type UsersPresentationPropsType = {
-    totalUsersCount: number
     pageSize: number
+    currentPage: number
+    totalUsersCount: number
     items: Array<UsersType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
-    currentPage: number
-
-
 }
 
 
