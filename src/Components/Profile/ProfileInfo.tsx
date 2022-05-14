@@ -14,14 +14,18 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({profile}) => {
     }
     return (
         <div>
+            <hr/>
             <div className={up.container_content_social_logo}>
                 <div className={up.box1}>
                     {/*<img className={up.content_social_logo} src={img}
                          alt="ninja"/>*/}
                     <img src={profile.photos.small} alt="image"/>
-                    {profile.aboutMe}
+                    <div>AboutMe: {profile.aboutMe}</div>
+                    <div>Looking For A Job
+                        : {profile.lookingForAJobDescription}</div>
                 </div>
             </div>
+            <hr/>
         </div>
     );
 };
