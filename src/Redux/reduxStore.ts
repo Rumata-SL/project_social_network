@@ -3,12 +3,14 @@ import {profileReducer} from "./ProfileReducer";
 import {messageReducer} from "./MessageReducer";
 import {sideBarReducer} from "./SideBarReducer";
 import {usersReducer} from "./UsersReducer";
+import {authReducer} from "./AuthReducer";
 
 const reducers = combineReducers({
     messagesPage: messageReducer,
     profilePage: profileReducer,
     sideBar: sideBarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth:authReducer
 })
 
 export type AppStoreType = ReturnType<typeof reducers>
