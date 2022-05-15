@@ -11,7 +11,7 @@ import {Navbar} from "./Components/Navbar/Navbar";
 import {Settings} from "./Components/Settings/Settings";
 import WithUrlData from "./Components/Profile/ProfileContainer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
-import {HeaderContainer} from "./Components/Header/HeaderContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 const App = () => {

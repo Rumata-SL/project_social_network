@@ -4,10 +4,11 @@ import logo from "./Header_image/logo.png";
 import {NavLink} from "react-router-dom";
 
 type TypePropsHeader = {
-
+    isAuth: boolean
+    login: string | null
 }
 
-export const Header: FC<TypePropsHeader> = () => {
+export const Header: FC<TypePropsHeader> = ({isAuth, login}) => {
     return (
         <header className={h.header}>
             <div className={h.header_logo}>
@@ -17,9 +18,9 @@ export const Header: FC<TypePropsHeader> = () => {
                 <h2 className={h.hed}>SOCIAL NETWORK</h2>
             </div>
             <div className={h.login_block}>
-                <NavLink to={'/login'} className={h.login_title}>LOGIN</NavLink>
+                {isAuth ? login : <NavLink to={"/login"}
+                                           className={h.login_title}>LOGIN</NavLink>}
             </div>
-            {/*<div className={h.login_block}><h3 className={h.login_title}>LOGIN</h3></div>*/}
         </header>
     )
 }
