@@ -9,7 +9,7 @@ import {
     setTotalUsersCount,
     setUsers,
     unFollow,
-    UsersType
+    UsersType, toggleFollowingProgress
 } from "../../Redux/UsersReducer";
 import {UsersPresentation} from "./UsersPresentation";
 import {Preloader} from "./Preloaded";
@@ -24,10 +24,12 @@ type UsersApiContainerPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleFollowingProgress:(isFetching: boolean, id: number)=>void
     totalUsersCount: number
     pageSize: number
     currentPage: number
     isFetching: boolean
+    followingInProgress:Array<number>
 }
 
 
@@ -65,6 +67,8 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
                 unFollow={this.props.unFollow}
                 onPageChanged={this.onPageChanged}
                 currentPage={this.props.currentPage}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
 
@@ -79,6 +83,7 @@ const mapStateToProps = (state: AppStoreType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress:state.usersPage.followingInProgress
     }
 }
 
@@ -89,6 +94,7 @@ export const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching,
+    toggleFollowingProgress,
 })(UsersApiContainer)
 
 

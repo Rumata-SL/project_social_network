@@ -6,7 +6,7 @@ import diz from "./Icons/dizlike.png";
 import {Pagination} from "@mantine/core";
 import {UsersType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
-import { usersApi} from "../../API/api";
+import {usersApi} from "../../API/api";
 
 type UsersPresentationPropsType = {
     pageSize: number
@@ -16,6 +16,8 @@ type UsersPresentationPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
+    toggleFollowingProgress: (isFetching: boolean, id: number) => void
+    followingInProgress: Array<number>
 }
 
 
@@ -27,7 +29,9 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
         follow,
         unFollow,
         onPageChanged,
-        currentPage
+        currentPage,
+        toggleFollowingProgress,
+        followingInProgress,
     }
 ) => {
     let pagesCount: number = Math.ceil(totalUsersCount / pageSize)
@@ -50,9 +54,12 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                         {
                             u.followed
                                 ? <button className={us.buttonImg}
+                                          disabled={followingInProgress.some(id => id === u.id)}
                                           onClick={() => {
-                                              usersApi.setUnFollow(u.id)
-                                              unFollow(u.id)
+                                              toggleFollowingProgress(true, u.id)
+                                              usersApi.setUnFollow(u.id).then(() => unFollow(u.id)).then(() => toggleFollowingProgress(true, u.id))
+
+
                                           }}
                                 >
                                     <img
@@ -64,9 +71,12 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                 </button>
                                 : <button
                                     className={us.buttonImg}
+                                    disabled={followingInProgress.some(id => id === u.id)}
                                     onClick={() => {
-                                        usersApi.setFollow(u.id)
-                                        follow(u.id)
+                                        toggleFollowingProgress(true, u.id)
+                                        usersApi.setFollow(u.id).then(() => follow(u.id)).then(() => toggleFollowingProgress(true, u.id))
+
+
                                     }}
                                 >
                                     <img
