@@ -26,7 +26,10 @@ export const usersApi ={
                 return response
             }
         })
-
+    },
+    setProfile(id:string){
+        return instance.get(`profile/` + id)
+            .then(response => response.data)
     }
 }
 
