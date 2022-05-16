@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {FC} from "react";
+import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../Redux/reduxStore";
@@ -21,7 +21,6 @@ export class HeaderContainer extends React.Component<HeaderContainerPropsType>{
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials:true})
             .then(response => {
-                debugger
                 if(response.data.resultCode === 0 ){
                     let { id, email, login}= response.data.data
                     this.props.setAuthUserData(id, email, login)
@@ -34,7 +33,7 @@ export class HeaderContainer extends React.Component<HeaderContainerPropsType>{
             <Header {...this.props}/>
         );
     }
-};
+}
 
 
 const mapStateToProps = (state:AppStoreType):mapStatePropsType=>{

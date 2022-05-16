@@ -6,6 +6,8 @@ import diz from "./Icons/dizlike.png";
 import {Pagination} from "@mantine/core";
 import {UsersType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {setFollow, SetUnFollow} from "../../API/api";
 
 type UsersPresentationPropsType = {
     pageSize: number
@@ -50,7 +52,11 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                             u.followed
                                 ? <button className={us.buttonImg}
                                           onClick={() => {
-                                              unFollow(u.id)
+                                              SetUnFollow(u.id).then(response => {
+                                                  if (response.data.resultCode === 0) {
+                                                      unFollow(u.id)
+                                                  }
+                                              })
                                           }}
                                 >
                                     <img
@@ -63,7 +69,12 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                 : <button
                                     className={us.buttonImg}
                                     onClick={() => {
-                                        follow(u.id)
+                                        setFollow(u.id)
+                                            .then(response => {
+                                                if (response.data.resultCode === 0) {
+                                                    follow(u.id)
+                                                }
+                                            })
                                     }}
                                 >
                                     <img

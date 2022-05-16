@@ -38,45 +38,6 @@ const initialStateUsers: StateUsersType = {
     currentPage: 1,
     isFetching: true
 }
-/*type InitialStateType = {
-    users: Array<UserType>
-}*/
-/*let initialState: InitialStateType = {
-    users: [/!*
-        {
-            id: v1(),
-            fotoUrl: foto,
-            followed: true,
-            fullName: "Sergey",
-            status: "I am boss",
-            location: {city: "Kurgan", country: "Russia"}
-        },
-        {
-            id: v1(),
-            fotoUrl: foto,
-            followed: false,
-            fullName: "Kirill",
-            status: "I am jun",
-            location: {city: "Ekb", country: "Russia"}
-        },
-        {
-            id: v1(),
-            fotoUrl: foto,
-            followed: true,
-            fullName: "Egor",
-            status: "I am middle",
-            location: {city: "Ekb", country: "Russia"}
-        },
-        {
-            id: v1(),
-            fotoUrl: foto,
-            followed: false,
-            fullName: "Efim",
-            status: "I am web developer",
-            location: {city: "Tumen", country: "Russia"}
-        },*!/
-    ]
-}*/
 
 type ActionType =
     ReturnType<typeof follow>
@@ -140,3 +101,44 @@ export const toggleIsFetching = (isFetching: boolean) => ({
     isFetching
 } as const)
 
+
+
+/*type InitialStateType = {
+    users: Array<UserType>
+}*/
+/*let initialState: InitialStateType = {
+    users: [/!*
+        {
+            id: v1(),
+            fotoUrl: foto,
+            followed: true,
+            fullName: "Sergey",
+            status: "I am boss",
+            location: {city: "Kurgan", country: "Russia"}
+        },
+        {
+            id: v1(),
+            fotoUrl: foto,
+            followed: false,
+            fullName: "Kirill",
+            status: "I am jun",
+            location: {city: "Ekb", country: "Russia"}
+        },
+        {
+            id: v1(),
+            fotoUrl: foto,
+            followed: true,
+            fullName: "Egor",
+            status: "I am middle",
+            location: {city: "Ekb", country: "Russia"}
+        },
+        {
+            id: v1(),
+            fotoUrl: foto,
+            followed: false,
+            fullName: "Efim",
+            status: "I am web developer",
+            location: {city: "Tumen", country: "Russia"}
+        },*!/
+    ]
+}*/
