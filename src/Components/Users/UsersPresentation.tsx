@@ -6,8 +6,7 @@ import diz from "./Icons/dizlike.png";
 import {Pagination} from "@mantine/core";
 import {UsersType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {setFollow, SetUnFollow} from "../../API/api";
+import { usersApi} from "../../API/api";
 
 type UsersPresentationPropsType = {
     pageSize: number
@@ -52,11 +51,8 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                             u.followed
                                 ? <button className={us.buttonImg}
                                           onClick={() => {
-                                              SetUnFollow(u.id).then(response => {
-                                                  if (response.data.resultCode === 0) {
-                                                      unFollow(u.id)
-                                                  }
-                                              })
+                                              usersApi.setUnFollow(u.id)
+                                              unFollow(u.id)
                                           }}
                                 >
                                     <img
@@ -69,12 +65,8 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                 : <button
                                     className={us.buttonImg}
                                     onClick={() => {
-                                        setFollow(u.id)
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    follow(u.id)
-                                                }
-                                            })
+                                        usersApi.setFollow(u.id)
+                                        follow(u.id)
                                     }}
                                 >
                                     <img
