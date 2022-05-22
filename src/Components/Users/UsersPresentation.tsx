@@ -30,7 +30,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
         unFollow,
         onPageChanged,
         currentPage,
-        toggleFollowingProgress,
+        // toggleFollowingProgress,
         followingInProgress,
     }
 ) => {
@@ -55,12 +55,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                             u.followed
                                 ? <button className={us.buttonImg}
                                           disabled={followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              toggleFollowingProgress(true, u.id)
-                                              usersApi.setUnFollow(u.id).then(() => unFollow(u.id)).then(() => toggleFollowingProgress(true, u.id))
-
-                                          }}
-                                >
+                                          onClick={() => {unFollow(u.id)}}>
                                     <img
                                         src={like}
                                         alt="like"
@@ -71,13 +66,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                 : <button
                                     className={us.buttonImg}
                                     disabled={followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {
-                                        toggleFollowingProgress(true, u.id)
-                                        usersApi.setFollow(u.id).then(() => follow(u.id)).then(() => toggleFollowingProgress(true, u.id))
-
-
-                                    }}
-                                >
+                                    onClick={() => {follow(u.id)}}>
                                     <img
                                         src={diz}
                                         alt="diz"
@@ -111,3 +100,15 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
         </div>
     </div>
 }
+
+
+/*
+toggleFollowingProgress(true, u.id)
+usersApi.setUnFollow(u.id).then(() => unFollow(u.id)).then(() => toggleFollowingProgress(true, u.id))*/
+
+
+
+
+/* toggleFollowingProgress(true, u.id)
+                                        usersApi.setFollow(u.id).then(() => follow(u.id)).then(() => toggleFollowingProgress(true, u.id))
+*/
