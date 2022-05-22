@@ -25,6 +25,7 @@ export const usersApi = {
             if (response.data.resultCode === 0) {
                 return response.data
             }
+
         })
     },
     setProfile(id: string) {

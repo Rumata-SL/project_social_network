@@ -27,19 +27,19 @@ type mapStatePropsType = {
     pageSize: number
     currentPage: number
     isFetching: boolean
-    followingInProgress:Array<number>
+    followingInProgress: Array<number>
 }
-type mapDispatchPropsType={
+type mapDispatchPropsType = {
     // follow: (userId: number) => void
     // unFollow: (userId: number) => void
-    following:(userId: number) => void
-    unfollowing:(userId: number) => void
+    following: (userId: number) => void
+    unfollowing: (userId: number) => void
     // setUsers: (user: Array<UsersType>) => void
     // setCurrentPage: (currentPage: number) => void
     // setTotalUsersCount: (totalUsersCount: number) => void
     // toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress:(isFetching: boolean, id: number)=>void
-    getUsersThunkCreator:(currentPage: number, pageSize: number)=>void
+    // toggleFollowingProgress:(isFetching: boolean, id: number)=>void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
 
@@ -49,35 +49,30 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
 
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
-
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
-
-        /*this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-        usersApi.getUsers(pageNumber,this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(data.items)
-        })*/
     }
 
     render() {
 
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
-            <UsersPresentation
-                totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                items={this.props.items}
-                follow={this.props.following}
-                unFollow={this.props.unfollowing}
-                onPageChanged={this.onPageChanged}
-                currentPage={this.props.currentPage}
-                toggleFollowingProgress={this.props.toggleFollowingProgress}
-                followingInProgress={this.props.followingInProgress}
-            />
+            {/*{this.props.isFetching ? <Preloader/> :null}*/}
+            {this.props.isFetching
+                ? <Preloader/>
+                : <UsersPresentation
+                    totalUsersCount={this.props.totalUsersCount}
+                    pageSize={this.props.pageSize}
+                    items={this.props.items}
+                    follow={this.props.following}
+                    unFollow={this.props.unfollowing}
+                    onPageChanged={this.onPageChanged}
+                    currentPage={this.props.currentPage}
+                    // toggleFollowingProgress={this.props.toggleFollowingProgress}
+                    followingInProgress={this.props.followingInProgress}
+                />}
+
         </>
 
     }
@@ -91,7 +86,7 @@ const mapStateToProps = (state: AppStoreType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress:state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 

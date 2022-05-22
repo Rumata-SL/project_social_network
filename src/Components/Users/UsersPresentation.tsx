@@ -16,7 +16,7 @@ type UsersPresentationPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
-    toggleFollowingProgress: (isFetching: boolean, id: number) => void
+    // toggleFollowingProgress: (isFetching: boolean, id: number) => void
     followingInProgress: Array<number>
 }
 
@@ -44,43 +44,48 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
     return <div className={us.wrapper}>
         {items.map(u => {
             return <div key={u.id} className={us.container}>
-                <div>
+                <div className={us.usercontainer}>
                     <div>
                         <NavLink to={"/profile/" + u.id}><img
                             src={u.photos?.small != null ? u.photos.small : photo}
                             alt="photo" className={us.logo}/></NavLink>
                     </div>
+                    <span>
+                        <div> Name : {u.name}</div>
+                        {/*<div>{u.status}</div>*/}
+                    </span>
                     <div>
                         {
                             u.followed
                                 ? <button className={us.buttonImg}
                                           disabled={followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {unFollow(u.id)}}>
-                                    <img
+                                          onClick={() => {
+                                              unFollow(u.id)
+                                          }}>follow
+                                    {/*<img
                                         src={like}
                                         alt="like"
                                         width={"20px"}
                                         className={us.imgButton}
-                                    />
+                                    />*/}
                                 </button>
                                 : <button
                                     className={us.buttonImg}
                                     disabled={followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {follow(u.id)}}>
-                                    <img
+                                    onClick={() => {
+                                        follow(u.id)
+                                    }}>unfollow
+                                    {/*<img
                                         src={diz}
                                         alt="diz"
                                         width={"20px"}
                                         className={us.imgButton}
-                                    />
+                                    />*/}
                                 </button>
                         }
                     </div>
                 </div>
-                <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
-                    </span>
+
             </div>
         })}
 
@@ -105,8 +110,6 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
 /*
 toggleFollowingProgress(true, u.id)
 usersApi.setUnFollow(u.id).then(() => unFollow(u.id)).then(() => toggleFollowingProgress(true, u.id))*/
-
-
 
 
 /* toggleFollowingProgress(true, u.id)
