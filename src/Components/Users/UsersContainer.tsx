@@ -38,7 +38,7 @@ type mapDispatchPropsType = {
     // setCurrentPage: (currentPage: number) => void
     // setTotalUsersCount: (totalUsersCount: number) => void
     // toggleIsFetching: (isFetching: boolean) => void
-    // toggleFollowingProgress:(isFetching: boolean, id: number)=>void
+    toggleFollowingProgress:(isFetching: boolean, id: number)=>void
     getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
@@ -61,18 +61,18 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
             {/*{this.props.isFetching ? <Preloader/> :null}*/}
             {this.props.isFetching
                 ? <Preloader/>
-                : <UsersPresentation
-                    totalUsersCount={this.props.totalUsersCount}
-                    pageSize={this.props.pageSize}
-                    items={this.props.items}
-                    follow={this.props.following}
-                    unFollow={this.props.unfollowing}
-                    onPageChanged={this.onPageChanged}
-                    currentPage={this.props.currentPage}
-                    // toggleFollowingProgress={this.props.toggleFollowingProgress}
-                    followingInProgress={this.props.followingInProgress}
-                />}
-
+                : null}
+            <UsersPresentation
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                items={this.props.items}
+                follow={this.props.following}
+                unFollow={this.props.unfollowing}
+                onPageChanged={this.onPageChanged}
+                currentPage={this.props.currentPage}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
+            />
         </>
 
     }
@@ -81,7 +81,7 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
 
 const mapStateToProps = (state: AppStoreType) => {
     return {
-        items: state.usersPage["items"],
+        items: state.usersPage.items,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,

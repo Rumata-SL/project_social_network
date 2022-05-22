@@ -16,7 +16,7 @@ type UsersPresentationPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
-    // toggleFollowingProgress: (isFetching: boolean, id: number) => void
+    toggleFollowingProgress: (isFetching: boolean, id: number) => void
     followingInProgress: Array<number>
 }
 
@@ -30,8 +30,8 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
         unFollow,
         onPageChanged,
         currentPage,
-        // toggleFollowingProgress,
         followingInProgress,
+        toggleFollowingProgress,
     }
 ) => {
     let pagesCount: number = Math.ceil(totalUsersCount / pageSize)
@@ -52,7 +52,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                     </div>
                     <span>
                         <div> Name : {u.name}</div>
-                        {/*<div>{u.status}</div>*/}
+                        <div>{u.status}</div>
                     </span>
                     <div>
                         {

@@ -33,7 +33,11 @@ export const usersApi = {
             .then(response => response.data)
     }
 }
-
+export const authApi = {
+    getMe(){
+        return instance.get(`auth/me`)
+    }
+}
 
 
 
