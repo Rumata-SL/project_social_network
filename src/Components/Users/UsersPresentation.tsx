@@ -59,7 +59,6 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                               toggleFollowingProgress(true, u.id)
                                               usersApi.setUnFollow(u.id).then(() => unFollow(u.id)).then(() => toggleFollowingProgress(true, u.id))
 
-
                                           }}
                                 >
                                     <img

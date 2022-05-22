@@ -12,6 +12,8 @@ export type UserType = {
 }*/
 
 
+import {usersApi} from "../API/api";
+
 export type UsersType = {
     id: number
     photos: {
@@ -79,7 +81,11 @@ export const usersReducer = (state: StateUsersType = initialStateUsers, action: 
         case "TOGGLE_IS_FETCHING":
             return {...state, isFetching: action.isFetching}
         case "TOGGLE_IS_FOLLOWING_PROGRESS":
-            return {...state, followingInProgress: action.isFetching? [...state.followingInProgress, action.id]:state.followingInProgress.filter(id=>id !==action.id)}
+            debugger
+            return {
+                ...state,
+                followingInProgress: action.isFetching ? [...state.followingInProgress, action.id] : state.followingInProgress.filter(id => id !== action.id)
+            }
         default:
             return state
     }
@@ -112,6 +118,22 @@ export const toggleFollowingProgress = (isFetching: boolean, id: number) => ({
     id,
 } as const)
 
+
+/*
+export type ThunkType = ThunkAction<void, RootStateType, unknown, ActionType>
+export type ThunkDispatchType = ThunkDispatch<RootStateType, unknown, ActionType>
+
+export const getUsersThunkCreator  = (currentPage: number, pageSize: number)=>{
+    return (dispatch)=>{
+    dispatch(toggleIsFetching(true))
+
+    usersApi.getUsers(currentPage, pageSize).then(data => {
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+
+    })}
+}*/
 
 /*type InitialStateType = {
     users: Array<UserType>
