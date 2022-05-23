@@ -3,9 +3,11 @@ import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
 import React, {ChangeEvent, FC} from "react";
 import {MessagesType, UsersType} from "../../Redux/MessageReducer";
+import {Redirect} from "react-router-dom";
 
 
 type DialogsTypeProps = {
+    isAuth:boolean
     newMessageText: string
     users: Array<UsersType>
     messages: Array<MessagesType>
@@ -16,6 +18,7 @@ type DialogsTypeProps = {
 export const Dialogs: FC<DialogsTypeProps> = (
     {
         users,
+        isAuth,
         messages,
         newMessageText,
         onNewMessageChange,
@@ -34,6 +37,8 @@ export const Dialogs: FC<DialogsTypeProps> = (
     const onClickSendMessageClick = () => {
         onSendMessageClick()
     }
+    // if(isAuth === true)return <Redirect to={"/login"}/>
+    if(!isAuth)return <Redirect to={"/login"}/>
     return (
         <div className={d.dialogs}>
             <div className={d.dialog}>
