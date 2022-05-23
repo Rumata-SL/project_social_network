@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {usersApi} from "../API/api";
+import {AppStoreType} from "./reduxStore";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
 export type ContactsType = {
     facebook: string
@@ -80,6 +83,32 @@ export const setUsersProfile = (profile: ProfileType) => ({
     type: "SET_USER_PROFILE",
     profile,
 } as const)
+
+type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
+type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
+
+export  const getUserProfile = (userId:string):ThunkType =>(dispatch:ThunkDispatchType)=>{
+    usersApi.setProfile(userId).then(data=>{
+        dispatch(setUsersProfile(data))
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

@@ -120,6 +120,8 @@ export const toggleFollowingProgress = (isFetching: boolean, id: number) => ({
 } as const)
 
 
+
+
 export type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
 export type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
 
