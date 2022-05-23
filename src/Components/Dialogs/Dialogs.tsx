@@ -6,7 +6,7 @@ import {MessagesType, UsersType} from "../../Redux/MessageReducer";
 import {Redirect} from "react-router-dom";
 
 
-type DialogsTypeProps = {
+export type DialogsTypeProps = {
     isAuth:boolean
     newMessageText: string
     users: Array<UsersType>
