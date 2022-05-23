@@ -26,7 +26,6 @@ export type ProfileType = {
     userId: number
     photos: PhotosType
 }
-
 export type PostsType = {
     id: string,
     message: string,
@@ -45,7 +44,7 @@ let initialState: ProfilePageType = {
         {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
     ],
     newPostText: "",
-    profile: null ,
+    profile: null,
 }
 type ActionType =
     ReturnType<typeof AddPostAC>
@@ -84,31 +83,11 @@ export const setUsersProfile = (profile: ProfileType) => ({
     profile,
 } as const)
 
-type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
-type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
-
-export  const getUserProfile = (userId:string):ThunkType =>(dispatch:ThunkDispatchType)=>{
-    usersApi.setProfile(userId).then(data=>{
+export const getUserProfile = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    usersApi.setProfile(userId).then(data => {
         dispatch(setUsersProfile(data))
     })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -133,3 +112,5 @@ export  const getUserProfile = (userId:string):ThunkType =>(dispatch:ThunkDispat
         large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
 }
 }*/
+// type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
+// type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>

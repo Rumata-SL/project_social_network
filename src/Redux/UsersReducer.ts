@@ -120,13 +120,8 @@ export const toggleFollowingProgress = (isFetching: boolean, id: number) => ({
 } as const)
 
 
-
-
-export type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
-export type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
-
-export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkType => {
-    return (dispatch: ThunkDispatchType) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkAction<void, AppStoreType, unknown, ActionType> => {
+    return (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
         dispatch(toggleIsFetching(true))
 
         usersApi.getUsers(currentPage, pageSize).then(data => {
@@ -138,16 +133,16 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
     }
 }
 
-export const following = (userId: number): ThunkType => {
-    return (dispatch: ThunkDispatchType) => {
+export const following = (userId: number): ThunkAction<void, AppStoreType, unknown, ActionType> => {
+    return (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersApi.setFollow(userId).then(() => dispatch(follow(userId)))
             .then(() => dispatch(toggleFollowingProgress(false, userId)))
     }
 }
 
-export const unfollowing = (userId: number): ThunkType => {
-    return (dispatch: ThunkDispatchType) => {
+export const unfollowing = (userId: number): ThunkAction<void, AppStoreType, unknown, ActionType> => {
+    return (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersApi.setUnFollow(userId).then(() => dispatch(unFollow(userId)))
             .then(() => dispatch(toggleFollowingProgress(false, userId)))
@@ -216,3 +211,6 @@ export const unfollowing = (userId: number): ThunkType => {
 
     }
 }*/
+
+// type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
+// type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
