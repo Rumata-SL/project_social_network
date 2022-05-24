@@ -3,7 +3,6 @@ import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
 import React, {ChangeEvent, FC} from "react";
 import {MessagesType, UsersType} from "../../Redux/MessageReducer";
-import {Redirect} from "react-router-dom";
 
 
 export type DialogsTypeProps = {

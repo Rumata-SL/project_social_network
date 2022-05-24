@@ -1,23 +1,11 @@
 import React from "react";
-import axios from "axios";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {AppStoreType} from "../../Redux/reduxStore";
-import {
-    getUserProfile,
-    ProfileType,
-    setUsersProfile
-} from "../../Redux/ProfileReducer";
-import {usersApi} from "../../API/api";
 import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {getUserProfile, ProfileType,} from "../../Redux/ProfileReducer";
 
-
-/*type ProfileContainerPropsType = {
-    setUsersProfile: (profile: ProfileType) => void
-    profile: ProfileType|null
-
-}*/
 
 type PathParamsType = {
     userId: string,
@@ -42,7 +30,8 @@ export class ProfileContainer extends React.Component<ProfileContainerPropsType>
         if (!userId) {
             userId = "23492";
         }
-        this.props.getUserProfile(userId)    }
+        this.props.getUserProfile(userId)
+    }
 
     render() {
         return (
@@ -51,12 +40,6 @@ export class ProfileContainer extends React.Component<ProfileContainerPropsType>
     }
 }
 
-/*const RedirectComponent = (props:ProfileContainerPropsType) => {
-    if (!props.isAuth) return <Redirect to={"/login"}/>
-    return <ProfileContainer {...props}/>
-
-}*/
-
 const mapStateToProps = (state: AppStoreType): mapStatePropsType => ({
     profile: state.profilePage.profile,
 })
@@ -64,3 +47,15 @@ const mapStateToProps = (state: AppStoreType): mapStatePropsType => ({
 const WithUrlData = withRouter(ProfileContainer)
 
 export default WithAuthRedirect(connect(mapStateToProps, {getUserProfile})(WithUrlData))
+
+
+/*type ProfileContainerPropsType = {
+    setUsersProfile: (profile: ProfileType) => void
+    profile: ProfileType|null
+
+}*/
+/*const RedirectComponent = (props:ProfileContainerPropsType) => {
+    if (!props.isAuth) return <Redirect to={"/login"}/>
+    return <ProfileContainer {...props}/>
+
+}*/

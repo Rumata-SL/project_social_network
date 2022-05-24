@@ -1,14 +1,13 @@
 import React, {FC} from "react";
 import p from "./Profile.module.css"
-import logo from "./Profile_image/content_logo.jpg"
-import {MyPostContainer} from "./MyPost/MyPostContainer";
-import {ProfileType} from "../../Redux/ProfileReducer";
 import {ProfileInfo} from "./ProfileInfo";
-import {Redirect} from "react-router-dom";
+import logo from "./Profile_image/content_logo.jpg"
+import {ProfileType} from "../../Redux/ProfileReducer";
+import {MyPostContainer} from "./MyPost/MyPostContainer";
+
 
 type ProfilePropsType = {
     profile: ProfileType |null
-
 }
 
 export const Profile: FC<ProfilePropsType> = ({profile}) => {

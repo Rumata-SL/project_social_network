@@ -1,44 +1,30 @@
 import React from "react";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
+import {Preloader} from "./Preloaded";
 import {AppStoreType} from "../../Redux/reduxStore";
+import {UsersPresentation} from "./UsersPresentation";
+import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
 import {
-    follow,
-    setCurrentPage,
-    toggleIsFetching,
-    setTotalUsersCount,
-    setUsers,
-    unFollow,
     UsersType,
     toggleFollowingProgress,
     getUsersThunkCreator,
     following,
     unfollowing
 } from "../../Redux/UsersReducer";
-import {UsersPresentation} from "./UsersPresentation";
-import {Preloader} from "./Preloaded";
-import {usersApi} from "../../API/api";
-import {ProfileType} from "../../Redux/ProfileReducer";
 
 
 type mapStatePropsType = {
-    items: Array<UsersType>
-    totalUsersCount: number
     pageSize: number
-    currentPage: number
     isFetching: boolean
+    currentPage: number
+    totalUsersCount: number
+    items: Array<UsersType>
     followingInProgress: Array<number>
 }
 type mapDispatchPropsType = {
-    // follow: (userId: number) => void
-    // unFollow: (userId: number) => void
     following: (userId: number) => void
     unfollowing: (userId: number) => void
-    // setUsers: (user: Array<UsersType>) => void
-    // setCurrentPage: (currentPage: number) => void
-    // setTotalUsersCount: (totalUsersCount: number) => void
-    // toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress:(isFetching: boolean, id: number)=>void
+    toggleFollowingProgress: (isFetching: boolean, id: number) => void
     getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
@@ -58,7 +44,6 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
     render() {
 
         return <>
-            {/*{this.props.isFetching ? <Preloader/> :null}*/}
             {this.props.isFetching
                 ? <Preloader/>
                 : null}
@@ -90,18 +75,12 @@ const mapStateToProps = (state: AppStoreType) => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, {
-    // follow,
-    // unFollow,
-    // setUsers,
-    // setCurrentPage,
-    // setTotalUsersCount,
-    // toggleIsFetching,
+export const UsersContainer = WithAuthRedirect(connect(mapStateToProps, {
     following,
     unfollowing,
     getUsersThunkCreator,
     toggleFollowingProgress,
-})(UsersApiContainer)
+})(UsersApiContainer))
 
 
 /*const mapDispatchToProps = (dispatch: Dispatch) => {
