@@ -1,4 +1,5 @@
 import React from "react";
+import {compose} from "redux";
 import {connect} from "react-redux";
 import {Preloader} from "./Preloaded";
 import {AppStoreType} from "../../Redux/reduxStore";
@@ -48,15 +49,15 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
                 ? <Preloader/>
                 : null}
             <UsersPresentation
-                totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
                 items={this.props.items}
                 follow={this.props.following}
+                pageSize={this.props.pageSize}
                 unFollow={this.props.unfollowing}
                 onPageChanged={this.onPageChanged}
                 currentPage={this.props.currentPage}
-                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                totalUsersCount={this.props.totalUsersCount}
                 followingInProgress={this.props.followingInProgress}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
             />
         </>
 
@@ -68,20 +69,27 @@ const mapStateToProps = (state: AppStoreType) => {
     return {
         items: state.usersPage.items,
         pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        currentPage: state.usersPage.currentPage,
+        totalUsersCount: state.usersPage.totalUsersCount,
         followingInProgress: state.usersPage.followingInProgress
     }
 }
 
-export const UsersContainer = WithAuthRedirect(connect(mapStateToProps, {
+
+export const UsersContainer = compose<React.ComponentType>(connect(mapStateToProps, {
     following,
     unfollowing,
     getUsersThunkCreator,
     toggleFollowingProgress,
-})(UsersApiContainer))
+}), WithAuthRedirect)(UsersApiContainer)
 
+/*export const UsersContainer = WithAuthRedirect(connect(mapStateToProps, {
+    following,
+    unfollowing,
+    getUsersThunkCreator,
+    toggleFollowingProgress,
+})(UsersApiContainer))*/
 
 /*const mapDispatchToProps = (dispatch: Dispatch) => {
     return {

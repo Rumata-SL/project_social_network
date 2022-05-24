@@ -9,11 +9,11 @@ import {Music} from "./Components/Music/Music";
 import {Footer} from "./Components/Footer/Footer";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Settings} from "./Components/Settings/Settings";
-import WithUrlData from "./Components/Profile/ProfileContainer";
-import {UsersContainer} from "./Components/Users/UsersContainer";
-import HeaderContainer from "./Components/Header/HeaderContainer";
-import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {Login} from "./Components/LoginComponent/Login";
+import {UsersContainer} from "./Components/Users/UsersContainer";
+import {HeaderContainer} from "./Components/Header/HeaderContainer";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 
 const App = () => {
     return (
@@ -22,9 +22,9 @@ const App = () => {
             <Navbar/>
             <div className="app-wrapper-content">
                 {/*<Route exact path="/" render={() => <Redirect to="/profile"/>}/>*/}
-                <Route exact path="/" component={WithUrlData}/>
+                <Route exact path="/" component={ProfileContainer}/>
                 <Route exact path={"/profile/:userId?"}
-                       render={() => <WithUrlData
+                       render={() => <ProfileContainer
                        />}/>
                 <Route path="/dialogs"
                        render={() => <DialogsContainer
