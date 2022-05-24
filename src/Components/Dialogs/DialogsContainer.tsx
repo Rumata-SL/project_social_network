@@ -6,6 +6,7 @@ import {AppStoreType} from "../../Redux/reduxStore";
 import {NewMessageTextAC, SendMessageAC} from "../../Redux/MessageReducer";
 import {Redirect} from "react-router-dom";
 import {ProfileContainer} from "../Profile/ProfileContainer";
+import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
 
 
 const mapStateToProps = (state: AppStoreType) => {
@@ -13,7 +14,6 @@ const mapStateToProps = (state: AppStoreType) => {
         users: state.messagesPage.users,
         messages: state.messagesPage.messages,
         newMessageText: state.messagesPage.newMessageText,
-        isAuth: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -27,9 +27,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const RedirectComponent = (props:DialogsTypeProps) => {
+/*const RedirectComponent = (props:DialogsTypeProps) => {
     if (!props.isAuth) return <Redirect to={"/login"}/>
     return <Dialogs {...props}/>
+}*/
 
-}
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(RedirectComponent)
+
+export const DialogsContainer = WithAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))

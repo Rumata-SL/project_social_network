@@ -7,7 +7,6 @@ import {Redirect} from "react-router-dom";
 
 
 export type DialogsTypeProps = {
-    isAuth:boolean
     newMessageText: string
     users: Array<UsersType>
     messages: Array<MessagesType>
@@ -18,7 +17,6 @@ export type DialogsTypeProps = {
 export const Dialogs: FC<DialogsTypeProps> = (
     {
         users,
-        isAuth,
         messages,
         newMessageText,
         onNewMessageChange,
@@ -37,8 +35,7 @@ export const Dialogs: FC<DialogsTypeProps> = (
     const onClickSendMessageClick = () => {
         onSendMessageClick()
     }
-    // if(isAuth === true)return <Redirect to={"/login"}/>
-    if(!isAuth)return <Redirect to={"/login"}/>
+
     return (
         <div className={d.dialogs}>
             <div className={d.dialog}>
