@@ -1,4 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
+import {reducer as formReducer} from "redux-form"
 import {profileReducer} from "./ProfileReducer";
 import {messageReducer} from "./MessageReducer";
 import {sideBarReducer} from "./SideBarReducer";
@@ -11,7 +12,8 @@ const reducers = combineReducers({
     profilePage: profileReducer,
     sideBar: sideBarReducer,
     usersPage: usersReducer,
-    auth:authReducer
+    auth: authReducer,
+    form: formReducer
 })
 
 export type AppStoreType = ReturnType<typeof reducers>
