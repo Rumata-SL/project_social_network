@@ -14,9 +14,9 @@ export const Profile: FC<ProfilePropsType> = ({profile}) => {
 
     return (
         <div className={p.content}>
-            <div>
+            {/*<div>
                 <img className={p.logo} src={logo} alt="fudzi"/>
-            </div>
+            </div>*/}
             <ProfileInfo profile={profile}/>
             <MyPostContainer/>
         </div>
