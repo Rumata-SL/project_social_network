@@ -44,8 +44,8 @@ export const profileApi = {
 
     },
     upDateStatus(status:string){
-        return instance.put(`profile/status`, {status})
-            .then(response => response.data)
+        return instance.put(`profile/status`, {status: status})
+            // .then(response => response.data)
     }
 }
 

@@ -1,26 +1,48 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 
 type ProfileStatusTypeProps = {
-    status:string
-    updateUserStatus:(status:string)=>void
+    status: string
+    updateUserStatus: (status: string) => void
+}
+
+type LocalStateType = {
+    editMode: boolean
+    status: string
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusTypeProps> {
-    state = {
-        editMode: false
+
+    state: LocalStateType = {
+        editMode: false,
+        status: this.props.status
     }
 
-    activateEditMode=()=>{
+    activateEditMode = () => {
         this.setState({
             editMode: true
         })
     }
-    deActivateEditMode=()=>{
+    deActivateEditMode = () => {
         this.setState({
-            editMode: false
+            editMode: false,
         })
-        this.props.updateUserStatus("Hello world!!!")
+        this.props.updateUserStatus(this.state.status)
         // this.forceUpdate()
+    }
+    onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState(
+            {
+                status: e.currentTarget.value
+            }
+        )
+    }
+    componentDidUpdate(prevProps: Readonly<ProfileStatusTypeProps>, prevState: Readonly<{}>, snapshot?: any) {
+        // console.log("update")
+        // console.log(prevProps)
+        // console.log(prevState)
+        if (prevProps.status !== this.props.status){
+            this.setState({status: this.props.status})
+        }
     }
 
     render() {
@@ -28,13 +50,20 @@ export class ProfileStatus extends React.Component<ProfileStatusTypeProps> {
         return (
             <>
                 {!this.state.editMode
-                    ? <div style={{color: "white", paddingLeft:"15px"}}>
-                        status : <span onDoubleClickCapture={this.activateEditMode}>
-                     {status}
+                    ? <div style={{color: "white", paddingLeft: "15px"}}>
+                        status : <span
+                        onDoubleClick={this.activateEditMode}>
+                     {/*{status}*/}
+                     {status || "No status"}
                 </span>
                     </div>
                     : <div>
-                        <input value={"status"} onBlur={this.deActivateEditMode} autoFocus></input>
+                        <input onChange={this.onChangeStatusHandler}
+                               value={this.state.status}
+                               onBlur={this.deActivateEditMode}
+                               autoFocus>
+
+                        </input>
                     </div>}
             </>
         );

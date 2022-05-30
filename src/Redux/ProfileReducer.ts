@@ -105,8 +105,8 @@ export const getUserStatus = (userId: string): ThunkAction<void, AppStoreType, u
 }
 export const updateUserStatus = (status: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
     profileApi.upDateStatus(status).then(response => {
-        if (response.data.resultCode !== 0){
-        dispatch(setStatus(response.data.status))
+        if (response.data.resultCode === 0){
+        dispatch(setStatus(status))
         }
     })
 }
