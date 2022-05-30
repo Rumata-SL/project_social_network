@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {usersApi} from "../API/api";
+import {profileApi, usersApi} from "../API/api";
 import {AppStoreType} from "./reduxStore";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
@@ -35,6 +35,7 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
     profile: null | ProfileType
+    status:string
 }
 
 let initialState: ProfilePageType = {
@@ -45,11 +46,13 @@ let initialState: ProfilePageType = {
     ],
     newPostText: "",
     profile: null,
+    status: "",
 }
 type ActionType =
     ReturnType<typeof AddPostAC>
     | ReturnType<typeof UpdateNewPostTextAC>
     | ReturnType<typeof setUsersProfile>
+    | ReturnType<typeof setStatus>
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
 
@@ -66,6 +69,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, newPostText: action.newText}
         case "SET_USER_PROFILE":
             return {...state, profile: action.profile}
+        case "SET_STATUS":
+            return {...state, status: action.status }
         default:
             return {...state}
     }
@@ -83,11 +88,29 @@ export const setUsersProfile = (profile: ProfileType) => ({
     profile,
 } as const)
 
+export const setStatus = (status:string)=>({
+    type:"SET_STATUS",
+    status,
+}as const)
+
 export const getUserProfile = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    usersApi.setProfile(userId).then(data => {
+    usersApi.getProfile(userId).then(data => {
         dispatch(setUsersProfile(data))
     })
 }
+export const getUserStatus = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    profileApi.getStatus(userId).then(data => {
+        dispatch(setStatus(data))
+    })
+}
+export const updateUserStatus = (status: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    profileApi.upDateStatus(status).then(response => {
+        if (response.data.resultCode !== 0){
+        dispatch(setStatus(response.data.status))
+        }
+    })
+}
+
 
 
 /*

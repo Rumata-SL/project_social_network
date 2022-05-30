@@ -8,9 +8,11 @@ import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: ProfileType|null
+    status:string
+    updateUserStatus: (status: string) => void
 }
 
-export const ProfileInfo: FC<ProfileInfoPropsType> = ({profile}) => {
+export const ProfileInfo: FC<ProfileInfoPropsType> = ({profile,status,updateUserStatus}) => {
     if (!profile) {
         return <Preloader/>
     }
@@ -28,7 +30,7 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({profile}) => {
                 </div>
                 <div>Full Name :  {profile.fullName}</div>
             </div>
-            <ProfileStatus status={"Hello!"}/>
+            <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
             <hr/>
         </div>
     );

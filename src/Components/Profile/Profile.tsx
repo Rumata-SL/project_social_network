@@ -8,16 +8,18 @@ import {MyPostContainer} from "./MyPost/MyPostContainer";
 
 type ProfilePropsType = {
     profile: ProfileType |null
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
-export const Profile: FC<ProfilePropsType> = ({profile}) => {
+export const Profile: FC<ProfilePropsType> = ({profile,status,updateUserStatus}) => {
 
     return (
         <div className={p.content}>
             {/*<div>
                 <img className={p.logo} src={logo} alt="fudzi"/>
             </div>*/}
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo profile={profile} status={status} updateUserStatus={updateUserStatus}/>
             <MyPostContainer/>
         </div>
     )

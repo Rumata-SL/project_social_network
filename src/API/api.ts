@@ -28,13 +28,29 @@ export const usersApi = {
 
         })
     },
-    setProfile(id: string) {
-        return instance.get(`profile/` + id)
+    getProfile(id: string) {
+        return profileApi.getProfile(id)
+    }
+}
+
+export const profileApi = {
+    getProfile(id: string) {
+        return instance.get(`profile/${id}`)
+            .then(response => response.data)
+    },
+    getStatus(id:string){
+        return instance.get(`profile/status/${id}`)
+            .then(response => response.data)
+
+    },
+    upDateStatus(status:string){
+        return instance.put(`profile/status`, {status})
             .then(response => response.data)
     }
 }
+
 export const authApi = {
-    getMe(){
+    getMe() {
         return instance.get(`auth/me`)
     }
 }
