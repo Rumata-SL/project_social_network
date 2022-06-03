@@ -4,22 +4,23 @@ import up from "./MyPost.module.css"
 import img from "./MyPostImage/social_logo.png"
 import {PostsType} from "../../../Redux/ProfileReducer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {AddPostReduxForm, FormDataType} from "./Post/AddNewPostForm";
 
 
 
 type TypePropsUserPost = {
-    newPostText: string
     posts: Array<PostsType>
-    upDateAddMessage: () => void
-    upDateNewPostText: (text: string) => void
+    upDateAddMessage: (newPostText:string) => void
+    // newPostText: string
+    // upDateNewPostText: (text: string) => void
 }
 
 export const MyPost: FC<TypePropsUserPost> = (
     {
         posts,
-        newPostText,
         upDateAddMessage,
-        upDateNewPostText,
+        // newPostText,
+        // upDateNewPostText,
     }
 ) => {
 
@@ -32,7 +33,7 @@ export const MyPost: FC<TypePropsUserPost> = (
     })
 
     // let newPostElement = React.createRef<HTMLTextAreaElement>();
-    let newPostElement = React.createRef<HTMLInputElement>();
+    /*let newPostElement = React.createRef<HTMLInputElement>();
 
     const addMessage = () => {
         upDateAddMessage()
@@ -42,10 +43,10 @@ export const MyPost: FC<TypePropsUserPost> = (
         if (newPostElement.current) {
             upDateNewPostText(newPostElement.current.value)
         }
-    }
+    }*/
 
     const Submit = (values: FormDataType) => {
-        // onSendMessageClick(values.newMessageText)
+        upDateAddMessage(values.newPostText)
     }
 
     return (
@@ -70,34 +71,5 @@ export const MyPost: FC<TypePropsUserPost> = (
     )
 }
 
-export const AddNewPostForm: FC<InjectedFormProps<FormDataType>> = (props) => {
 
-    return <div>
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={"textarea"} name={"newPostText"}
-                       placeholder={"Enter your message"}/>
-            </div>
-            <div>
-                <button type={"submit"}>Send</button>
-            </div>
-        </form>
-    </div>
-}
 
-type FormDataType = {
-    newPostText: string
-}
-
-{/*<div><textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
-<input onChange={onPostChange} ref={newPostElement}
-       value={newPostText}
-       placeholder={"Your text"}/>
-</div>
-<div>
-<button onClick={addMessage}>Add post</button>
-</div>*/}
-
-const AddPostReduxForm = reduxForm<FormDataType>({
-    form: "addpost"
-})(AddNewPostForm)

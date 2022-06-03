@@ -33,7 +33,7 @@ export type PostsType = {
 }
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPostText: string
+    // newPostText: string
     profile: null | ProfileType
     status:string
 }
@@ -44,13 +44,13 @@ let initialState: ProfilePageType = {
         {id: v1(), message: "I am ninja", likes: 10},
         {id: v1(), message: "I am Satoshi Nakamoto", likes: 15},
     ],
-    newPostText: "",
+    // newPostText: "",
     profile: null,
     status: "",
 }
 type ActionType =
     ReturnType<typeof AddPostAC>
-    | ReturnType<typeof UpdateNewPostTextAC>
+    // | ReturnType<typeof UpdateNewPostTextAC>
     | ReturnType<typeof setUsersProfile>
     | ReturnType<typeof setStatus>
 
@@ -61,12 +61,13 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {
                 ...state, posts: [...state.posts, {
                     id: v1(),
-                    message: state.newPostText,
+                    message: action.newPostText,
                     likes: ~~(Math.random() * 45),
-                }], newPostText: ""
+                }],
+                // }], newPostText: ""
             }
-        case "UPDATE-NEW-POST-TEXT":
-            return {...state, newPostText: action.newText}
+        /*case "UPDATE-NEW-POST-TEXT":
+            return {...state, newPostText: action.newText}*/
         case "SET_USER_PROFILE":
             return {...state, profile: action.profile}
         case "SET_STATUS":
@@ -76,12 +77,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
     }
 }
 
-export const AddPostAC = () => ({type: "ADD-POST"} as const)
+export const AddPostAC = (newPostText:string) => ({type: "ADD-POST", newPostText} as const)
 
-export const UpdateNewPostTextAC = (text: string) => ({
+/*export const UpdateNewPostTextAC = (text: string) => ({
     type: "UPDATE-NEW-POST-TEXT",
     newText: text
-} as const)
+} as const)*/
 
 export const setUsersProfile = (profile: ProfileType) => ({
     type: "SET_USER_PROFILE",
