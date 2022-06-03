@@ -11,10 +11,10 @@ export type MessagesType = {
 export type MessagesPageType = {
     messages: Array<MessagesType>
     users: Array<UsersType>
-    newMessageText: string
+    // newMessageText: string
 }
 type ActionType =
-    ReturnType<typeof NewMessageTextAC>
+    // ReturnType<typeof NewMessageTextAC>
     | ReturnType<typeof SendMessageAC>
 
 let initialState = {
@@ -32,24 +32,24 @@ let initialState = {
         {id: v1(), name: "Kero"},
         {id: v1(), name: "Ymy"},
     ],
-    newMessageText: "",
+    // newMessageText: "",
 }
 
 
 export const messageReducer = (state: MessagesPageType = initialState, action: ActionType): MessagesPageType => {
     switch (action.type) {
-        case "NEW_MESSAGE_TEXT":
-            return {...state, newMessageText: action.body};
+        /*case "NEW_MESSAGE_TEXT":
+            return {...state, newMessageText: action.body};*/
         case "SEND-MESSAGE":
             return {
                 ...state,
-                messages: [...state.messages, {id: v1(), message: state.newMessageText}],
-                newMessageText: ""
+                messages: [...state.messages, {id: v1(), message: action.newMessageText}],
+                // newMessageText: ""
             };
         default:
             return {...state};
     }
 }
 
-export const NewMessageTextAC = (message: string) => ({type: "NEW_MESSAGE_TEXT", body: message} as const)
-export const SendMessageAC = () => ({type: "SEND-MESSAGE"} as const)
+// export const NewMessageTextAC = (message: string) => ({type: "NEW_MESSAGE_TEXT", body: message} as const)
+export const SendMessageAC = (newMessageText:string) => ({type: "SEND-MESSAGE",newMessageText} as const)
