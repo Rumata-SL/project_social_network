@@ -3,6 +3,8 @@ import {Post} from "./Post/Post";
 import up from "./MyPost.module.css"
 import img from "./MyPostImage/social_logo.png"
 import {PostsType} from "../../../Redux/ProfileReducer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+
 
 
 type TypePropsUserPost = {
@@ -41,6 +43,11 @@ export const MyPost: FC<TypePropsUserPost> = (
             upDateNewPostText(newPostElement.current.value)
         }
     }
+
+    const Submit = (values: FormDataType) => {
+        // onSendMessageClick(values.newMessageText)
+    }
+
     return (
         <div className={up.content}>
             {/*<div className={up.container_content_social_logo}>
@@ -52,15 +59,8 @@ export const MyPost: FC<TypePropsUserPost> = (
             <div className={up.box3}>
                 My post
                 <div>
-                    <div>
-                        {/*<textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>*/}
-                        <input onChange={onPostChange} ref={newPostElement}
-                               value={newPostText}
-                               placeholder={"Your text"}/>
-                    </div>
-                    <div>
-                        <button onClick={addMessage}>Add post</button>
-                    </div>
+                    <AddPostReduxForm onSubmit={Submit}/>
+
                 </div>
             </div>
             <div className={up.user}>
@@ -69,3 +69,35 @@ export const MyPost: FC<TypePropsUserPost> = (
         </div>
     )
 }
+
+export const AddNewPostForm: FC<InjectedFormProps<FormDataType>> = (props) => {
+
+    return <div>
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={"textarea"} name={"newPostText"}
+                       placeholder={"Enter your message"}/>
+            </div>
+            <div>
+                <button type={"submit"}>Send</button>
+            </div>
+        </form>
+    </div>
+}
+
+type FormDataType = {
+    newPostText: string
+}
+
+{/*<div><textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
+<input onChange={onPostChange} ref={newPostElement}
+       value={newPostText}
+       placeholder={"Your text"}/>
+</div>
+<div>
+<button onClick={addMessage}>Add post</button>
+</div>*/}
+
+const AddPostReduxForm = reduxForm<FormDataType>({
+    form: "addpost"
+})(AddNewPostForm)
