@@ -50,9 +50,9 @@ let initialState: ProfilePageType = {
 }
 type ActionType =
     ReturnType<typeof AddPostAC>
-    // | ReturnType<typeof UpdateNewPostTextAC>
     | ReturnType<typeof setUsersProfile>
     | ReturnType<typeof setStatus>
+    // | ReturnType<typeof UpdateNewPostTextAC>
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
 
