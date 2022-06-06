@@ -24,7 +24,7 @@ type ActionType =
 export const authReducer = (state: StateUsersType = initialStateUsers, action: ActionType): StateUsersType => {
     switch (action.type) {
         case "SET_USER_DATA":
-            return {...state, ...action.payload, isAuth: true}
+            return {...state, ...action.payload}
         default:
             return state
     }
