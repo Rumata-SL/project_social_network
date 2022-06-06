@@ -13,7 +13,7 @@ import {Redirect} from "react-router-dom";
 import s from "./Login.module.css"
 
 
-type FormDataType = {
+export type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
@@ -54,28 +54,29 @@ let maxLength20 = maxLengthCreator(20)
 
 export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     const {handleSubmit} = props
+
     return <div className={s.wrapper}>
         <div><h4 className={s.wrapperHeader}>LOGIN</h4>
         </div>
         <div className={s.container}>
             <form onSubmit={handleSubmit} className={s.containerForm}>
-                <div>
+                <div className={s.containerFormInput}>
                     <span>login</span>
-                    <Field
-                        placeholder={"Email"}
-                        component={Input}
-                        name={"email"}
-                        validate={[required, maxLength20, minLength2]}
+                    <Field className={s.field}
+                           placeholder={"Email"}
+                           component={Input}
+                           name={"email"}
+                           validate={[required, maxLength20, minLength2]}
                     />
                 </div>
-                <div>
+                <div className={s.containerFormInput}>
                     <span>password</span>
-                    <Field
-                        placeholder={"Password"}
-                        type={"password"}
-                        component={Input}
-                        name={"password"}
-                        validate={[required, maxLength20, minLength2]}
+                    <Field className={s.field}
+                           placeholder={"Password"}
+                           type={"password"}
+                           component={Input}
+                           name={"password"}
+                           validate={[required, maxLength20, minLength2]}
                     />
                 </div>
                 <div>
@@ -83,6 +84,10 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                            name={"rememberMe"} placeholder={"rememberMe"}/>remember
                     me
                 </div>
+                {/*{props.error && <div className={s.error}><span>{props.error}</span></div>}*/}
+                {props.error === "Incorrect Email or Password" ?
+                    <div className={s.error}>{props.error}</div>
+                    : <div className={s.noError}>dfbsdfbdsfbdanf</div>}
                 <div>
                     <button type="submit">Submit</button>
                 </div>
