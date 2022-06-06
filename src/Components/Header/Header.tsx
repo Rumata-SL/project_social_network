@@ -6,9 +6,10 @@ import {NavLink} from "react-router-dom";
 type TypePropsHeader = {
     isAuth: boolean
     login: string | null
+    logoutTC:()=>void
 }
 
-export const Header: FC<TypePropsHeader> = ({isAuth, login}) => {
+export const Header: FC<TypePropsHeader> = ({isAuth, login,logoutTC}) => {
     return (
         <header className={h.header}>
             <div className={h.header_logo}>
@@ -18,8 +19,14 @@ export const Header: FC<TypePropsHeader> = ({isAuth, login}) => {
                 <h2 className={h.hed}>SOCIAL NETWORK</h2>
             </div>
             <div className={h.login_block}>
-                {isAuth ? login : <NavLink to={"/login"}
-                                           className={h.login_title}>LOGIN</NavLink>}
+                {isAuth ?
+                    <div>
+                        <span>{login} </span>
+                        <button onClick={()=>logoutTC()}>logout</button>
+                    </div>
+                    : <NavLink
+                        to={"/login"}
+                        className={h.login_title}>LOGIN</NavLink>}
             </div>
         </header>
     )

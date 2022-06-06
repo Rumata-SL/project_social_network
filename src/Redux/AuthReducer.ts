@@ -1,5 +1,7 @@
 import {Dispatch} from "redux";
 import {authApi} from "../API/api";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {AppStoreType} from "./reduxStore";
 
 export type StateUsersType = {
     id: number | null
@@ -22,22 +24,39 @@ type ActionType =
 export const authReducer = (state: StateUsersType = initialStateUsers, action: ActionType): StateUsersType => {
     switch (action.type) {
         case "SET_USER_DATA":
-            return {...state, ...action.data, isAuth: true}
+            return {...state, ...action.payload, isAuth: true}
         default:
             return state
     }
 }
 
-export const setAuthUserData = (id: number, email: string, login: string) => ({
+export const setAuthUserData = (id: number, email: string, login: string, isAuth:boolean) => ({
     type: "SET_USER_DATA",
-    data: {id, email, login}
+    payload: {id, email, login,isAuth}
 } as const)
 
-export const getAuthUserDataMe = () => (dispatch: Dispatch) => {
+export const getAuthUserDataMe = (): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
     authApi.getMe().then(response => {
         if (response.data.resultCode === 0) {
             let {id, email, login} = response.data.data
-            dispatch(setAuthUserData(id, email, login))
+            dispatch(setAuthUserData(id, email, login,true))
+        }
+    })
+}
+export const loginTC = (email:string, password:string, rememberMe:boolean): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    authApi.login(email,password,rememberMe)
+        .then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(getAuthUserDataMe())
+        }
+    })
+}
+export const logoutTC = (): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    authApi.logout()
+        .then(response => {
+        if (response.data.resultCode === 0) {
+            let {id, email, login} = response.data.data
+            dispatch(setAuthUserData(id, email, login,false))
         }
     })
 }

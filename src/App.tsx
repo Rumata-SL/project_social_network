@@ -9,7 +9,7 @@ import {Music} from "./Components/Music/Music";
 import {Footer} from "./Components/Footer/Footer";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Settings} from "./Components/Settings/Settings";
-import {Login} from "./Components/LoginComponent/Login";
+import {LoginContainer} from "./Components/LoginComponent/Login";
 import {UsersContainer} from "./Components/Users/UsersContainer";
 import {HeaderContainer} from "./Components/Header/HeaderContainer";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
@@ -36,7 +36,7 @@ const App = () => {
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
-                <Route path="/login" render={() => <Login/>}/>
+                <Route path="/login" render={() => <LoginContainer/>}/>
             </div>
             <Footer/>
         </div>
