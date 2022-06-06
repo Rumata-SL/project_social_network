@@ -21,7 +21,7 @@ export type FormDataType = {
 
 export const Login: FC<LoginPropsType> = ({loginTC, isAuth}) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        // console.log(formData)
         loginTC(formData.email, formData.password, formData.rememberMe)
 
     }
