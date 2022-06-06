@@ -22,7 +22,7 @@ export const Header: FC<TypePropsHeader> = ({isAuth, login, logoutTC}) => {
                 {isAuth ?
                     <div>
                         <span>{login} </span>
-                        <button onClick={() => logoutTC()}>logout</button>
+                        <button onClick={() => logoutTC()}>log out</button>
                     </div>
                     : <NavLink
                         to={"/login"}

@@ -54,7 +54,6 @@ let maxLength20 = maxLengthCreator(20)
 
 export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     const {handleSubmit} = props
-
     return <div className={s.wrapper}>
         <div><h4 className={s.wrapperHeader}>LOGIN</h4>
         </div>
@@ -85,9 +84,9 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                     me
                 </div>
                 {/*{props.error && <div className={s.error}><span>{props.error}</span></div>}*/}
-                {props.error === "Incorrect Email or Password" ?
+                {props.error ?
                     <div className={s.error}>{props.error}</div>
-                    : <div className={s.noError}>dfbsdfbdsfbdanf</div>}
+                    : <div className={s.noError}>no error</div>}
                 <div>
                     <button type="submit">Submit</button>
                 </div>
