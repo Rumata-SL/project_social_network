@@ -10,7 +10,7 @@ export const TextArea = (props: any) => {
 export const Input = (props: any) => {
     const {input, meta, ...restProps} = props
     return (
-        <FormControl {...props}><input {...input} {...restProps}></input></FormControl>
+        <FormControl {...props}><input {...input} {...restProps} ></input></FormControl>
     )
 };
 

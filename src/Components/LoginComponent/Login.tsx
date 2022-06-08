@@ -66,6 +66,7 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                            component={Input}
                            name={"email"}
                            validate={[required, maxLength20, minLength2]}
+                           style={{backgroundColor:"red"}}
                     />
                 </div>
                 <div className={s.containerFormInput}>
