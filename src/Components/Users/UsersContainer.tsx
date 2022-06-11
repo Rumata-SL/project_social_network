@@ -82,7 +82,8 @@ export const UsersContainer = compose<React.ComponentType>(connect(mapStateToPro
     unfollowing,
     getUsersThunkCreator,
     toggleFollowingProgress,
-}), WithAuthRedirect)(UsersApiContainer)
+}))(UsersApiContainer)
+// }), WithAuthRedirect)(UsersApiContainer)
 
 /*export const UsersContainer = WithAuthRedirect(connect(mapStateToProps, {
     following,

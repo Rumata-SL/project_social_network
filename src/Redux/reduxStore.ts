@@ -6,6 +6,7 @@ import {sideBarReducer} from "./SideBarReducer";
 import {usersReducer} from "./UsersReducer";
 import {authReducer} from "./AuthReducer";
 import thunkMiddleware from "redux-thunk"
+import {appReducer} from "./AppReducer";
 
 const reducers = combineReducers({
     messagesPage: messageReducer,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
     sideBar: sideBarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app:appReducer
 })
 
 export type AppStoreType = ReturnType<typeof reducers>
