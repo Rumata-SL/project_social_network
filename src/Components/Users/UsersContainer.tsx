@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Preloader} from "./Preloaded";
 import {AppStoreType} from "../../Redux/reduxStore";
 import {UsersPresentation} from "./UsersPresentation";
-import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
+// import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
 import {
     UsersType,
     toggleFollowingProgress,
@@ -12,6 +12,12 @@ import {
     following,
     unfollowing
 } from "../../Redux/UsersReducer";
+import {
+    getCurrentPage, getFollowingInProgress,
+    getIsFetching,
+    getPageSize, getTotalUsersCount,
+    getUsers
+} from "../../Redux/users-selectors";
 
 
 type mapStatePropsType = {
@@ -65,14 +71,15 @@ export class UsersApiContainer extends React.Component<UsersApiContainerPropsTyp
 }
 
 
+
 const mapStateToProps = (state: AppStoreType) => {
     return {
-        items: state.usersPage.items,
-        pageSize: state.usersPage.pageSize,
-        isFetching: state.usersPage.isFetching,
-        currentPage: state.usersPage.currentPage,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        followingInProgress: state.usersPage.followingInProgress
+        items: getUsers(state),
+        pageSize: getPageSize(state),
+        isFetching: getIsFetching(state),
+        currentPage: getCurrentPage(state),
+        totalUsersCount: getTotalUsersCount(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
@@ -83,8 +90,20 @@ export const UsersContainer = compose<React.ComponentType>(connect(mapStateToPro
     getUsersThunkCreator,
     toggleFollowingProgress,
 }))(UsersApiContainer)
+
+
 // }), WithAuthRedirect)(UsersApiContainer)
 
+/*const mapStateToProps = (state: AppStoreType) => {
+    return {
+        items: state.usersPage.items,
+        pageSize: state.usersPage.pageSize,
+        isFetching: state.usersPage.isFetching,
+        currentPage: state.usersPage.currentPage,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        followingInProgress: state.usersPage.followingInProgress
+    }
+}*/
 /*export const UsersContainer = WithAuthRedirect(connect(mapStateToProps, {
     following,
     unfollowing,
