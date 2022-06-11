@@ -15,8 +15,7 @@ import {
 import {
     getCurrentPage, getFollowingInProgress,
     getIsFetching,
-    getPageSize, getTotalUsersCount,
-    getUsers
+    getPageSize, getTotalUsersCount, getUsers,
 } from "../../Redux/users-selectors";
 
 
