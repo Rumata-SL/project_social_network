@@ -1,33 +1,42 @@
-import React, {FC, useState} from "react";
+import React, {ChangeEvent, FC, useEffect, useState} from "react";
 
 type ProfileStatusTypeProps = {
     status: string
     updateUserStatus: (status: string) => void
 }
 
-/*type LocalStateType = {
-    editMode: boolean
-    status: string
-}*/
+export const ProfileStatusWithHooks: FC<ProfileStatusTypeProps> = (props) => {
+    const {status, updateUserStatus} = props
 
-export const ProfileStatusWithHooks:FC<ProfileStatusTypeProps> = ({status, updateUserStatus})=> {
+    let [editMode, setEditMode] = useState<boolean>(false)
+    let [position, setPosition] = useState<string>(status)
 
-    let [editMode, setEditMode] = useState(false)
-
-
-        return (
-            <div>
-                {!editMode &&
-                    <div style={{color: "white", paddingLeft: "15px"}}>
-                        status : <span>{status || "No status"}</span>
-                    </div>}
-                {editMode &&
-                    <div>
-                        <input value={""} autoFocus></input>
-                    </div>
-                }
-            </div>
-        );
+    const activateEditMode = () => {
+        setEditMode(true)
+    }
+    const deActivateEditMode = () => {
+        setEditMode(false)
+        updateUserStatus(position)
+    }
+    const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setPosition(e.currentTarget.value)
+    }
+    return (
+        <div>
+            {!editMode &&
+                <div style={{color: "white", paddingLeft: "15px"}}>
+                    status : <span
+                    onDoubleClick={activateEditMode}>{status || "No status"}</span>
+                </div>}
+            {editMode &&
+                <div>
+                    <input onChange={onChangeStatusHandler}
+                           onBlur={deActivateEditMode} value={position}
+                           autoFocus></input>
+                </div>
+            }
+        </div>
+    )
 
 }
 
