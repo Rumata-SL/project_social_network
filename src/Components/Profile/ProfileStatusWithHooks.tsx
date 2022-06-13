@@ -11,6 +11,10 @@ export const ProfileStatusWithHooks: FC<ProfileStatusTypeProps> = (props) => {
     let [editMode, setEditMode] = useState<boolean>(false)
     let [position, setPosition] = useState<string>(status)
 
+    useEffect(()=>{
+        setPosition(status)
+    },[status])
+
     const activateEditMode = () => {
         setEditMode(true)
     }
