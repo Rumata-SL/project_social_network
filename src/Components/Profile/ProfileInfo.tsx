@@ -4,7 +4,8 @@ import img from "./MyPost/MyPostImage/social_logo.png";
 import {ProfileType,} from "../../Redux/ProfileReducer";
 import {Preloader} from "../Users/Preloaded";
 import ava from "./Profile_image/ava.png"
-import {ProfileStatus} from "./ProfileStatus";
+// import {ProfileStatus} from "./ProfileStatus";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -36,7 +37,8 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({
                 </div>
                 <div>Full Name : {profile.fullName}</div>
             </div>
-            <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+            <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
+            {/*<ProfileStatus status={status} updateUserStatus={updateUserStatus}/>*/}
             <hr/>
         </div>
     );
