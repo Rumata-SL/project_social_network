@@ -27,6 +27,7 @@ export const ProfileStatusWithHooks: FC<ProfileStatusTypeProps> = (props) => {
     }
     return (
         <div>
+
             {!editMode &&
                 <div style={{color: "white", paddingLeft: "15px"}}>
                     status : <span
