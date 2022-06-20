@@ -6,10 +6,10 @@ import {
 } from "./ProfileReducer";
 import {v1} from "uuid";
 
-let startState: ProfilePageType
+let initialState: ProfilePageType
 
 beforeEach(()=>{
-   startState = {
+    initialState = {
         posts: [
             {id: v1(), message: "I am samurai", likes: 5},
             {id: v1(), message: "I am ninja", likes: 10},
@@ -24,20 +24,20 @@ beforeEach(()=>{
 
 it("new post should be added", () => {
     let action = AddPostAC("blabla")
-    let newState = profileReducer(startState, action)
+    let newState = profileReducer(initialState, action)
 
     expect(newState.posts.length).toBe(5)
 })
 
 it("new post should be added message", () => {
     let action = AddPostAC("blabla")
-    let newState = profileReducer(startState, action)
+    let newState = profileReducer(initialState, action)
 
     expect(newState.posts[4].message).toBe("blabla")
 })
 it.skip("after deleting length of messages should be decrement", () => {
     let action = DeletePostAC('2')
-    let newState = profileReducer(startState, action)
+    let newState = profileReducer(initialState, action)
 
     expect(newState.posts.length).toBe(3)
 })
