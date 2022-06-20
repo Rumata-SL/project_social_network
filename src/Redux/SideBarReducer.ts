@@ -19,9 +19,9 @@ let initialState = {
 
 export const sideBarReducer = (state: SideBarType = initialState, action: ActionType): SideBarType => {
     switch (action.type) {
-        case "ADD_NEWS":
+        case "SideBar/ADD_NEWS":
             return {...state}
     }
     return state
 }
-export const AddNewsAC = () => ({type: "ADD_NEWS"} as const)
+export const AddNewsAC = () => ({type: "SideBar/ADD_NEWS"} as const)

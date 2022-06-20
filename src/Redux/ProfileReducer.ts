@@ -35,7 +35,7 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     // newPostText: string
     profile: null | ProfileType
-    status:string
+    status: string
 }
 
 let initialState: ProfilePageType = {
@@ -53,12 +53,12 @@ type ActionType =
     | ReturnType<typeof setUsersProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof DeletePostAC>
-    // | ReturnType<typeof UpdateNewPostTextAC>
+// | ReturnType<typeof UpdateNewPostTextAC>
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
 
     switch (action.type) {
-        case "ADD-POST":
+        case "Profile/ADD-POST":
             return {
                 ...state, posts: [...state.posts, {
                     id: v1(),
@@ -69,20 +69,29 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             }
         /*case "UPDATE-NEW-POST-TEXT":
             return {...state, newPostText: action.newText}*/
-        case "SET_USER_PROFILE":
+        case "Profile/SET_USER_PROFILE":
             return {...state, profile: action.profile}
-        case "SET_STATUS":
-            return {...state, status: action.status }
-        case "DELETE-POST":{
-            return {...state, posts: state.posts.filter(p => p.id !==  action.postId? action.postId : p)}
+        case "Profile/SET_STATUS":
+            return {...state, status: action.status}
+        case "Profile/DELETE-POST": {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId ? action.postId : p)
+            }
         }
         default:
             return {...state}
     }
 }
 
-export const AddPostAC = (newPostText:string) => ({type: "ADD-POST", newPostText} as const)
-export const DeletePostAC = (postId:string) => ({type: "DELETE-POST", postId} as const)
+export const AddPostAC = (newPostText: string) => ({
+    type: "Profile/ADD-POST",
+    newPostText
+} as const)
+export const DeletePostAC = (postId: string) => ({
+    type: "Profile/DELETE-POST",
+    postId
+} as const)
 
 /*export const UpdateNewPostTextAC = (text: string) => ({
     type: "UPDATE-NEW-POST-TEXT",
@@ -90,33 +99,35 @@ export const DeletePostAC = (postId:string) => ({type: "DELETE-POST", postId} as
 } as const)*/
 
 export const setUsersProfile = (profile: ProfileType) => ({
-    type: "SET_USER_PROFILE",
+    type: "Profile/SET_USER_PROFILE",
     profile,
 } as const)
 
-export const setStatus = (status:string)=>({
-    type:"SET_STATUS",
+export const setStatus = (status: string) => ({
+    type: "Profile/SET_STATUS",
     status,
-}as const)
+} as const)
 
-export const getUserProfile = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    usersApi.getProfile(userId).then(data => {
-        dispatch(setUsersProfile(data))
-    })
+export const getUserProfile = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    const response = await usersApi.getProfile(userId)
+    // .then(response => {
+    dispatch(setUsersProfile(response))
+    // })
 }
-export const getUserStatus = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    profileApi.getStatus(userId).then(data => {
-        dispatch(setStatus(data))
-    })
+export const getUserStatus = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    const response = await profileApi.getStatus(userId)
+    // .then(response => {
+    dispatch(setStatus(response))
+    // })
 }
-export const updateUserStatus = (status: string): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    profileApi.upDateStatus(status).then(response => {
-        if (response.data.resultCode === 0){
+export const updateUserStatus = (status: string): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    const response = await profileApi.upDateStatus(status)
+    // .then(response => {
+    if (response.data.resultCode === 0) {
         dispatch(setStatus(status))
-        }
-    })
+    }
+    // })
 }
-
 
 
 /*

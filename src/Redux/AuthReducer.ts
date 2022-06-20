@@ -37,18 +37,19 @@ export const setAuthUserData = (id: number, email: string, login: string, isAuth
 } as const)
 
 
-export const getAuthUserDataMe = (): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    authApi.getMe().then(response => {
+export const getAuthUserDataMe = (): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    let response = await authApi.getMe()
+        // .then(response => {
         if (response.data.resultCode === 0) {
             let {id, email, login} = response.data.data
             dispatch(setAuthUserData(id, email, login, true))
         }
-    })
+    // })
 }
 // (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>)
-export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkType<FormAction> => (dispatch) => {
-    authApi.login(email, password, rememberMe)
-        .then(response => {
+export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkType<FormAction> => async (dispatch) => {
+    const response = await authApi.login(email, password, rememberMe)
+        // .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserDataMe())
             } else {
@@ -56,16 +57,16 @@ export const loginTC = (email: string, password: string, rememberMe: boolean): T
                     :"Some error"
                 dispatch(stopSubmit('login',{_error: message}))
             }
-        })
+        // })
 }
-export const logoutTC = (): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    authApi.logout()
-        .then(response => {
+export const logoutTC = (): ThunkAction<void, AppStoreType, unknown, ActionType> => async(dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    const response = await authApi.logout()
+        // .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
                 dispatch(setAuthUserData(id, email, login, false))
             }
-        })
+        // })
 }
 
 type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, ActionType | A>

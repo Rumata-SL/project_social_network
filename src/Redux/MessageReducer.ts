@@ -38,9 +38,9 @@ let initialState = {
 
 export const messageReducer = (state: MessagesPageType = initialState, action: ActionType): MessagesPageType => {
     switch (action.type) {
-        /*case "NEW_MESSAGE_TEXT":
+        /*case "Messages/NEW_MESSAGE_TEXT":
             return {...state, newMessageText: action.body};*/
-        case "SEND-MESSAGE":
+        case "Messages/SEND-MESSAGE":
             return {
                 ...state,
                 messages: [...state.messages, {id: v1(), message: action.newMessageText}],
@@ -51,5 +51,5 @@ export const messageReducer = (state: MessagesPageType = initialState, action: A
     }
 }
 
-// export const NewMessageTextAC = (message: string) => ({type: "NEW_MESSAGE_TEXT", body: message} as const)
-export const SendMessageAC = (newMessageText:string) => ({type: "SEND-MESSAGE",newMessageText} as const)
+// export const NewMessageTextAC = (message: string) => ({type: "Messages/NEW_MESSAGE_TEXT", body: message} as const)
+export const SendMessageAC = (newMessageText:string) => ({type: "Messages/SEND-MESSAGE",newMessageText} as const)
