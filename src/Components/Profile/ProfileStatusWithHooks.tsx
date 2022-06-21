@@ -2,6 +2,7 @@ import React, {ChangeEvent, FC, useEffect, useState} from "react";
 
 type ProfileStatusTypeProps = {
     status: string
+
     updateUserStatus: (status: string) => void
 }
 

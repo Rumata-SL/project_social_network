@@ -1,16 +1,16 @@
 import React, {FC} from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import s from "./Login.module.css"
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {loginTC} from "../../Redux/AuthReducer";
+import {AppStoreType} from "../../Redux/reduxStore";
 import {Input} from "../../common/FormControl/FormsControls";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {
     maxLengthCreator,
     minLength2,
     required
 } from "../../utils/validators/validator";
-import {connect} from "react-redux";
-import {loginTC} from "../../Redux/AuthReducer";
-import {AppStoreType} from "../../Redux/reduxStore";
-import {Redirect} from "react-router-dom";
-import s from "./Login.module.css"
 
 
 export type FormDataType = {
@@ -21,13 +21,10 @@ export type FormDataType = {
 
 export const Login: FC<LoginPropsType> = ({loginTC, isAuth}) => {
     const onSubmit = (formData: FormDataType) => {
-        // console.log(formData)
         loginTC(formData.email, formData.password, formData.rememberMe)
 
     }
-    /*if(isAuth){
-        return <Redirect to={"/profile"}/>
-    }*/
+
     return (
         < >
             {isAuth ? <Redirect to={"/profile"}/> :
@@ -62,27 +59,29 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                 <div className={s.containerFormInput}>
                     <span>login</span>
                     <Field className={s.field}
-                           placeholder={"Email"}
                            component={Input}
+                           placeholder={"Email"}
                            name={"email"}
                            validate={[required, maxLength20, minLength2]}
-                           style={{backgroundColor:"red"}}
                     />
                 </div>
                 <div className={s.containerFormInput}>
                     <span>password</span>
-                    <Field className={s.field}
-                           placeholder={"Password"}
-                           type={"password"}
+                    <Field
+                           className={s.field}
                            component={Input}
+                           placeholder={"Password"}
                            name={"password"}
+                           type={"password"}
                            validate={[required, maxLength20, minLength2]}
                     />
                 </div>
                 <div>
-                    <Field component={"input"} type="checkbox"
-                           name={"rememberMe"} placeholder={"rememberMe"}/>remember
-                    me
+                    <Field component={"input"}
+                           placeholder={"rememberMe"}
+                           name={"rememberMe"}
+                           type="checkbox"
+                    />remember me
                 </div>
                 {/*{props.error && <div className={s.error}><span>{props.error}</span></div>}*/}
                 {error ?
@@ -97,6 +96,5 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
 }
 
 const LoginReduxForm = reduxForm<FormDataType>({
-    // a unique name for the form
     form: "login"
 })(LoginForm)

@@ -19,7 +19,8 @@
 .header_title {
     flex-grow: 2;
 }
-.login_block{
+
+.login_block {
     flex-grow: 0;
     margin-right: 15px;
     margin-top: 20px;
@@ -34,7 +35,8 @@
 .hed {
     color: rgba(255, 255, 255, 0.5);
 }
-.login_title{
+
+.login_title {
     font-size: 1.2em;
     color: rgba(255, 255, 255, 0.81);
 }

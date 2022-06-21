@@ -22,7 +22,6 @@ export const Input:FC<WrappedFieldProps> = (props) => {
 
 const FormControl:FC<FormControlPropsType> = ({meta: {touched, error}, children}) => {
     const isError = touched && error
-
     return (
         <div className={`${s.formControl} ${isError ? s.error : ""}`}>
             <div>{children}</div>
@@ -31,3 +30,4 @@ const FormControl:FC<FormControlPropsType> = ({meta: {touched, error}, children}
         </div>
     );
 };
+

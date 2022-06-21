@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 
 type ProfileStatusTypeProps = {
     status: string
+
     updateUserStatus: (status: string) => void
 }
 
@@ -37,9 +38,6 @@ export class ProfileStatus extends React.Component<ProfileStatusTypeProps> {
         )
     }
     componentDidUpdate(prevProps: Readonly<ProfileStatusTypeProps>, prevState: Readonly<{}>, snapshot?: any) {
-        // console.log("update")
-        // console.log(prevProps)
-        // console.log(prevState)
         if (prevProps.status !== this.props.status){
             this.setState({status: this.props.status})
         }

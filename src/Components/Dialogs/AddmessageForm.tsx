@@ -2,11 +2,10 @@ import React, {FC} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {TextArea} from "../../common/FormControl/FormsControls";
 import {
-    maxLengthCreator,
+    required,
     minLength2,
-    required
+    maxLengthCreator,
 } from "../../utils/validators/validator";
-
 
 let maxLength50 = maxLengthCreator(50)
 export const AddMessageForm: FC<InjectedFormProps<FormDataType>> = (props) => {

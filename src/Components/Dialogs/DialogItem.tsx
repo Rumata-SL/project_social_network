@@ -9,7 +9,6 @@ export type DialogItem = {
 
 export const DialogItem: FC<DialogItem> = ({name, id}) => {
     return (
-        // <div className={du.dialog}><NavLink className={du.dialog} to={`/dialogs/${id}`}>{name}</NavLink></div>
         <NavLink className={du.dialog} to={`/dialogs/${id}*`}>{name}</NavLink>
     )
 };

@@ -2,25 +2,20 @@ import React from "react";
 import {compose} from "redux";
 import {Header} from "./Header";
 import {connect} from "react-redux";
+import { logoutTC,} from "../../Redux/AuthReducer";
 import {AppStoreType} from "../../Redux/reduxStore";
-import {getAuthUserDataMe, logoutTC,} from "../../Redux/AuthReducer";
 
 type mapStatePropsType = {
     isAuth: boolean,
     login: string | null,
 }
 type MapDispatchPropsType = {
-    // getAuthUserDataMe: () => void
     logoutTC: () => void
 }
 
 type HeaderContainerPropsType = mapStatePropsType & MapDispatchPropsType
 
 export class HeaderContainerComponent extends React.Component<HeaderContainerPropsType> {
-
-    /*componentDidMount() {
-            this.props.getAuthUserDataMe()
-    }*/
 
     render() {
         return (

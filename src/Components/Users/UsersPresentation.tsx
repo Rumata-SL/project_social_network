@@ -1,39 +1,38 @@
 import React, {FC} from "react";
 import us from "./Users.module.css";
 import photo from "./Icons/avatar.png";
-import like from "./Icons/like.png";
-import diz from "./Icons/dizlike.png";
 import {Pagination} from "@mantine/core";
-import {UsersType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
-import {usersApi} from "../../API/api";
+import {UsersType} from "../../Redux/UsersReducer";
+
 
 type UsersPresentationPropsType = {
     pageSize: number
     currentPage: number
     totalUsersCount: number
     items: Array<UsersType>
+    followingInProgress: Array<number>
+
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
     toggleFollowingProgress: (isFetching: boolean, id: number) => void
-    followingInProgress: Array<number>
 }
 
 
-export let UsersPresentation: FC<UsersPresentationPropsType> = (
-    {
-        totalUsersCount,
-        pageSize,
+export let UsersPresentation: FC<UsersPresentationPropsType> = (props) => {
+ const  {
         items,
+        pageSize,
+        currentPage,
+        totalUsersCount,
+        followingInProgress,
+
         follow,
         unFollow,
         onPageChanged,
-        currentPage,
-        followingInProgress,
         toggleFollowingProgress,
-    }
-) => {
+    } = props
     let pagesCount: number = Math.ceil(totalUsersCount / pageSize)
 
     let pages = [];
@@ -62,12 +61,6 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                           onClick={() => {
                                               unFollow(u.id)
                                           }}>follow
-                                    {/*<img
-                                        src={like}
-                                        alt="like"
-                                        width={"20px"}
-                                        className={us.imgButton}
-                                    />*/}
                                 </button>
                                 : <button
                                     className={us.buttonImg}
@@ -75,12 +68,6 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
                                     onClick={() => {
                                         follow(u.id)
                                     }}>unfollow
-                                    {/*<img
-                                        src={diz}
-                                        alt="diz"
-                                        width={"20px"}
-                                        className={us.imgButton}
-                                    />*/}
                                 </button>
                         }
                     </div>
@@ -97,7 +84,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (
             <Pagination
                 initialPage={currentPage}
                 total={pagesCount}
-                size="sm"
+                size="md"
                 onChange={(e) => {
                     onPageChanged(e)
                 }}

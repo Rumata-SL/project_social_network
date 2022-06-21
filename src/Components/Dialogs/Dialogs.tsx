@@ -1,11 +1,11 @@
+import React, {FC} from "react";
 import {Message} from "./Message";
 import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
-import React, {ChangeEvent, FC} from "react";
 import {MessagesType, UsersType} from "../../Redux/MessageReducer";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+
 import {
-    AddMessageForm, AddMessageReduxForm,
+    AddMessageReduxForm,
     FormDataType
 } from "./AddmessageForm";
 
@@ -13,9 +13,8 @@ import {
 export type DialogsTypeProps = {
     users: Array<UsersType>
     messages: Array<MessagesType>
+
     onSendMessageClick: (newMessageText: string) => void
-    // newMessageText: string
-    // onNewMessageChange: (body: string) => void
 }
 
 export const Dialogs: FC<DialogsTypeProps> = (
@@ -23,13 +22,11 @@ export const Dialogs: FC<DialogsTypeProps> = (
         users,
         messages,
         onSendMessageClick,
-        // newMessageText,
-        // onNewMessageChange,
     }
 ) => {
 
     let dialogsElement = users.map(d =>
-        <DialogItem name={d.name} id={d.id}/>)
+        <DialogItem key={d.id} name={d.name} id={d.id}/>)
     let messagesElement = messages.map(m =>
         <Message key={m.id} newMessageText={m.message}/>)
 
@@ -50,16 +47,3 @@ export const Dialogs: FC<DialogsTypeProps> = (
         </div>
     )
 }
-
-
-
-
-/* let newMessageBodyText = newMessageText
-
-    const onNewMessageChangeUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value;
-        onNewMessageChange(body)
-    }
-    const onClickSendMessageClick = () => {
-        onSendMessageClick()
-    }*/

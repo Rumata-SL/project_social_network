@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 type TypePropsHeader = {
     isAuth: boolean
     login: string | null
+
     logoutTC: () => void
 }
 

@@ -9,7 +9,6 @@ import {AddPostAC} from "../../../Redux/ProfileReducer";
 const mapStateToProps = (state: AppStoreType) => {
     return {
         posts: state.profilePage.posts
-        // newPostText: state.profilePage.newPostText,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -17,11 +16,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         upDateAddMessage: (newPostText:string) => {
             dispatch(AddPostAC(newPostText));
         },
-        /*upDateNewPostText: (text: string) => {
-            if (text) {
-                dispatch(UpdateNewPostTextAC(text));
-            }
-        }*/
     }
 }
 
