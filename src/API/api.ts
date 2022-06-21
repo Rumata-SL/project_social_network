@@ -14,19 +14,21 @@ export const usersApi = {
             .then(response => response.data)
     },
     setFollow(id: number) {
-        return instance.post(`follow/${id}`, {},).then(response => {
+        return instance.post(`follow/${id}`, {},)
+            /*.then(response => {
             if (response.data.resultCode === 0) {
                 return response.data
             }
-        })
+        })*/
     },
     setUnFollow(id: number) {
-        return instance.delete(`follow/${id}`,).then(response => {
+        return instance.delete(`follow/${id}`,)
+            /*.then(response => {
             if (response.data.resultCode === 0) {
                 return response.data
             }
 
-        })
+        })*/
     },
     getProfile(id: string) {
         return profileApi.getProfile(id)

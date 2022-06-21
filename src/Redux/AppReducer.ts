@@ -13,14 +13,12 @@ const initialStateUsers: AppStateUsersType = {
     initialized: false
 }
 
-type ActionType =
-    ReturnType<typeof initializedSuccess>
-
+type ActionType = ReturnType<typeof initializedSuccess>
 
 export const appReducer = (state: AppStateUsersType = initialStateUsers, action: ActionType): AppStateUsersType => {
     switch (action.type) {
         case "APP/INITIALIZED_SUCCESS":
-            return {...state, initialized:true}
+            return {...state, initialized: true}
         default:
             return state
     }
@@ -32,12 +30,11 @@ export const initializedSuccess = () => ({
 
 
 export const initializeApp = (): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-        let promise = dispatch(getAuthUserDataMe());
-        Promise.all([promise])
-            .then(()=>{
-                dispatch(initializedSuccess())
-            })
+    let promise = dispatch(getAuthUserDataMe());
+    Promise.all([promise])
+        .then(() => {
+            dispatch(initializedSuccess())
+        })
 }
-
 
 type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, ActionType | A>
