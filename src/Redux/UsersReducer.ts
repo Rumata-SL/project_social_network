@@ -46,10 +46,12 @@ const initialStateUsers: StateUsersType = {
     isFetching: true,
     followingInProgress: [],
 }
+type FollowACType = ReturnType<typeof follow>
+type UnFollowACType = ReturnType<typeof unFollow>
 
 type ActionType =
-    ReturnType<typeof follow>
-    | ReturnType<typeof unFollow>
+    FollowACType
+    | UnFollowACType
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof toggleIsFetching>
@@ -93,7 +95,10 @@ export const usersReducer = (state: StateUsersType = initialStateUsers, action: 
     }
 }
 
-export const follow = (id: number) => ({type: "USERS/FOLLOW", userId: id} as const)
+export const follow = (id: number) => ({
+    type: "USERS/FOLLOW",
+    userId: id
+} as const)
 export const unFollow = (id: number) => ({
     type: "USERS/UNFOLLOW",
     userId: id
@@ -126,10 +131,10 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
         dispatch(toggleIsFetching(true))
 
         let response = await usersApi.getUsers(currentPage, pageSize)
-            // .then(data => {
-            dispatch(toggleIsFetching(false))
-            dispatch(setUsers(response.items))
-            dispatch(setTotalUsersCount(response.totalCount))
+        // .then(data => {
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(response.items))
+        dispatch(setTotalUsersCount(response.totalCount))
 
         // })
     }
@@ -137,15 +142,15 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
 
 const followUnfollowFlow = async (
     dispatch: ThunkDispatchType,
-    userId:number,
+    userId: number,
     apiMethod: (userId: number) => Promise<AxiosResponse>,
-    actionCreator: (userId: number) => ActionType
-)=>{
+    actionCreator: (userId: number) => UnFollowACType| FollowACType
+) => {
     dispatch(toggleFollowingProgress(true, userId))
     let response = await apiMethod(userId)
 
     if (response.data.resultCode === 0) {
-        return response.data
+        dispatch(actionCreator(userId))
     }
     dispatch(toggleFollowingProgress(false, userId))
 
@@ -173,7 +178,6 @@ export const unfollowing = (userId: number): ThunkActionType => {
 
 type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
 type ThunkActionType = ThunkAction<void, AppStoreType, unknown, ActionType>
-
 
 
 /*type InitialStateType = {
