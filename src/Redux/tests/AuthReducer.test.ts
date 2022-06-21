@@ -1,4 +1,4 @@
-import {authReducer, setAuthUserData, StateUsersType} from "./AuthReducer";
+import {authReducer, setAuthUserData, StateUsersType} from "../reducers/AuthReducer";
 
 let initialState: StateUsersType
 

@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {profileApi, usersApi} from "../API/api";
+import {profileApi, usersApi} from "../../API/api";
 import {AppStoreType} from "./reduxStore";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 

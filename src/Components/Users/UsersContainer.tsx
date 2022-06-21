@@ -2,7 +2,7 @@ import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {Preloader} from "./Preloaded";
-import {AppStoreType} from "../../Redux/reduxStore";
+import {AppStoreType} from "../../Redux/reducers/reduxStore";
 import {UsersPresentation} from "./UsersPresentation";
 // import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
 import {
@@ -11,7 +11,7 @@ import {
     getUsersThunkCreator,
     following,
     unfollowing
-} from "../../Redux/UsersReducer";
+} from "../../Redux/reducers/UsersReducer";
 import {
     getCurrentPage, getFollowingInProgress,
     getIsFetching,

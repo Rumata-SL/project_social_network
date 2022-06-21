@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import p from "./Profile.module.css"
 import {ProfileInfo} from "./ProfileInfo";
 
-import {ProfileType} from "../../Redux/ProfileReducer";
+import {ProfileType} from "../../Redux/reducers/ProfileReducer";
 import {MyPostContainer} from "./MyPost/MyPostContainer";
 
 

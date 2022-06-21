@@ -3,7 +3,7 @@ import us from "./Users.module.css";
 import photo from "./Icons/avatar.png";
 import {Pagination} from "@mantine/core";
 import {NavLink} from "react-router-dom";
-import {UsersType} from "../../Redux/UsersReducer";
+import {UsersType} from "../../Redux/reducers/UsersReducer";
 
 
 type UsersPresentationPropsType = {

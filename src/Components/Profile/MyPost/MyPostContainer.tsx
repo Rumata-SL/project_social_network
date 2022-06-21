@@ -2,8 +2,8 @@ import React from "react";
 import {compose, Dispatch} from "redux";
 import {MyPost} from "./MyPost";
 import {connect} from "react-redux";
-import {AppStoreType} from "../../../Redux/reduxStore";
-import {AddPostAC} from "../../../Redux/ProfileReducer";
+import {AppStoreType} from "../../../Redux/reducers/reduxStore";
+import {AddPostAC} from "../../../Redux/reducers/ProfileReducer";
 
 
 const mapStateToProps = (state: AppStoreType) => {

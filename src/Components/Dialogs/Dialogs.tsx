@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {Message} from "./Message";
 import d from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem";
-import {MessagesType, UsersType} from "../../Redux/MessageReducer";
+import {MessagesType, UsersType} from "../../Redux/reducers/MessageReducer";
 
 import {
     AddMessageReduxForm,

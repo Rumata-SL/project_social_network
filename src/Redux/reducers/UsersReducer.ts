@@ -1,8 +1,8 @@
-import {usersApi} from "../API/api";
+import {usersApi} from "../../API/api";
 import {AxiosResponse} from "axios";
 import {AppStoreType} from "./reduxStore";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {updateObjectInArray} from "../utils/object_helpers";
+import {updateObjectInArray} from "../../utils/object_helpers";
 
 export type UsersType = {
     id: number

@@ -1,4 +1,4 @@
-import {sideBarReducer} from "./SideBarReducer"
+import {sideBarReducer} from "./reducers/SideBarReducer"
 //import {AddPostAC, profileReducer, UpdateNewPostTextAC} from "./ProfileReducer";
 //import {messageReducer, NewMessageTextAC, SendMessageAC} from "./MessageReducer";
 

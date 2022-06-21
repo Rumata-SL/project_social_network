@@ -2,9 +2,9 @@ import React from "react";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {compose, Dispatch} from "redux";
-import {AppStoreType} from "../../Redux/reduxStore";
+import {AppStoreType} from "../../Redux/reducers/reduxStore";
 import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
-import {MessagesPageType, SendMessageAC} from "../../Redux/MessageReducer";
+import {MessagesPageType, SendMessageAC} from "../../Redux/reducers/MessageReducer";
 
 
 const mapStateToProps = (state: AppStoreType):MessagesPageType => {

@@ -3,7 +3,7 @@ import {
     DeletePostAC,
     ProfilePageType,
     profileReducer
-} from "./ProfileReducer";
+} from "../reducers/ProfileReducer";
 import {v1} from "uuid";
 
 let initialState: ProfilePageType

@@ -2,7 +2,7 @@ import {
     messageReducer,
     MessagesPageType,
     SendMessageAC
-} from "./MessageReducer";
+} from "../reducers/MessageReducer";
 import {v1} from "uuid";
 
 let initialState:MessagesPageType

@@ -2,8 +2,8 @@ import React, {FC} from "react";
 import s from "./Login.module.css"
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {loginTC} from "../../Redux/AuthReducer";
-import {AppStoreType} from "../../Redux/reduxStore";
+import {loginTC} from "../../Redux/reducers/AuthReducer";
+import {AppStoreType} from "../../Redux/reducers/reduxStore";
 import {Input} from "../../common/FormControl/FormsControls";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {

@@ -25,8 +25,8 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {AppStoreType} from "./Redux/reduxStore";
-import {initializeApp} from "./Redux/AppReducer";
+import {AppStoreType} from "./Redux/reducers/reduxStore";
+import {initializeApp} from "./Redux/reducers/AppReducer";
 import {Preloader} from "./Components/Users/Preloaded";
 
 type MapStatePropsType = {
