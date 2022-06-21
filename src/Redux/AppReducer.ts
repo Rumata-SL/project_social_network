@@ -1,4 +1,4 @@
-import {Action, Dispatch} from "redux";
+import {Action} from "redux";
 import {authApi} from "../API/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {AppStoreType} from "./reduxStore";
@@ -29,12 +29,15 @@ export const initializedSuccess = () => ({
 } as const)
 
 
-export const initializeApp = (): ThunkAction<void, AppStoreType, unknown, ActionType> => (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
-    let promise = dispatch(getAuthUserDataMe());
-    Promise.all([promise])
-        .then(() => {
+export const initializeApp = (): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+    // let promise =
+       await dispatch(getAuthUserDataMe());
             dispatch(initializedSuccess())
-        })
+
+    // Promise.all([promise])
+    //     .then(() => {
+    //         dispatch(initializedSuccess())
+    //     })
 }
 
 type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, ActionType | A>

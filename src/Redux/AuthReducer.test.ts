@@ -1,6 +1,4 @@
-
 import {authReducer, setAuthUserData, StateUsersType} from "./AuthReducer";
-
 
 let initialState: StateUsersType
 

@@ -111,13 +111,13 @@ export const setStatus = (status: string) => ({
 export const getUserProfile = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
     const response = await usersApi.getProfile(userId)
     // .then(response => {
-    dispatch(setUsersProfile(response))
+    dispatch(setUsersProfile(response.data))
     // })
 }
 export const getUserStatus = (userId: string): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
     const response = await profileApi.getStatus(userId)
     // .then(response => {
-    dispatch(setStatus(response))
+    dispatch(setStatus(response.data))
     // })
 }
 export const updateUserStatus = (status: string): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {

@@ -1,21 +1,7 @@
-/*type LocationType = {
-    city: string
-    country: string
-}
-export type UserType = {
-    id: string
-    fotoUrl: string
-    followed: boolean
-    fullName: string
-    status: string
-    location: LocationType
-}*/
-
-
 import {usersApi} from "../API/api";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {AppStoreType} from "./reduxStore";
 import {AxiosResponse} from "axios";
+import {AppStoreType} from "./reduxStore";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
 export type UsersType = {
     id: number
@@ -129,14 +115,10 @@ export const toggleFollowingProgress = (isFetching: boolean, id: number) => ({
 export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         dispatch(toggleIsFetching(true))
-
         let response = await usersApi.getUsers(currentPage, pageSize)
-        // .then(data => {
         dispatch(toggleIsFetching(false))
-        dispatch(setUsers(response.items))
-        dispatch(setTotalUsersCount(response.totalCount))
-
-        // })
+        dispatch(setUsers(response.data.items))
+        dispatch(setTotalUsersCount(response.data.totalCount))
     }
 }
 
@@ -179,7 +161,19 @@ export const unfollowing = (userId: number): ThunkActionType => {
 type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
 type ThunkActionType = ThunkAction<void, AppStoreType, unknown, ActionType>
 
+/*type LocationType = {
 
+    city: string
+    country: string
+}
+export type UserType = {
+    id: string
+    fotoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: LocationType
+}*/
 /*type InitialStateType = {
     users: Array<UserType>
 }*/
