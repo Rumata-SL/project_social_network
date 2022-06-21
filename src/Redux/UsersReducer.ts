@@ -2,6 +2,7 @@ import {usersApi} from "../API/api";
 import {AxiosResponse} from "axios";
 import {AppStoreType} from "./reduxStore";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {updateObjectInArray} from "../utils/object_helpers";
 
 export type UsersType = {
     id: number
@@ -49,22 +50,23 @@ export const usersReducer = (state: StateUsersType = initialStateUsers, action: 
         case "USERS/FOLLOW":
             return {
                 ...state,
-                items: state.items.map(el => el.id === action.userId ? {
-                    ...el,
-                    followed: true
-                } : el)
+                items : updateObjectInArray(state.items, action.userId, "id", {followed: true})
+                // items: state.items.map(el => el.id === action.userId ? {
+                //     ...el,
+                //     followed: true
+                // } : el)
             }
         case "USERS/UNFOLLOW":
             return {
                 ...state,
-                items: state.items.map(el => el.id === action.userId ? {
-                    ...el,
-                    followed: false
-                } : el)
+                items : updateObjectInArray(state.items, action.userId, "id", {followed: false})
+                // items: state.items.map(el => el.id === action.userId ? {
+                //     ...el,
+                //     followed: false
+                // } : el)
             }
         case "USERS/SET_USERS":
             return {...state, items: action.items}
-        // return {...state, items: [...action.items, ...state.items ]}
         case "USERS/SET_CURRENT_PAGE":
             return {...state, currentPage: action.currentPage}
         case "USERS/SET_TOTAL_USERS_COUNT":

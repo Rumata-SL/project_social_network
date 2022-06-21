@@ -53,7 +53,7 @@ export const LoginContainer = connect(mapStateToProps, {loginTC})(Login)
 let maxLength20 = maxLengthCreator(20)
 
 export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
-    const {handleSubmit} = props
+    const {handleSubmit, error} = props
     return <div className={s.wrapper}>
         <div><h4 className={s.wrapperHeader}>LOGIN</h4>
         </div>
@@ -85,8 +85,8 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                     me
                 </div>
                 {/*{props.error && <div className={s.error}><span>{props.error}</span></div>}*/}
-                {props.error ?
-                    <div className={s.error}>{props.error}</div>
+                {error ?
+                    <div className={s.formerror}>{error}</div>
                     : <div className={s.noError}>no error</div>}
                 <div>
                     <button type="submit">Submit</button>
