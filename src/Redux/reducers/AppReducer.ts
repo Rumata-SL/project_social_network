@@ -1,7 +1,7 @@
 import {Action} from "redux";
 import {authApi} from "../../API/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {AppStoreType} from "./reduxStore";
+import {AppStoreType, ThunkType} from "./reduxStore";
 import {FormAction, stopSubmit} from "redux-form";
 import {getAuthUserDataMe} from "./AuthReducer";
 
@@ -13,9 +13,9 @@ const initialStateUsers: AppStateUsersType = {
     initialized: false
 }
 
-type ActionType = ReturnType<typeof initializedSuccess>
+export type AppActionType = ReturnType<typeof initializedSuccess>
 
-export const appReducer = (state: AppStateUsersType = initialStateUsers, action: ActionType): AppStateUsersType => {
+export const appReducer = (state: AppStateUsersType = initialStateUsers, action: AppActionType): AppStateUsersType => {
     switch (action.type) {
         case "APP/INITIALIZED_SUCCESS":
             return {...state, initialized: true}
@@ -29,7 +29,7 @@ export const initializedSuccess = () => ({
 } as const)
 
 
-export const initializeApp = (): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+export const initializeApp = ():ThunkType => async (dispatch) => {
     // let promise =
        await dispatch(getAuthUserDataMe());
             dispatch(initializedSuccess())
@@ -40,4 +40,4 @@ export const initializeApp = (): ThunkAction<void, AppStoreType, unknown, Action
     //     })
 }
 
-type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, ActionType | A>
+// type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, AppActionType | A>

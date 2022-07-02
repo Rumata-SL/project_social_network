@@ -13,7 +13,7 @@ export type MessagesPageType = {
     users: Array<UsersType>
     // newMessageText: string
 }
-type ActionType =
+export type MessagesActionType =
     // ReturnType<typeof NewMessageTextAC>
     | ReturnType<typeof SendMessageAC>
 
@@ -36,7 +36,7 @@ let initialState = {
 }
 
 
-export const messageReducer = (state: MessagesPageType = initialState, action: ActionType): MessagesPageType => {
+export const messageReducer = (state: MessagesPageType = initialState, action: MessagesActionType): MessagesPageType => {
     switch (action.type) {
         /*case "Messages/NEW_MESSAGE_TEXT":
             return {...state, newMessageText: action.body};*/

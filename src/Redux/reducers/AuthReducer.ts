@@ -1,7 +1,7 @@
 import {Action, Dispatch} from "redux";
 import {authApi} from "../../API/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {AppStoreType} from "./reduxStore";
+import {AppStoreType, ThunkType} from "./reduxStore";
 import {FormAction, stopSubmit} from "redux-form";
 
 export type StateUsersType = {
@@ -18,11 +18,11 @@ const initialStateUsers: StateUsersType = {
     isAuth: false,
 }
 
-type ActionType =
+export type AuthActionType =
     ReturnType<typeof setAuthUserData>
 
 
-export const authReducer = (state: StateUsersType = initialStateUsers, action: ActionType): StateUsersType => {
+export const authReducer = (state: StateUsersType = initialStateUsers, action: AuthActionType): StateUsersType => {
     switch (action.type) {
         case "SET_USER_DATA":
             return {...state, ...action.payload}
@@ -37,14 +37,14 @@ export const setAuthUserData = (id: number, email: string, login: string, isAuth
 } as const)
 
 
-export const getAuthUserDataMe = (): ThunkAction<void, AppStoreType, unknown, ActionType> => async (dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+export const getAuthUserDataMe = ():ThunkType => async (dispatch) => {
     let response = await authApi.getMe()
         if (response.data.resultCode === 0) {
             let {id, email, login} = response.data.data
             dispatch(setAuthUserData(id, email, login, true))
         }
 }
-export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkType<FormAction> => async (dispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean):ThunkType=> async (dispatch) => {
     const response = await authApi.login(email, password, rememberMe)
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserDataMe())
@@ -55,7 +55,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean): T
             }
 }
 
-export const logoutTC = (): ThunkAction<void, AppStoreType, unknown, ActionType> => async(dispatch: ThunkDispatch<AppStoreType, unknown, ActionType>) => {
+export const logoutTC = ():ThunkType => async(dispatch) => {
     const response = await authApi.logout()
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
@@ -63,4 +63,4 @@ export const logoutTC = (): ThunkAction<void, AppStoreType, unknown, ActionType>
             }
 }
 
-type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, ActionType | A>
+// type ThunkType<A extends Action = Action> = ThunkAction<void, AppStoreType, unknown, AuthActionType | A>

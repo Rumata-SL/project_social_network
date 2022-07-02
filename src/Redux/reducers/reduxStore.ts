@@ -1,12 +1,13 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {reducer as formReducer} from "redux-form"
-import {profileReducer} from "./ProfileReducer";
-import {messageReducer} from "./MessageReducer";
-import {sideBarReducer} from "./SideBarReducer";
-import {usersReducer} from "./UsersReducer";
-import {authReducer} from "./AuthReducer";
-import thunkMiddleware from "redux-thunk"
-import {appReducer} from "./AppReducer";
+import {ProfileActionType, profileReducer} from "./ProfileReducer";
+import {messageReducer, MessagesActionType} from "./MessageReducer";
+import {SideBarActionType, sideBarReducer} from "./SideBarReducer";
+import {UserActionType, usersReducer} from "./UsersReducer";
+import {AuthActionType, authReducer} from "./AuthReducer";
+import thunkMiddleware, {ThunkAction} from "redux-thunk"
+import {AppActionType, appReducer} from "./AppReducer";
+import thunk from "redux-thunk";
 
 const reducers = combineReducers({
     messagesPage: messageReducer,
@@ -15,11 +16,25 @@ const reducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
-    app:appReducer
+    app: appReducer
 })
 
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+
 export type AppStoreType = ReturnType<typeof reducers>
-export let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+// export let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+
+export type ThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStoreType, unknown, AppRootActionsType>
+
+export type AppRootActionsType =
+    AppActionType
+    | AuthActionType
+    | MessagesActionType
+    | ProfileActionType
+    | SideBarActionType
+    | UserActionType
 
 
 // @ts-ignore

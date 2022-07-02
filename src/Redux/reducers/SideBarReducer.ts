@@ -7,7 +7,7 @@ type NewsType = {
 type SideBarType = {
     news: Array<NewsType>
 }
-type ActionType = ReturnType<typeof AddNewsAC>
+export type SideBarActionType = ReturnType<typeof AddNewsAC>
 
 let initialState = {
     news: [
@@ -17,7 +17,7 @@ let initialState = {
     ],
 }
 
-export const sideBarReducer = (state: SideBarType = initialState, action: ActionType): SideBarType => {
+export const sideBarReducer = (state: SideBarType = initialState, action: SideBarActionType): SideBarType => {
     switch (action.type) {
         case "SideBar/ADD_NEWS":
             return {...state}
