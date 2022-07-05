@@ -1,7 +1,7 @@
 import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {Preloader} from "./Preloaded";
+import {Preloader} from "../../common/preloader/Preloaded";
 import {AppStoreType} from "../../Redux/reducers/reduxStore";
 import {UsersPresentation} from "./UsersPresentation";
 // import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";

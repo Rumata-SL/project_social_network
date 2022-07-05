@@ -1,33 +1,44 @@
 import "./App.css";
 import React from "react";
-import {
-    BrowserRouter,
-    Redirect,
-    Route,
-    Switch,
-    withRouter
-} from "react-router-dom";
-
-
-// components
-import {News} from "./Components/News/News";
-import {Music} from "./Components/Music/Music";
-import {Footer} from "./Components/Footer/Footer";
-import {Navbar} from "./Components/Navbar/Navbar";
-import {Settings} from "./Components/Settings/Settings";
-import {LoginContainer} from "./Components/LoginComponent/Login";
-import {UsersContainer} from "./Components/Users/UsersContainer";
-import {
-    HeaderContainer,
-    HeaderContainerComponent
-} from "./Components/Header/HeaderContainer";
-import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
-import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 import {compose} from "redux";
 import {connect} from "react-redux";
+import {withSuspense} from "./Hoc/WithSuspense";
+import {Footer} from "./Components/Footer/Footer";
+import {Navbar} from "./Components/Navbar/Navbar";
+import {Route, withRouter} from "react-router-dom";
+import {Preloader} from "./common/preloader/Preloaded";
 import {AppStoreType} from "./Redux/reducers/reduxStore";
 import {initializeApp} from "./Redux/reducers/AppReducer";
-import {Preloader} from "./Components/Users/Preloaded";
+import {HeaderContainer,} from "./Components/Header/HeaderContainer";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
+// import {News} from "./Components/News/News";
+// import {Music} from "./Components/Music/Music";
+// import {Settings} from "./Components/Settings/Settings";
+// import {LoginContainer} from "./Components/LoginComponent/Login";
+// import {UsersContainer} from "./Components/Users/UsersContainer";
+// import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+
+const LoginPage = React.lazy(
+    () => import("./Components/LoginComponent/Login")
+        .then(({LoginContainer}) => ({default: LoginContainer})),);
+const ProfilePage = React.lazy(() => import("./Components/Profile/ProfileContainer")
+    .then(({ProfileContainer}) => ({default: ProfileContainer})),
+)
+const UserPage = React.lazy(() => import("./Components/Users/UsersContainer")
+    .then(({UsersContainer}) => ({default: UsersContainer})),
+)
+const DialogsPage = React.lazy(() => import("./Components/Dialogs/DialogsContainer")
+    .then(({DialogsContainer}) => ({default: DialogsContainer})),
+)
+const NewsPage = React.lazy(() => import("./Components/News/News")
+    .then(({News}) => ({default: News})),
+)
+const MusicPage = React.lazy(() => import("./Components/Music/Music")
+    .then(({Music}) => ({default: Music})),
+)
+const SettingsPage = React.lazy(() => import("./Components/Settings/Settings")
+    .then(({Settings}) => ({default: Settings})),
+)
 
 type MapStatePropsType = {
     initialized: boolean,
@@ -46,7 +57,7 @@ class App extends React.Component<AppPropsType> {
 
     render() {
 
-        if(!this.props.initialized){
+        if (!this.props.initialized) {
             return <Preloader/>
         }
         return (
@@ -55,21 +66,15 @@ class App extends React.Component<AppPropsType> {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     {/*<Route exact path="/" render={() => <Redirect to="/profile"/>}/>*/}
-                    {/*<Route exact path="/" component={ProfileContainer}/>*/}
+                    <Route exact path="/" component={ProfileContainer}/>
                     <Route exact path={"/profile/:userId?"}
-                           render={() => <ProfileContainer
-                           />}/>
-                    <Route path="/dialogs"
-                           render={() => <DialogsContainer
-                           />}
-                    />
-                    <Route path="/users"
-                           render={() => <UsersContainer/>}
-                    />
-                    <Route path="/news" render={() => <News/>}/>
-                    <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/settings" render={() => <Settings/>}/>
-                    <Route path="/login" render={() => <LoginContainer/>}/>
+                           render={withSuspense(ProfilePage)}/>
+                    <Route path="/dialogs" render={withSuspense(DialogsPage)}/>
+                    <Route path="/users" render={withSuspense(UserPage)}/>
+                    <Route path="/news" render={withSuspense(NewsPage)}/>
+                    <Route path="/music" render={withSuspense(MusicPage)}/>
+                    <Route path="/settings" render={withSuspense(SettingsPage)}/>
+                    <Route path="/login" render={withSuspense(LoginPage)}/>
                 </div>
                 <Footer/>
             </div>
@@ -81,4 +86,4 @@ class App extends React.Component<AppPropsType> {
 const mapStateToProps = (state: AppStoreType): MapStatePropsType => ({
     initialized: state.app.initialized
 })
-export default compose<React.ComponentType>(withRouter,connect<MapStatePropsType, MapDispatchToPropsType, {}, AppStoreType>(mapStateToProps, {initializeApp}))(App)
+export default compose<React.ComponentType>(withRouter, connect<MapStatePropsType, MapDispatchToPropsType, {}, AppStoreType>(mapStateToProps, {initializeApp}))(App)

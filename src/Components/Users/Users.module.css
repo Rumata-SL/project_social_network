@@ -36,3 +36,8 @@
     background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid white;
 }
+.containerPagination{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

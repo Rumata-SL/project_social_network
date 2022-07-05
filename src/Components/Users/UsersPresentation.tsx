@@ -51,7 +51,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (props) => {
                     </div>
                     <span>
                         <div> Name : {u.name}</div>
-                        <div>{u.status}</div>
+                        <div>{u.status? u.status : "no status"}</div>
                     </span>
                     <div>
                         {
@@ -76,11 +76,7 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (props) => {
             </div>
         })}
 
-        <div style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "15px"
-        }}>
+        <div className={us.containerPagination}>
             <Pagination
                 initialPage={currentPage}
                 total={pagesCount}
@@ -92,13 +88,3 @@ export let UsersPresentation: FC<UsersPresentationPropsType> = (props) => {
         </div>
     </div>
 }
-
-
-/*
-toggleFollowingProgress(true, u.id)
-usersApi.setUnFollow(u.id).then(() => unFollow(u.id)).then(() => toggleFollowingProgress(true, u.id))*/
-
-
-/* toggleFollowingProgress(true, u.id)
-                                        usersApi.setFollow(u.id).then(() => follow(u.id)).then(() => toggleFollowingProgress(true, u.id))
-*/
