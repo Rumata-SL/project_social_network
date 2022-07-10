@@ -5,13 +5,13 @@ import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
 export type ContactsType = {
     facebook: string
-    website: null
+    website: string
     vk: string
     twitter: string
     instagram: string
-    youtube: null
+    youtube: string
     github: string
-    mainLink: null
+    mainLink: string
 }
 export type PhotosType = {
     small: string
