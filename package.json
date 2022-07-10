@@ -2,7 +2,7 @@
   "name": "samurai-way",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rumata-sl.github.io/project_social_network",
+  "homepage": "https://Rumata-SL.github.io/project_social_network",
   "dependencies": {
     "@mantine/core": "^4.2.4",
     "@mantine/hooks": "^4.2.4",

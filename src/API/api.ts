@@ -1,4 +1,5 @@
 import axios from "axios";
+import {savePhoto} from "../Redux/reducers/ProfileReducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -27,21 +28,30 @@ export const profileApi = {
     getProfile(id: string) {
         return instance.get(`profile/${id}`)
     },
-    getStatus(id:string){
+    getStatus(id: string) {
         return instance.get(`profile/status/${id}`)
 
     },
-    upDateStatus(status:string){
+    upDateStatus(status: string) {
         return instance.put(`profile/status`, {status: status})
-    }
+    },
+    savePhoto(photoFile: string) {
+        const formData = new FormData();
+        formData.append("image", photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+    },
 }
 
 export const authApi = {
     getMe() {
         return instance.get(`auth/me`)
     },
-    login(email:string, password:string, rememberMe:boolean=false) {
-        return instance.post(`auth/login`,{email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe})
     },
     logout() {
         return instance.delete(`auth/login`)

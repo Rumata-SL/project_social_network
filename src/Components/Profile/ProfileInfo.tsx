@@ -9,17 +9,26 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 type ProfileInfoPropsType = {
     profile: ProfileType | null
     status: string
+    isOwner: boolean
 
     updateUserStatus: (status: string) => void
+    savePhoto: (file: string) => void
 }
 
 export const ProfileInfo: FC<ProfileInfoPropsType> = ({
                                                           profile,
                                                           status,
-                                                          updateUserStatus
+                                                          isOwner,
+                                                          updateUserStatus,
+                                                          savePhoto
                                                       }) => {
     if (!profile) {
         return <Preloader/>
+    }
+    const onMainPhotoSelected = (e: { target: any }) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
     }
     return (
         <div>
@@ -28,7 +37,10 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = ({
                 <div className={up.box1}>
                     <img
                         src={profile.photos.small !== null ? profile.photos.small : ava}
-                        alt="image" width={45}/>
+                        alt="image" width={200}/>
+                    {isOwner && <div><input type={"file"}
+                                            onChange={onMainPhotoSelected}/>
+                    </div>}
                     <div>AboutMe: {profile.aboutMe}</div>
                     <div>Looking For A Job
                         : {profile.lookingForAJobDescription}</div>
