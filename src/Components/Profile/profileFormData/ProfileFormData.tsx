@@ -12,38 +12,7 @@ import {
 const ProfileFormData = (props: InjectedFormProps<ProfileType>) => {
     const {handleSubmit, initialValues, error} = props
     return (
-        /*<form onSubmit={handleSubmit}>
-            <div>
-                <button>save</button>
-                {error && <div>
-                    {error}
-                </div>}
-            </div>
-            <div>
-                <b>Full
-                    name: </b> {createField("Full name", "fullName", [], Input)}
-            </div>
-            <div>
-                <b>Looking For A
-                    Job: </b> {createField("", "lookingForAJob", [], Input, {type: "checkbox"})}
-            </div>
-
-            <div>
-                <b>My professional
-                    skills: </b> {createField("My professional skills", "lookingForAJobDescription", [], TextArea)}
-            </div>
-            <div>
-                <b>About
-                    me: </b> {createField("About me", "aboutMe", [], TextArea)}
-            </div>
-            <div>
-                <b>Contacts: </b> {Object.keys(initialValues.contacts ?? {}).map(key => {
-                return <div key={key}>
-                    <b>{key}: {createField(key, "contacts." + key, [], Input)}</b>
-                </div>
-            })}
-            </div>
-        </form>*/
+       
         <form onSubmit={handleSubmit}>
             <div>
                 <button>save</button>

@@ -8,12 +8,12 @@ import ProfileFormData from "./profileFormData/ProfileFormData";
 
 
 type ProfileInfoPropsType = {
-    profile: ProfileType | null
     status: string
     isOwner: boolean
+    profile: ProfileType | null
 
-    updateUserStatus: (status: string) => void
     savePhoto: (file: string) => void
+    updateUserStatus: (status: string) => void
     saveProfile: (profile: ProfileType | null) => void
 }
 
@@ -38,10 +38,10 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
     }
     const onSubmit = (formData: ProfileType | null) => {
         saveProfile(formData)
-            // @ts-ignore
-            .then(() => {
-                setEditMode(false)
-            })
+        setEditMode(false)
+        /*.then(() => {
+            setEditMode(false)
+        })*/
     }
     return (
         <div>
