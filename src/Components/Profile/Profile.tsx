@@ -13,10 +13,18 @@ type ProfilePropsType = {
 
     updateUserStatus: (status: string) => void
     savePhoto: (file: string) => void
+    saveProfile: (profile: ProfileType | null) => void
 }
 
 export const Profile: FC<ProfilePropsType> = (props) => {
-    const {profile, status, isOwner, updateUserStatus, savePhoto} = props
+    const {
+        profile,
+        status,
+        isOwner,
+        updateUserStatus,
+        savePhoto,
+        saveProfile
+    } = props
 
     return (
         <div className={p.content}>
@@ -24,7 +32,9 @@ export const Profile: FC<ProfilePropsType> = (props) => {
                 profile={profile}
                 status={status}
                 isOwner={isOwner}
-                updateUserStatus={updateUserStatus} savePhoto={savePhoto}
+                updateUserStatus={updateUserStatus}
+                savePhoto={savePhoto}
+                saveProfile={saveProfile}
             />
 
             <MyPostContainer/>

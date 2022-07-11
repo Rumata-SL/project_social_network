@@ -8,7 +8,8 @@ import {
     getUserProfile,
     getUserStatus,
     ProfileType, updateUserStatus,
-    savePhoto
+    savePhoto,
+    saveProfile
 } from "../../Redux/reducers/ProfileReducer";
 import {compose} from "redux";
 
@@ -26,6 +27,7 @@ type mapDispatchPropsType = {
     getUserStatus: (userId: string) => void
     updateUserStatus: (status: string) => void
     savePhoto: (file: string) => void
+    saveProfile: (profile: ProfileType | null) => void
 }
 type OwnPropsType = mapStatePropsType & mapDispatchPropsType
 
@@ -66,6 +68,8 @@ export class ProfileContainerComponent extends React.Component<ProfileContainerP
                      status={this.props.status}
                      updateUserStatus={this.props.updateUserStatus}
                      savePhoto={this.props.savePhoto}
+                     saveProfile={this.props.saveProfile}
+
             />
         )
     }
@@ -81,7 +85,8 @@ export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToP
     getUserProfile,
     getUserStatus,
     updateUserStatus,
-    savePhoto
+    savePhoto,
+    saveProfile
 }), withRouter, WithAuthRedirect)(ProfileContainerComponent)
 
 

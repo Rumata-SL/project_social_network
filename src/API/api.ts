@@ -1,5 +1,5 @@
 import axios from "axios";
-import {savePhoto} from "../Redux/reducers/ProfileReducer";
+import {ProfileType, savePhoto} from "../Redux/reducers/ProfileReducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -19,13 +19,13 @@ export const usersApi = {
     setUnFollow(id: number) {
         return instance.delete(`follow/${id}`,)
     },
-    getProfile(id: string) {
+    getProfile(id: number | null) {
         return profileApi.getProfile(id)
     }
 }
 
 export const profileApi = {
-    getProfile(id: string) {
+    getProfile(id: number | null) {
         return instance.get(`profile/${id}`)
     },
     getStatus(id: string) {
@@ -44,6 +44,9 @@ export const profileApi = {
             }
         })
     },
+    saveProfile(profile: ProfileType | null) {
+        return instance.put(`profile`, profile);
+    }
 }
 
 export const authApi = {

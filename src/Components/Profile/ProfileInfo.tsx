@@ -4,7 +4,7 @@ import up from "./MyPost/MyPost.module.css";
 import {Preloader} from "../../common/preloader/Preloaded";
 import {ContactsType, ProfileType,} from "../../Redux/reducers/ProfileReducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {ProfileFormData} from "./profileFormData/ProfileFormData";
+import ProfileFormData from "./profileFormData/ProfileFormData";
 
 
 type ProfileInfoPropsType = {
@@ -14,6 +14,7 @@ type ProfileInfoPropsType = {
 
     updateUserStatus: (status: string) => void
     savePhoto: (file: string) => void
+    saveProfile: (profile: ProfileType | null) => void
 }
 
 export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
@@ -22,7 +23,8 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
         status,
         isOwner,
         updateUserStatus,
-        savePhoto
+        savePhoto,
+        saveProfile
     } = props
 
     const [editMode, setEditMode] = useState(false);
@@ -33,6 +35,13 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
+    }
+    const onSubmit = (formData: ProfileType | null) => {
+        saveProfile(formData)
+            // @ts-ignore
+            .then(() => {
+                setEditMode(false)
+            })
     }
     return (
         <div>
@@ -50,7 +59,8 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
                     <ProfileStatusWithHooks status={status}
                                             updateUserStatus={updateUserStatus}/>
                     {editMode
-                        ? <ProfileFormData/>
+                        ? <ProfileFormData initialValues={profile}
+                                           onSubmit={onSubmit}/>
                         : <ProfileData goToEditMode={() => {
                             setEditMode(true)
                         }} profile={profile} isOwner={isOwner}/>}
@@ -70,19 +80,30 @@ const ProfileData: FC<ProfileDataType> = (props) => {
     const {profile, isOwner, goToEditMode} = props
     return (
         <div>
+            {isOwner && <div>
+                <button onClick={goToEditMode}>edit</button>
+            </div>}
 
             <div>Name: <span className={up.name}>{profile.fullName}</span></div>
+
+            <div>Looking For A Job: <span
+                className={up.name}>{profile.lookingForAJob ? "yes" : "no"}</span>
+                {profile.lookingForAJob &&
+                    <div>
+                        <b>My professional
+                            skills: </b> {profile.lookingForAJobDescription}
+                    </div>}
+            </div>
+
             <div>AboutMe: {profile.aboutMe}</div>
-            <div>Looking For A Job: {profile.lookingForAJobDescription}</div>
+
             <div className={up.contact}>
                 <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
                 return <Contact key={key} contactTitle={key}
                                 contactValue={profile.contacts[key as keyof ContactsType]}/>
             })}
             </div>
-            {isOwner && <div>
-                <button onClick={goToEditMode}>edit</button>
-            </div>}
+
         </div>
 
     )

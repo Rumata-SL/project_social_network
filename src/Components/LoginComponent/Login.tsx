@@ -22,9 +22,7 @@ export type FormDataType = {
 export const Login: FC<LoginPropsType> = ({loginTC, isAuth}) => {
     const onSubmit = (formData: FormDataType) => {
         loginTC(formData.email, formData.password, formData.rememberMe)
-
     }
-
     return (
         < >
             {isAuth ? <Redirect to={"/profile"}/> :
@@ -68,12 +66,12 @@ export const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                 <div className={s.containerFormInput}>
                     <span>password</span>
                     <Field
-                           className={s.field}
-                           component={Input}
-                           placeholder={"Password"}
-                           name={"password"}
-                           type={"password"}
-                           validate={[required, maxLength20, minLength2]}
+                        className={s.field}
+                        component={Input}
+                        placeholder={"Password"}
+                        name={"password"}
+                        type={"password"}
+                        validate={[required, maxLength20, minLength2]}
                     />
                 </div>
                 <div>

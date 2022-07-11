@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {profileApi, usersApi} from "../../API/api";
-import {AppStoreType, ThunkType} from "./reduxStore";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {ThunkType} from "./reduxStore";
+
 
 export type ContactsType = {
     facebook: string
@@ -105,7 +105,7 @@ export const DeletePostAC = (postId: string) => ({
     newText: text
 } as const)*/
 
-export const setUsersProfile = (profile: ProfileType) => ({
+export const setUsersProfile = (profile: ProfileType | null) => ({
     type: "Profile/SET_USER_PROFILE",
     profile,
 } as const)
@@ -122,7 +122,7 @@ export const savePhotoSuccess = (photos: PhotosType) => {
     } as const
 }
 
-export const getUserProfile = (userId: string): ThunkType => async (dispatch) => {
+export const getUserProfile = (userId: number | null): ThunkType => async (dispatch) => {
     const response = await usersApi.getProfile(userId)
     // .then(response => {
     dispatch(setUsersProfile(response.data))
@@ -151,28 +151,17 @@ export const savePhoto = (file: string): ThunkType => async (dispatch) => {
     // })
 }
 
-
-/*
-{
-    aboutMe: "я круто чувак 1001%",
-        contacts: {
-    facebook: "facebook.com",
-        website: null,
-        vk: "vk.com/dimych",
-        twitter: "https://twitter.com/@sdf",
-        instagram: "instagra.com/sds",
-        youtube: null,
-        github: "github.com",
-        mainLink: null
-},
-    lookingForAJob: true,
-        lookingForAJobDescription: "не ищу, а дурачусь",
-    fullName: "samurai dimych",
-    userId: 2,
-    photos: {
-    small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-        large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+export const saveProfile = (profile: ProfileType | null): ThunkType => async (dispatch, getState) => {
+    const userId = getState().auth.id
+    let response = await profileApi.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId))
+    }
+    /*if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId))
+    } else {
+        dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}));
+        return Promise.reject(response.data.messages[0]);
+    }*/
 }
-}*/
-// type ThunkType = ThunkAction<void, AppStoreType, unknown, ActionType>
-// type ThunkDispatchType = ThunkDispatch<AppStoreType, unknown, ActionType>
+
