@@ -40,7 +40,10 @@ type mapStateToPropsType = {
     isAuth: boolean
 }
 
-const mapStateToProps = (state: AppStoreType) => ({isAuth: state.auth.isAuth})
+const mapStateToProps = (state: AppStoreType) => ({
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
+})
 
 export const LoginContainer = connect(mapStateToProps, {loginTC})(Login)
 
