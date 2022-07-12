@@ -13,7 +13,7 @@ type ProfilePropsType = {
 
     updateUserStatus: (status: string) => void
     savePhoto: (file: string) => void
-    saveProfile: (profile: ProfileType | null) => void
+    saveProfile: (profile: ProfileType | null) => Promise<ProfileType | null>
 }
 
 export const Profile: FC<ProfilePropsType> = (props) => {

@@ -1,6 +1,7 @@
 import {v1} from "uuid";
 import {profileApi, usersApi} from "../../API/api";
 import {ThunkType} from "./reduxStore";
+import {stopSubmit} from "redux-form";
 
 
 export type ContactsType = {
@@ -155,12 +156,9 @@ export const saveProfile = (profile: ProfileType | null): ThunkType => async (di
     const response = await profileApi.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(getState().auth.id))
-    }
-    /*if (response.data.resultCode === 0) {
-        dispatch(getUserProfile(userId))
     } else {
         dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}));
         return Promise.reject(response.data.messages[0]);
-    }*/
+    }
 }
 

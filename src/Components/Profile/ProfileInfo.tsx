@@ -14,7 +14,7 @@ type ProfileInfoPropsType = {
 
     savePhoto: (file: string) => void
     updateUserStatus: (status: string) => void
-    saveProfile: (profile: ProfileType | null) => void
+    saveProfile: (profile: ProfileType | null) => Promise<ProfileType | null>
 }
 
 export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
@@ -38,10 +38,9 @@ export const ProfileInfo: FC<ProfileInfoPropsType> = (props) => {
     }
     const onSubmit = (formData: ProfileType | null) => {
         saveProfile(formData)
-        setEditMode(false)
-        /*.then(() => {
-            setEditMode(false)
-        })*/
+            .then(() => {
+                setEditMode(false)
+            })
     }
     return (
         <div>
@@ -116,6 +115,12 @@ type ContactType = {
 
 const Contact: FC<ContactType> = ({contactTitle, contactValue}) => {
     return (
-        <div>{contactTitle}: {contactValue}</div>
+        <div>{contactTitle}: <a href={contactValue}
+                                style={{
+                                    fontSize: "16px",
+                                    color: "red"
+                                }}>{contactValue}</a>
+        </div>
     )
 }
+

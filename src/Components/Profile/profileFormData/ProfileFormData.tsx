@@ -7,18 +7,17 @@ import {
     Input,
     TextArea
 } from "../../../common/FormControl/FormsControls";
+import s from "../../LoginComponent/Login.module.css";
 
 
 const ProfileFormData = (props: InjectedFormProps<ProfileType>) => {
     const {handleSubmit, initialValues, error} = props
     return (
-       
+
         <form onSubmit={handleSubmit}>
             <div>
                 <button>save</button>
-                {error && <div>
-                    {error}
-                </div>}
+                {error && <div className={s.formerror}>{error}</div>}
             </div>
             <div>Name: <span
                 className={up.name}>{createField("Full name", "fullName", [], Input)}</span>
