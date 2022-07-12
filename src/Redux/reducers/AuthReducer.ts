@@ -9,7 +9,7 @@ export type StateUsersType = {
     email: string | null
     login: string | null
     isAuth: boolean
-    captchaUrl: string | null
+    captchaUrl: string
 }
 
 const initialStateUsers: StateUsersType = {
@@ -17,7 +17,7 @@ const initialStateUsers: StateUsersType = {
     email: null,
     login: null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: ""
 }
 
 export type AuthActionType =
@@ -28,10 +28,8 @@ export type AuthActionType =
 export const authReducer = (state: StateUsersType = initialStateUsers, action: AuthActionType): StateUsersType => {
     switch (action.type) {
         case "SET_USER_DATA":
+        case "GET_CAPTCHA_UTL":
             return {...state, ...action.payload}
-        case "GET_CAPTCHA_UTL": {
-            return {...state, captchaUrl: action.payload.captchaUrl}
-        }
         default:
             return state
     }
@@ -55,8 +53,8 @@ export const getAuthUserDataMe = (): ThunkType => async (dispatch) => {
         dispatch(setAuthUserData(id, email, login, true))
     }
 }
-export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch) => {
-    const response = await authApi.login(email, password, rememberMe)
+export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
+    const response = await authApi.login(email, password, rememberMe, captcha)
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserDataMe())
     } else {
